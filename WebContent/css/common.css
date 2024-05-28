@@ -1,0 +1,525 @@
+/*画面全体のスタイル*/
+html,body {
+	background-color: $ffffff;
+}
+
+hr {
+	width: 95%;
+}
+
+.contents {
+	padding: 10px;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+/* ログイン画面アイコン画像 */
+.top-img {
+	height: 600px;
+	width: 600px;
+	vertical-align: bottom;
+}
+
+/* メニュー画面会社ロゴ */
+.company-logo {
+	font-family: Times New Roman;
+	font-style: italic;
+	font-weight: bold;
+	color: red;
+	font-size: 50px;
+}
+
+/* 業務規範用マージン */
+.kihan {
+	margin-reft: 10px;
+}
+
+/*一覧のヘッダースタイル*/
+tr.table-header {
+	background:#98FB98;
+	text-align: center;
+}
+
+
+/* ベース横幅 */
+.base-width {
+	width: 800px;
+	padding: 20px auto;
+	margin: 0px auto;
+}
+
+/* ログイン画面背景色 */
+.bg-yellow {
+	background-color: rgb(255,220,0);
+	padding: 10px 0px;
+}
+
+/* ログインページの項目名のセル */
+th.login_field {
+	padding: 8px;
+	font-size :23px;
+}
+
+/* ログイン画面の入力項目のセル */
+td.login_field {
+	padding: 8px;
+	font-size :23px;
+}
+
+/* 共通ヘッダ */
+div.header {
+	background-color: darkSlateGrey;
+	width: 95%;
+	height: 50px;
+	margin: 5px auto;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.label-title {
+	padding :4px 10px;
+}
+
+/* 配置 */
+/* 左寄せ */
+.text-left {
+	text-align: left;
+}
+
+/* 中央寄せ */
+.text-center {
+	text-align: center;
+}
+
+/* 右寄せ */
+.text-right {
+	text-align: right;
+}
+
+/* 上寄せ */
+.align-top {
+	vertical-align: top;
+}
+
+/* 中央寄せ */
+.align-middle {
+	display: flex;
+	justify-content: center; /*左右中央揃え*/
+	align-items: center;     /*上下中央揃え*/
+}
+
+/* 上寄せ */
+.align-bottom {
+	vertical-align: bottom;
+}
+
+/* 中央寄せ（ブロック要素） */
+.block-center {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* サイズ系 */
+/* 幅 */
+.w-15 {
+	width: 15%;
+}
+
+.w-25 {
+	width: 25%;
+}
+
+.w-35 {
+	width: 35%;
+}
+
+.w-50 {
+	width: 50%;
+}
+
+.w-75 {
+	width: 75%;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.w-auto {
+	Width: auto;
+}
+
+/* 幅 */
+.h-25 {
+	height: 25%;
+}
+
+.h-50 {
+	height: 50%;
+}
+
+.h-75 {
+	height: 75%;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.h-auto {
+	height: auto;
+}
+
+/* 背景 */
+.bg-gray {
+	background-color: #cccccc;
+}
+
+.bg-white {
+	background-color: #ffffff;
+}
+
+.bg-green {
+	background-color: #ff0000;
+}
+
+/* フォントカラー */
+.text-white {
+	color: #ffffff;
+}
+
+
+/* 入力項目 */
+.input-text-s {
+	width: 150px;
+	height: 25px;
+	font-size: 20px;
+}
+
+.input-text-m {
+	width: 250px;
+	height: 25px;
+	font-size: 20px;
+}
+
+.input-text-l {
+	width: 450px;
+	height: 25px;
+	font-size: 20px;
+}
+
+.input-select-s {
+	width: 60px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.input-select-m {
+	width: 90px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.input-select-l {
+	width: 120px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.input-select-xl {
+	width: 250px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.input-check {
+	width: 24px;
+	height: 24px;
+}
+
+.input-radio {
+	width: 20px;
+	height: 20px;
+}
+
+/* ボタン */
+.btn {
+	display: block;
+	width: 90%;
+	height: 40px;
+	margin: 10px auto; /* 上下10px 左右auto */
+}
+
+/* ボタン */
+.btn-l {
+	width: 200px;
+}
+
+
+/* テーブル */
+.table {
+	width: 100%;
+    color: #212529;
+    display: table;
+    border-spacing: 1px;
+    border-collapse: collapse;
+    border: 1px none;
+	table-layout:fixed;
+	margin-bottom: 15px;
+}
+
+table.table td {
+	border: solid 1px #333333;
+}
+
+div.table-overflow {
+	overflow-y: scroll;
+	height: 251px;
+}
+
+/* レイアウトテーブル */
+.layout-table {
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 1px;
+    border-color: #dee2e6;
+	table-layout:fixed;
+	margin-bottom: 15px;
+}
+
+/* パディング */
+.p-10 {
+	padding: 10px ;
+}
+
+.mb-0 {
+	margin-bottom: 0px;
+}
+
+p.msg-info {
+	border: 2px solid blue;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	background-color: aliceblue;
+	color: blue;
+	border-radius: 10px;
+	width: 90%;
+	text-align: left;
+}
+
+p.msg-err {
+	border: 2px solid red;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	background-color: pink;
+	color: red;
+	border-radius: 10px;
+	width: 90%;
+	text-align: left;
+}
+
+.ml-20 {
+	margin-left: 20px;
+}
+
+.p-10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+tr {
+	height: 50px;
+}
+
+td {
+	height: 30px;
+}
+
+/* 費目一覧用 */
+.l-himoku {
+	width: 743px;
+}
+.l-himoku-del {
+	width: 50px;
+}
+.l-himoku-cd {
+	width: 70px;
+}
+.l-himoku-kb {
+	width: 70px;
+}
+
+/* 個人一覧用 */
+.l-kojin {
+	width: 743px;
+}
+.l-kojin-del {
+	width: 50px;
+}
+.l-kojin-kojin-id {
+	width: 90px;
+}
+.l-kojin-setai-id {
+	width: 90px;
+}
+.l-kojin-sex {
+	width: 60px;
+}
+.l-kojin-zokugara {
+	width: 60px;
+}
+.l-kojin-setainushi {
+	width: 70px;
+}
+/* 世帯一覧用 */
+.l-setai {
+	width: 743px;
+}
+.l-setai-del {
+	width: 50px;
+}
+.l-setai-id {
+	width: 90px;
+}
+.l-setai-post {
+	width: 50px;
+}
+.l-setai-addr {
+	width: 215px;
+}
+.l-setai-tel {
+	width: 80px;
+}
+/* 収支一覧用 */
+.l-shushi {
+	width: 743px;
+}
+.l-shushi-del {
+	width: 50px;
+}
+.l-shushi-date {
+	width: 110px;
+}
+.l-shushi-kojin-nm {
+	width: 120px;
+}
+.l-shushi-total {
+	width: 100px;
+}
+.l-shushi-shunyu {
+	width: 90px;
+}
+.l-shushi-shishutsu {
+	width: 90px;
+}
+.l-shushi-zandaka {
+	width: 90px;
+}
+
+td.blank {
+	border: 0px none !important;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+/* 共通ヘッダ */
+h1 {
+	font-size: 32px;
+	margin: 0px;
+	padding: 4px;
+	color: #222288;
+}
+
+/* 共通ヘッダとの境 */
+hr {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+
+/* ログインボタンのセル */
+td.login_button {
+	text-align: center;
+	padding: 8px;
+}
+
+/* リストページ */
+table.toolbar {
+	margin-top: 16px;
+	margin-bottom: 32px;
+}
+
+table.list th {
+	width: 150px;
+	text-align: left;
+	padding: 8px;
+	color: #ffffff;
+	background-color: #5555aa;
+}
+
+table.list td {
+	background-color: #bbbbff;
+	padding: 8px;
+}
+
+/* 追加・編集・削除ページ */
+th.add_field {
+	width: 150px;
+	text-align: left;
+	padding: 8px;
+	color: #ffffff;
+	background-color: #aaaaff;
+}
+
+td.add_field {
+	padding: 8px;
+}
+
+td.add_button {
+	text-align: center;
+	padding: 8px;
+}
+
+.minus {
+	color: red;
+}
+
+
+
+/* 戻るボタン */
+.btn-m {
+	width: 100px;
+	height: 30px;
+	margin: 5px;
+}
+
+/* 空白 */
+.spacing-top {
+	margin-top: 30px;
+}
+
+/* 入力制御 */
+.none-ime {
+	ime-mode: disabled;
+}
+
+/* 罫線 */
+.border {
+	border: solid 1px black;
+}
+
+/* 背景 */
+.bg-gray {
+	background-color: #cccccc;
+}
+pa
+/* 左右パディング */
+.plr-20 {
+	padding: 0px 20px;
+}
+
+

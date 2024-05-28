@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+  <!-- SessionFactory -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" destroy-method="close">
+    <property name="driverClassName">
+      <value>oracle.jdbc.driver.OracleDriver</value>
+    </property>
+    <property name="url">
+      <value>jdbc:oracle:thin:@//localhost:1521/XEPDB1</value>
+    </property>
+    <property name="username">
+      <value>MATSUI</value>
+    </property>
+    <property name="password">
+      <value>MATSUI</value>
+    </property>
+  </bean>
+
+  <!-- TransactionManager -->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- DAO -->
+  <!-- 共通 -->
+  <bean id="CommonDaoId" class="cashbook.dao.common.CommonDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- ログイン画面 -->
+  <bean id="LoginDaoId" class="cashbook.dao.common.LoginDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- 個人マスタ -->
+   <bean id="KojinDaoId" class="cashbook.dao.kojin.KojinDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- 世帯マスタ -->
+   <bean id="SetaiDaoId" class="cashbook.dao.setai.SetaiDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- 費目マスタ -->
+   <bean id="HimokuDaoId" class="cashbook.dao.himoku.HimokuDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- 収支 -->
+   <bean id="ShushiDaoId" class="cashbook.dao.shushi.ShushiDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+
+  <!-- Service -->
+  <!-- ログイン画面 -->
+  <bean id="LoginServiceId" class="cashbook.service.common.LoginServiceImpl">
+    <property name="loginDao">
+      <ref local="LoginDaoId" />
+    </property>
+  </bean>
+
+    <!-- 個人マスタ -->
+  <bean id="KojinServiceId" class="cashbook.service.kojin.KojinServiceImpl">
+    <property name="commonDao">
+      <ref local="CommonDaoId" />
+    </property>
+    <property name="setaiDao">
+      <ref local="SetaiDaoId" />
+    </property>
+    <property name="kojinDao">
+      <ref local="KojinDaoId" />
+    </property>
+  </bean>
+
+    <!-- 世帯マスタ -->
+  <bean id="SetaiServiceId" class="cashbook.service.setai.SetaiServiceImpl">
+    <property name="setaiDao">
+      <ref local="SetaiDaoId" />
+    </property>
+  </bean>
+
+  <!-- 費目マスタ -->
+   <bean id="HimokuServiceId" class="cashbook.service.himoku.HimokuServiceImpl">
+    <property name="commonDao">
+      <ref local="CommonDaoId" />
+    </property>
+    <property name="himokuDao">
+      <ref local="HimokuDaoId" />
+    </property>
+  </bean>
+
+  <!-- 収支 -->
+   <bean id="ShushiServiceId" class="cashbook.service.shushi.ShushiServiceImpl">
+    <property name="commonDao">
+      <ref local="CommonDaoId" />
+    </property>
+    <property name="shushiDao">
+      <ref local="ShushiDaoId" />
+    </property>
+  </bean>
+
+  <!-- Action -->
+  <!-- ログイン画面 -->
+  <bean name="/Login" class="cashbook.action.common.LoginAction">
+    <property name="loginService">
+      <ref local="LoginServiceId" />
+    </property>
+  </bean>
+
+  <!-- 個人マスタメンテ -->
+  <bean name="/KojinListInit" class="cashbook.action.kojin.KojinListInitAction">
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+  <bean name="/KojinListSearch" class="cashbook.action.kojin.KojinListSearchAction">
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+  <bean name="/KojinListDelete" class="cashbook.action.kojin.KojinListDeleteAction">
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+
+  <!-- 個人マスタ登録 -->
+  <bean name="/KojinRegistInit" class="cashbook.action.kojin.KojinRegistInitAction">
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+  <bean name="/KojinRegistInsUpd" class="cashbook.action.kojin.KojinRegistInsUpdAction">
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+
+  <!-- 世帯マスタメンテ -->
+  <bean name="/SetaiListInit" class="cashbook.action.setai.SetaiListInitAction">
+    <property name="setaiService">
+      <ref local="SetaiServiceId" />
+    </property>
+  </bean>
+  <bean name="/SetaiListSearch" class="cashbook.action.setai.SetaiListSearchAction">
+    <property name="setaiService">
+      <ref local="SetaiServiceId" />
+    </property>
+  </bean>
+  <bean name="/SetaiListDelete" class="cashbook.action.setai.SetaiListDeleteAction">
+    <property name="setaiService">
+      <ref local="SetaiServiceId" />
+    </property>
+  </bean>
+  <!-- 世帯マスタ登録 -->
+  <bean name="/SetaiRegistInit" class="cashbook.action.setai.SetaiRegistInitAction">
+    <property name="setaiService">
+      <ref local="SetaiServiceId" />
+    </property>
+  </bean>
+  <bean name="/SetaiRegistInsUpd" class="cashbook.action.setai.SetaiRegistInsUpdAction">
+    <property name="setaiService">
+      <ref local="SetaiServiceId" />
+    </property>
+  </bean>
+  <!-- 費目マスタメンテ -->
+  <bean name="/HimokuListInit" class="cashbook.action.himoku.HimokuListInitAction">
+    <property name="himokuService">
+      <ref local="HimokuServiceId" />
+    </property>
+  </bean>
+  <bean name="/HimokuListSearch" class="cashbook.action.himoku.HimokuListSearchAction">
+    <property name="himokuService">
+      <ref local="HimokuServiceId" />
+    </property>
+  </bean>
+  <bean name="/HimokuListDelete" class="cashbook.action.himoku.HimokuListDeleteAction">
+    <property name="himokuService">
+      <ref local="HimokuServiceId" />
+    </property>
+  </bean>
+  <!-- 費目マスタ登録 -->
+  <bean name="/HimokuRegistInit" class="cashbook.action.himoku.HimokuRegistInitAction">
+    <property name="himokuService">
+      <ref local="HimokuServiceId" />
+    </property>
+  </bean>
+  <bean name="/HimokuRegistInsUpd" class="cashbook.action.himoku.HimokuRegistInsUpdAction">
+    <property name="himokuService">
+      <ref local="HimokuServiceId" />
+    </property>
+  </bean>
+
+  <!-- 収支登録 -->
+  <bean name="/ShushiRegistInit" class="cashbook.action.shushi.ShushiRegistInitAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+  <bean name="/ShushiRegistInsUpd" class="cashbook.action.shushi.ShushiRegistInsUpdAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+
+  <!-- 収支一覧（個別） -->
+  <bean name="/ShushiListKobetsuInit" class="cashbook.action.shushi.ShushiListKobetsuInitAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+  <bean name="/ShushiListKobetsuSearch" class="cashbook.action.shushi.ShushiListKobetsuSearchAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+  <bean name="/ShushiListKobetsuDelete" class="cashbook.action.shushi.ShushiListKobetsuDeleteAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+
+  <!-- 収支一覧（世帯） -->
+  <bean name="/ShushiListSetaiInit" class="cashbook.action.shushi.ShushiListSetaiInitAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+  <bean name="/ShushiListSetaiSearch" class="cashbook.action.shushi.ShushiListSetaiSearchAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+  <bean name="/ShushiListSetaiDelete" class="cashbook.action.shushi.ShushiListSetaiDeleteAction">
+    <property name="shushiService">
+      <ref local="ShushiServiceId" />
+    </property>
+  </bean>
+
+</beans>

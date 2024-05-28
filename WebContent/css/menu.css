@@ -1,0 +1,43 @@
+#main{
+	font-family:Meiryo UI;
+	width:30%;
+	width:960px;
+	margin:0 auto;
+}
+
+#sub{
+	width:600px;
+	margin:0 auto;
+	margin-top:50px;
+}
+
+#block1{
+	width:300px;
+	height:150px;
+	float:left;
+	margin:0 auto;
+}
+
+#block2{
+	width:150px;
+	float:left;
+}
+
+#block3{
+	width:150px;
+	float:left;
+}
+
+#block4{
+	width:150px;
+	float:left;
+}
+
+#block5{
+	width:150px;
+	float:left;
+}
+
+#clearfix{
+	clear:both;
+}
