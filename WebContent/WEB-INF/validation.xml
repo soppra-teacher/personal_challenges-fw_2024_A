@@ -6,9 +6,19 @@
 	<formset>
 		<!-- ログイン画面 -->
 		<form name="loginForm">
-			<field property="kojinId" depends="required">
-				<arg0 key="loginForm.param.kojinId" resource="true" />
-			</field>
+			<field property="userId" depends="required,mask,maxlength">
+			<msg name="mask" key="errors.strHalfChar" />
+				<arg0 key="loginForm.param.userId" resource="true" />
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>12</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z ]+$</var-value>
+				</var>
+				</field>
 			<field property="pass" depends="required">
 				<arg0 key="loginForm.param.pass" resource="true" />
 			</field>

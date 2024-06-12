@@ -22,10 +22,10 @@
       <value>jdbc:oracle:thin:@//localhost:1521/XEPDB1</value>
     </property>
     <property name="username">
-      <value>MATSUI</value>
+      <value>TAKAYANAGI</value>
     </property>
     <property name="password">
-      <value>MATSUI</value>
+      <value>TAKAYANAGI</value>
     </property>
   </bean>
 
@@ -133,6 +133,10 @@
     <property name="loginService">
       <ref local="LoginServiceId" />
     </property>
+  </bean>
+  
+  <!-- ユーザ登録画面 -->
+  <bean name="/UserRegistInit" class="cashbook.action.common.LoginInitAction">
   </bean>
 
   <!-- 個人マスタメンテ -->

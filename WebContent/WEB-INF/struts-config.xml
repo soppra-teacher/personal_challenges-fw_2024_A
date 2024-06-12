@@ -7,9 +7,14 @@
 	<form-beans>
 		<!-- ログイン画面 -->
 		<form-bean name="loginForm"       type="org.apache.struts.validator.DynaValidatorForm">
-			<form-property name="kojinId" type="java.lang.String" />
+			<form-property name="userId" type="java.lang.String" />
 			<form-property name="pass"    type="java.lang.String"/>
-			<form-property name="getKey"    type="java.lang.String"/>
+		</form-bean>
+		
+		<!-- ユーザ登録画面 -->
+		<form-bean name="userRegistForm"       type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="userId" type="java.lang.String" />
+			<form-property name="pass"    type="java.lang.String"/>
 		</form-bean>
 
 		<!-- 費目マスタ登録画面 -->
@@ -135,7 +140,20 @@
 			scope="request">
 			<forward name="success" path="/jsp/common/login.jsp"/>
 		</action>
-
+		
+		<!--
+		****************************
+		* ユーザ登録画面           *
+		****************************
+		-->
+		<action
+			path="/UserRegistInit"
+			type="cashbook.action.common.LoginInitAction"
+			scope="request">
+			<forward name="success" path="/jsp/common/userRegist.jsp"/>
+		</action>
+		
+		
 		<!--
 		****************************
 		* メニュー画面             *
