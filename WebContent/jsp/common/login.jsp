@@ -18,7 +18,7 @@
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
 
 </head>
-<body onload="document.forms[0].elements[0].focus();" class="bg-yellow">
+<body onload="document.forms[0].elements[0].focus();" class="bg-yellow image_chizu">
 
 		<html:form action="/Login?getKey=aaa" focus="userId" styleClass="text-center formdesign w-400px form-center" >
 

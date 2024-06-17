@@ -1,40 +1,69 @@
--- 費目マスタ
-INSERT INTO MST_HIMOKU VALUES ('01', '繰り越し分', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('02', '給与', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('03', '食費', '2', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('04', '光熱費', '2', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('05', '宝くじ当選', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('06', '賞与', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('07', 'プレゼント', '2', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_HIMOKU VALUES ('08', 'ギャンブル', '2', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
--- コード種別マスタ
-INSERT INTO MST_CODE_CLASS VALUES ('001', '費目', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE_CLASS VALUES ('002', '性別', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE_CLASS VALUES ('003', '続柄', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE_CLASS VALUES ('004', '世帯主', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE_CLASS VALUES ('005', '削除フラグ', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
--- コードマスタ
-INSERT INTO MST_CODE VALUES ('001', '1', '収入', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('001', '2', '支出', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('002', '1', '男', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('002', '2', '女', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '1', '父', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '2', '母', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '3', '長男', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '4', '長女', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '5', '次男', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '6', '次女', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '7', '三男', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('003', '8', '三女', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('004', '1', '世帯主', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('005', '1', '削除データを除く', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_CODE VALUES ('005', '2', '削除データのみ', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
--- 世帯マスタ
-INSERT INTO MST_SETAI VALUES ('00000000', '管理者', 'ｶﾝﾘｼｬ', '000-0000', '秘密', '000-000-0000', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
-INSERT INTO MST_SETAI VALUES ('00000001', '山田家', 'ﾔﾏﾀﾞｹ', '660-0893', '兵庫県尼崎市西難波町', '06-7474-8888', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1);
--- 個人マスタ
-INSERT INTO MST_KOJIN VALUES ('1', '00000000', '1', '管理者', 'ｶﾝﾘｼｬ', '1', '1', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1, NULL);
-INSERT INTO MST_KOJIN VALUES ('00000001', '00000001', '1', '山田　太郎', 'ﾔﾏﾀﾞ ﾀﾛｳ', '1', '1', '1', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1, NULL);
-INSERT INTO MST_KOJIN VALUES ('00000002', '00000001', '2', '山田　花子', 'ﾔﾏﾀﾞ ﾊﾅｺ', '2', '2', '0', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1, NULL);
-INSERT INTO MST_KOJIN VALUES ('00000003', '00000001', '3', '山田　一郎', 'ﾔﾏﾀﾞ ｲﾁﾛｳ', '1', '3', '0', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1, NULL);
-INSERT INTO MST_KOJIN VALUES ('00000004', '00000001', '4', '山田　次郎', 'ﾔﾏﾀﾞ ｼﾞﾛｳ', '1', '5', '0', '0', 'soppra', SYSDATE, 'soppra', SYSDATE, 1, NULL);
+-------------------------------------------------------------------------------------------------------
+
+--MST_THIHOU(地方マスタ)
+INSERT INTO MST_TIHOU VALUES ('1', '北海道');
+INSERT INTO MST_TIHOU VALUES ('2', '東北');
+INSERT INTO MST_TIHOU VALUES ('3', '関東');
+INSERT INTO MST_TIHOU VALUES ('4', '中部');
+INSERT INTO MST_TIHOU VALUES ('5', '近畿');
+INSERT INTO MST_TIHOU VALUES ('6', '中国');
+INSERT INTO MST_TIHOU VALUES ('7', '四国');
+INSERT INTO MST_TIHOU VALUES ('8', '九州・沖縄');
+
+
+--MST_TODOUHUKEN(都道府県マスタ)
+INSERT INTO MST_TODOUHUKEN VALUES ('1', '1', '北海道');
+INSERT INTO MST_TODOUHUKEN VALUES ('2', '2', '青森県');
+INSERT INTO MST_TODOUHUKEN VALUES ('3', '2', '岩手県');
+INSERT INTO MST_TODOUHUKEN VALUES ('4', '2', '宮城県');
+INSERT INTO MST_TODOUHUKEN VALUES ('5', '2', '秋田県');
+INSERT INTO MST_TODOUHUKEN VALUES ('6', '2', '山形県');
+INSERT INTO MST_TODOUHUKEN VALUES ('7', '2', '福島県');
+INSERT INTO MST_TODOUHUKEN VALUES ('8', '3', '茨城県');
+INSERT INTO MST_TODOUHUKEN VALUES ('9', '3', '栃木県');
+INSERT INTO MST_TODOUHUKEN VALUES ('10', '3', '群馬県');
+INSERT INTO MST_TODOUHUKEN VALUES ('11', '3', '埼玉県');
+INSERT INTO MST_TODOUHUKEN VALUES ('12', '3', '千葉県');
+INSERT INTO MST_TODOUHUKEN VALUES ('13', '3', '東京都');
+INSERT INTO MST_TODOUHUKEN VALUES ('14', '3', '神奈川県');
+INSERT INTO MST_TODOUHUKEN VALUES ('15', '4', '新潟県');
+INSERT INTO MST_TODOUHUKEN VALUES ('16', '4', '富山県');
+INSERT INTO MST_TODOUHUKEN VALUES ('17', '4', '石川県');
+INSERT INTO MST_TODOUHUKEN VALUES ('18', '4', '福井県');
+INSERT INTO MST_TODOUHUKEN VALUES ('19', '4', '山梨県');
+INSERT INTO MST_TODOUHUKEN VALUES ('20', '4', '長野県');
+INSERT INTO MST_TODOUHUKEN VALUES ('21', '4', '岐阜県');
+INSERT INTO MST_TODOUHUKEN VALUES ('22', '4', '静岡県');
+INSERT INTO MST_TODOUHUKEN VALUES ('23', '4', '愛知県');
+INSERT INTO MST_TODOUHUKEN VALUES ('24', '4', '三重県');
+INSERT INTO MST_TODOUHUKEN VALUES ('25', '5', '滋賀県');
+INSERT INTO MST_TODOUHUKEN VALUES ('26', '5', '京都府');
+INSERT INTO MST_TODOUHUKEN VALUES ('27', '5', '大阪府');
+INSERT INTO MST_TODOUHUKEN VALUES ('28', '5', '兵庫県');
+INSERT INTO MST_TODOUHUKEN VALUES ('29', '5', '奈良県');
+INSERT INTO MST_TODOUHUKEN VALUES ('30', '5', '和歌山県');
+INSERT INTO MST_TODOUHUKEN VALUES ('31', '6', '鳥取県');
+INSERT INTO MST_TODOUHUKEN VALUES ('32', '6', '島根県');
+INSERT INTO MST_TODOUHUKEN VALUES ('33', '6', '岡山県');
+INSERT INTO MST_TODOUHUKEN VALUES ('34', '6', '広島県');
+INSERT INTO MST_TODOUHUKEN VALUES ('35', '6', '山口県');
+INSERT INTO MST_TODOUHUKEN VALUES ('36', '7', '徳島県');
+INSERT INTO MST_TODOUHUKEN VALUES ('37', '7', '香川県');
+INSERT INTO MST_TODOUHUKEN VALUES ('38', '7', '愛媛県');
+INSERT INTO MST_TODOUHUKEN VALUES ('39', '7', '高知県');
+INSERT INTO MST_TODOUHUKEN VALUES ('40', '8', '福岡県');
+INSERT INTO MST_TODOUHUKEN VALUES ('41', '8', '佐賀県');
+INSERT INTO MST_TODOUHUKEN VALUES ('42', '8', '長崎県');
+INSERT INTO MST_TODOUHUKEN VALUES ('43', '8', '熊本県');
+INSERT INTO MST_TODOUHUKEN VALUES ('44', '8', '大分県');
+INSERT INTO MST_TODOUHUKEN VALUES ('45', '8', '宮崎県');
+INSERT INTO MST_TODOUHUKEN VALUES ('46', '8', '鹿児島県');
+INSERT INTO MST_TODOUHUKEN VALUES ('47', '8', '沖縄県');
+
+
+
+
+
+
+
+

@@ -52,6 +52,14 @@ td.login_field {
 	animation-duration:5s;
 }
 
+.image_chizu {
+	background-image: url(../img/nihonchizu_white.png);
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position-x: 300px;
+	background-position-y: 20px;
+}
+
 /* 動く背景 */
 @keyframes slide {
 	0% {

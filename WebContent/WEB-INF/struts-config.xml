@@ -15,6 +15,7 @@
 		<form-bean name="userRegistForm"       type="org.apache.struts.validator.DynaValidatorForm">
 			<form-property name="userId" type="java.lang.String" />
 			<form-property name="pass"    type="java.lang.String"/>
+			<form-property name="passKakunin"    type="java.lang.String"/>
 		</form-bean>
 
 		<!-- 費目マスタ登録画面 -->
@@ -146,13 +147,33 @@
 		* ユーザ登録画面           *
 		****************************
 		-->
+		<!-- 初期表示 -->
 		<action
 			path="/UserRegistInit"
-			type="cashbook.action.common.LoginInitAction"
+			type="cashbook.action.common.UserRegistInitAction"
 			scope="request">
 			<forward name="success" path="/jsp/common/userRegist.jsp"/>
 		</action>
-		
+		<!-- ディスパッチ -->
+		<action
+			path="/UserRegistDisp"
+			type="cashbook.action.common.UserRegistDispAction"
+			name="userRegistForm"
+			validate="false"
+			parameter="operation"
+			scope="request">
+			<forward name="insert" path="/UserRegistIns.do"/>
+		</action>
+		<!-- 登録 -->
+		<action
+			path="/UserRegistIns"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="userRegistForm"
+			validate="true"
+			input="/jsp/common/userRegist.jsp"
+			scope="request">
+			<forward name="success" path="/UserRegistInit.do" redirect="true" />
+		</action>
 		
 		<!--
 		****************************

@@ -50,6 +50,13 @@
       <ref local="dataSource" />
     </property>
   </bean>
+  
+  <!-- ユーザ登録画面 -->
+   <bean id="UserRegistDaoId" class="cashbook.dao.common.UserRegistDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
 
   <!-- 個人マスタ -->
    <bean id="KojinDaoId" class="cashbook.dao.kojin.KojinDaoImpl">
@@ -57,7 +64,7 @@
       <ref local="dataSource" />
     </property>
   </bean>
-
+	
   <!-- 世帯マスタ -->
    <bean id="SetaiDaoId" class="cashbook.dao.setai.SetaiDaoImpl">
     <property name="dataSource">
@@ -84,6 +91,13 @@
   <bean id="LoginServiceId" class="cashbook.service.common.LoginServiceImpl">
     <property name="loginDao">
       <ref local="LoginDaoId" />
+    </property>
+  </bean>
+  
+  <!-- ユーザ登録画面 -->
+  <bean id="UserRegistServiceId" class="cashbook.service.common.UserRegistServiceImpl">
+    <property name="userRegistDao">
+      <ref local="UserRegistDaoId" />
     </property>
   </bean>
 
@@ -136,7 +150,15 @@
   </bean>
   
   <!-- ユーザ登録画面 -->
-  <bean name="/UserRegistInit" class="cashbook.action.common.LoginInitAction">
+  <bean name="/UserRegistInit" class="cashbook.action.common.UserRegistInitAction">
+  	<property name="userRegistService">
+      <ref local="UserRegistServiceId" />
+    </property>
+  </bean>
+  <bean name="/UserRegistIns" class="cashbook.action.common.UserRegistInsAction">
+    <property name="userRegistService">
+      <ref local="UserRegistServiceId" />
+    </property>
   </bean>
 
   <!-- 個人マスタメンテ -->

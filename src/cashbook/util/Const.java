@@ -42,6 +42,8 @@ public class Const {
 	public static final String MSG_ERRORS_PRIMARY_KEY = "errors.overLap";
 	/** 排他エラーメッセージ */
 	public static final String MSG_ERRORS_DATA_LOCK = "errors.lock";
+	/** パスワード不一致メッセージ */
+	public static final String MSG_ERRORS_PASS_FUITTI = "errors.userpass";
 
 	/** 登録完了メッセージ */
 	public static final String MSG_SUCCESS_INSERT = "messages.success.insert";
@@ -69,7 +71,14 @@ public class Const {
 	/************* セッション情報 *************/
 	/** ログイン画面 DTO */
 	public static final String SESSION_LOGIN_DTO = "LOGIN_DTO";
+	/** ユーザ登録画面 DTO */
+	public static final String SESSION_REGIST_DTO_USER = "USER_REGIST_DTO";
+	/** ユーザ登録画面 戻り先 */
+	public static final String SESSION_REGIST_BACK_USER = "USER_REGIST_BACK";
+	/** ユーザ登録画面 メッセージ  */
+	public static final String SESSION_REGIST_MESSAGE_USER = "USER_REGIST_MESSAGE";
 
+	
 	/** 費目マスタ登録画面 DTO */
 	public static final String SESSION_REGIST_DTO_HIMOKU = "HIMOKU_REGIST_DTO";
 	/** 費目マスタ登録画面 戻り先 */
@@ -132,6 +141,11 @@ public class Const {
 
 
 	/************* 画面ID *************/
+	/** KS001:ログイン画面 */
+	public static final String DISP_KS001 = "KS001";
+    /** KS002:ユーザ登録画面 */
+	public static final String DISP_KS002 = "KS002";
+	
     /** SM001:個人マスタメンテ */
 	public static final String DISP_SM001 = "SM001";
     /** SM002:個人マスタ登録 */
