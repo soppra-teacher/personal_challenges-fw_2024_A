@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <div class="header text-white text-center align-middle">
 	<div>
-		Ç®è¨å≠Ç¢í†Å@<%=request.getParameter("screenTitle")%>
+		<%=request.getParameter("screenTitle")%>
 	</div>
 
 </div>

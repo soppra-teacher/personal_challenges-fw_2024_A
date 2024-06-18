@@ -112,7 +112,7 @@
 					</td>
 					<td>
 						<p>
-							&nbsp;
+							<html:link action="/KankouRegistInit">ŠÏŒõ’n“o˜^</html:link>
 						</p>
 					</td>
 				</tr>

@@ -41,5 +41,16 @@ public interface CommonDao {
 	 * コードマスタより、コード名称を文字列型で取得する
 	 */
 	public String getCodeName(String classCd ,String cd);
-
+	
+	/**
+	 * セレクトボックス用都道府県マスタ取得
+	 * @return 都道府県マスタ
+	 */
+	public Map<String, String> searchSelectboxTodouhuKen();
+	
+	/**
+	 * セレクトボックス用カテゴリマスタ取得
+	 * @return カテゴリマスタ
+	 */
+	public Map<String, String> searchSelectboxCategory();
 }

@@ -115,6 +115,21 @@ public class Const {
 	public static final String SESSION_LIST_RE_SEARCH_KOJIN = "KOJIN_LIST_RE_SEARCH";
 	/** 個人マスタメンテ画面 メッセージ */
 	public static final String SESSION_LIST_MESSAGE_KOJIN = "KOJIN_LIST_MESSAGE";
+	
+	/** 観光地登録画面 DTO */
+	public static final String SESSION_REGIST_DTO_KANKOU = "KANKOU_REGIST_DTO";
+	/** 観光地登録画面 戻り先 */
+	public static final String SESSION_REGIST_BACK_KANKOU = "KANKOU_REGIST_BACK";
+	/** 観光地登録画面 再検索値 */
+	public static final String SESSION_REGIST_RE_SEARCH_KANKOU = "KANKOU_REGIST_RE_SEARCH";
+	/** 観光地登録画面 メッセージ */
+	public static final String SESSION_REGIST_MESSAGE_KANKOU = "KANKOU_REGIST_MESSAGE";
+	/** 観光地登録画面 DTO */
+	public static final String SESSION_LIST_DTO_KANKOU = "KANKOU_LIST_DTO";
+	/** 観光地登録画面 再検索値 */
+	public static final String SESSION_LIST_RE_SEARCH_KANKOU = "KANKOU_LIST_RE_SEARCH";
+	/** 観光地登録画面 メッセージ */
+	public static final String SESSION_LIST_MESSAGE_KANKOU = "KANKOU_LIST_MESSAGE";
 
 	/** 収支登録画面 戻り先 */
 	public static final String SESSION_REGIST_BACK_SHUSHI = "SHUSHI_REGIST_BACK";

@@ -60,7 +60,7 @@ public interface KankouDao {
 	 * @param formMap
 	 * @return
 	 */
-	public boolean checkOverlapKankou(Map<String, Object> formMap);
+	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto);
 
 	/**
 	 * 行ロック及び、排他チェック

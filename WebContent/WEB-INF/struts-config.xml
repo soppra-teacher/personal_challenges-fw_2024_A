@@ -7,14 +7,9 @@
 	<form-beans>
 		<!-- ログイン画面 -->
 		<form-bean name="loginForm"       type="org.apache.struts.validator.DynaValidatorForm">
-			<form-property name="userId" type="java.lang.String" />
+			<form-property name="kojinId" type="java.lang.String" />
 			<form-property name="pass"    type="java.lang.String"/>
-		</form-bean>
-		
-		<!-- ユーザ登録画面 -->
-		<form-bean name="userRegistForm"       type="org.apache.struts.validator.DynaValidatorForm">
-			<form-property name="userId" type="java.lang.String" />
-			<form-property name="pass"    type="java.lang.String"/>
+			<form-property name="getKey"    type="java.lang.String"/>
 		</form-bean>
 
 		<!-- 費目マスタ登録画面 -->
@@ -76,6 +71,18 @@
 			<form-property name="zokugaraKey"    type="java.lang.String"  />
 			<form-property name="setaiNusiFlg"   type="java.lang.String"  />
 			<form-property name="checkDel"       type="java.lang.String[]"/>
+		</form-bean>
+		
+		<!-- 観光地登録画面 -->
+        <form-bean name="kankouRegistForm"    type="org.apache.struts.validator.DynaValidatorForm">
+  			<form-property name="todouhukenKey"     type="java.lang.String" />
+  			<form-property name="categoryKey"     type="java.lang.String" />
+			<form-property name="kankouNm"        type="java.lang.String" />
+  			<form-property name="setsumei"        type="java.lang.String" />
+			<form-property name="review"           type="java.lang.String" />
+			<form-property name="hyoka"    type="java.lang.String" />
+			<form-property name="pictures"          type="java.lang.String" />
+			<form-property name="revision"        type="java.lang.String" />
 		</form-bean>
 
 		<!-- 収支登録画面 -->
@@ -140,20 +147,7 @@
 			scope="request">
 			<forward name="success" path="/jsp/common/login.jsp"/>
 		</action>
-		
-		<!--
-		****************************
-		* ユーザ登録画面           *
-		****************************
-		-->
-		<action
-			path="/UserRegistInit"
-			type="cashbook.action.common.LoginInitAction"
-			scope="request">
-			<forward name="success" path="/jsp/common/userRegist.jsp"/>
-		</action>
-		
-		
+
 		<!--
 		****************************
 		* メニュー画面             *
@@ -330,6 +324,44 @@
 			<forward name="success" path="/SetaiListSearch.do" redirect="true" />
 		</action>
 
+		<!--
+		****************************
+		* 観光地登録画面       *
+		****************************
+		-->
+		<!-- 初期表示 -->
+		<action
+			path="/KankouRegistInit"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouRegistForm"
+			validate="false"
+			scope="request">
+			<forward name="success" path="/jsp/kankou/kankouRegist.jsp"/>
+		</action>
+	    <!-- ディスパッチ -->
+		<action
+			path="/KankouRegistDisp"
+			type="cashbook.action.kankou.KankouRegistDispAction"
+			name="kankouRegistForm"
+			validate="false"
+			parameter="operation"
+			scope="request">
+			<forward name="insert" path="/KankouRegistIns.do"/>
+			<forward name="backMenu" path="/MenuInit.do"/>
+		</action>
+		<!-- 登録-->
+		<action
+			path="/KankouRegistIns"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouRegistForm"
+			validate="true"
+			input="/jsp/kankou/kankouRegist.jsp"
+			scope="request">
+			<forward name="success" path="/KankouRegistInit.do" redirect="true" />
+			<forward name="error" path="/jsp/kankou/kankouRegist.jsp" />
+		</action>
+		
+		
 		<!--
 		****************************
 		* 個人マスタ登録画面       *

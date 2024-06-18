@@ -22,7 +22,7 @@
       <value>jdbc:oracle:thin:@//localhost:1521/XEPDB1</value>
     </property>
     <property name="username">
-      <value>TKAERU</value>
+      <value>TAKERU</value>
     </property>
     <property name="password">
       <value>TAKERU</value>
@@ -53,6 +53,13 @@
 
   <!-- 個人マスタ -->
    <bean id="KojinDaoId" class="cashbook.dao.kojin.KojinDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+  
+    <!-- 観光地テーブル-->
+   <bean id="KankouDaoId" class="cashbook.dao.kankou.KankouDaoImpl">
     <property name="dataSource">
       <ref local="dataSource" />
     </property>
@@ -99,7 +106,18 @@
       <ref local="KojinDaoId" />
     </property>
   </bean>
-
+  
+  
+    <!-- 観光地テーブル -->
+  <bean id="KankouServiceId" class="cashbook.service.kankou.KankouServiceImpl">
+    <property name="commonDao">
+      <ref local="CommonDaoId" />
+    </property>
+    <property name="kankouDao">
+      <ref local="KankouDaoId" />
+    </property>
+  </bean>
+  
     <!-- 世帯マスタ -->
   <bean id="SetaiServiceId" class="cashbook.service.setai.SetaiServiceImpl">
     <property name="setaiDao">
@@ -134,10 +152,6 @@
       <ref local="LoginServiceId" />
     </property>
   </bean>
-  
-  <!-- ユーザ登録画面 -->
-  <bean name="/UserRegistInit" class="cashbook.action.common.LoginInitAction">
-  </bean>
 
   <!-- 個人マスタメンテ -->
   <bean name="/KojinListInit" class="cashbook.action.kojin.KojinListInitAction">
@@ -167,6 +181,26 @@
       <ref local="KojinServiceId" />
     </property>
   </bean>
+  
+  <!-- 観光地登録 -->
+  <!--  ここに明記されているクラスを記入する -->
+  <bean name="/KankouRegistInit" class="cashbook.action.kankou.KankouRegistInitAction">
+    <property name="kankouService">
+      <ref local="KankouServiceId" />
+    </property>
+    <!-- 最終的には必要なくなるもの -->
+    <property name="kojinService">
+      <ref local="KojinServiceId" />
+    </property>
+  </bean>
+  <bean name="/KankouRegistIns" class="cashbook.action.kankou.KankouRegistInsAction">
+    <property name="kankouService">
+      <ref local="KankouServiceId" />
+    </property>
+  </bean>
+
+  
+
 
   <!-- 世帯マスタメンテ -->
   <bean name="/SetaiListInit" class="cashbook.action.setai.SetaiListInitAction">

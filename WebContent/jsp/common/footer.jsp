@@ -8,9 +8,6 @@
 	<hr />
 	<table class="layout-table w-100">
 		<tr>
-			<td class="w-50">
-				&nbsp;
-			</td>
 			<td class="w-25">
 				<html:link action="/MenuInit" >
 					ƒƒjƒ…[‚Ö–ß‚é

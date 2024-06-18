@@ -117,8 +117,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" INSERT INTO TBL_KANKOU  ( ");
-		sql.append("   KANKOU_ID ");
-		sql.append("   ,USER_ID ");
+		sql.append("   USER_ID ");
 		sql.append("   , KEN_CD ");
 		sql.append("   , CATEGORY_ID ");
 		sql.append("   , KANKOU_NM ");
@@ -126,8 +125,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , REVIEW ");
 		sql.append("   , FILE_NM ");
 		sql.append(" ) VALUES ( ");
-		sql.append("     '1'");
-		sql.append("    ,'").append(loginDto.getKojinId()).append("' ");
+		sql.append("    '").append(loginDto.getKojinId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
@@ -154,10 +152,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , USER_ID ");
 		sql.append("   , HYOUKATI ");
 		sql.append(" ) VALUES ( ");
-		sql.append("   (SELECT KANKOU_ID ");
-		sql.append("    FROM TBL_KANKOU ");
-		sql.append("    HAVING KANKOU_ID = MAX(KANKOU_ID) ");
-		sql.append("    GROUP BY KANKOU_ID) ");
+		sql.append("   (SELECT MAX(KANKOU_ID) ");
+		sql.append("    FROM TBL_KANKOU) ");
 		sql.append("   , '").append(loginDto.getKojinId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_HYOKA)).append("' ");
 		sql.append(" ) ");
@@ -190,17 +186,33 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	 * 重複チェック
 	 * @return true：正常、false：重複エラー
 	 */
-	public boolean checkOverlapKankou(Map<String, Object> formMap) {
+	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto) {
 
+		Map<String, String> result;
+		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COUNT(*)  ");
+		sql.append("SELECT COUNT(*) AS COUNT  ");
 		sql.append("  FROM TBL_KANKOU ");
 		//個人IDの部分だけ、ログイン画面が作成され次第変更する
-		sql.append(" WHERE USER_ID = '").append(formMap.get(KojinConst.KEY_KOJIN_ID)).append("' ");
+		sql.append(" WHERE USER_ID = '").append(loginDto.getKojinId()).append("' ");
+		System.out.println(loginDto.getKojinId());
+		System.out.println(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY));
+		System.out.println(formMap.get(KankouConst.KEY_KANKOU_NM));
 		sql.append(" AND  KEN_CD = '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append(" AND  KANKOU_NM = '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
-		sql.append("   AND ROWNUM = 1 ");
-		return super.find(sql.toString()).size() == 0;
+		System.out.println(super.find(sql.toString()).size());
+		
+		//SQLの結果をresultに格納する。
+		result = super.find(sql.toString());
+		System.out.println(result.get("COUNT"));
+		
+		
+		if(result.get("COUNT").equals("0")) {
+			return true;
+		}else {
+			return false;
+		}
+		//return super.find(sql.toString()).size() == 0;
 	}
 
 	/**

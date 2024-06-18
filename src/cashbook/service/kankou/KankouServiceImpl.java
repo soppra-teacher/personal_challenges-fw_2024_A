@@ -17,7 +17,6 @@ import cashbook.dto.kojin.KojinListDto;
 import cashbook.dto.kojin.KojinRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.util.CommonUtil;
-import cashbook.util.Const;
 import cashbook.util.KojinConst;
 
 public class KankouServiceImpl implements KankouService{
@@ -123,18 +122,17 @@ public class KankouServiceImpl implements KankouService{
 	 */
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
 
-		// 登録の場合
-		if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(Const.ITEM_REVISION)))) {
-			// 存在チェック
-			if (kankouDao.checkOverlapKankou(formMap)) {
+		// 登録
+			
+		    // 存在チェック
+			if (!kankouDao.checkOverlapKankou(formMap, loginDto)) {
 				throw new CommonValidateException(MSG_ERRORS_PRIMARY_KEY);
 			}
 			// 登録処理
 			kankouDao.registKankou(formMap, loginDto);
 			
 			// 評価値
-			kankouDao.registHyoka(formMap, loginDto);
-		} 
+			kankouDao.registHyoka(formMap, loginDto); 
 	}
 
 	/**
