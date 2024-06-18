@@ -53,6 +53,7 @@
 				</table>
 
 				<html:submit value="ログイン" styleClass="btn" tabindex="3" />
+				<a href="#" onclick="document.forms[0].submit();" class="btn" tobindex="3">ログイン</a>
 			</div>
 
 		</html:form>

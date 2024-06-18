@@ -70,26 +70,23 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 
 		return result.get("YYYMMDD");
 	}
-
+//****************************************************************************************
 	/**
-	 * コードマスタより、コード、コード名称をリスト型で取得する
+	 * カテゴリテーブルからカテゴリID、カテゴリ名を取得する。
 	 *
 	 * @param クラスコード
 	 */
-	public Map<String, String> getCode(String classCd) {
+	public Map<String, String> getKategory() {
 
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		Map<String, String> result = new LinkedHashMap<String, String>();
 
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT  mc.cd ");
-		sql.append("        ,mc.cd || ':' || mc.cd_nm AS cd_nm ");
-		sql.append(" FROM    mst_code mc ");
-		sql.append(" WHERE   mc.class_code = '").append(classCd).append("' ");
-		sql.append(" ORDER BY  mc.cd ASC ");
-
+		sql.append(" SELECT  CATEGORY_ID");
+		sql.append("        ,CATEGORY_ID || ':' || CATEGORY_NM AS CATEGORY ");
+		sql.append(" FROM    TBL_CATEGORY ");
+		
 		mapList = super.search(String.valueOf(sql));
-
 		if (mapList.size() == 0) {
 			return null;
 
@@ -99,12 +96,75 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 
 			// リストの内容分回し、形式を変えて呼び元へ返す
 			for (Map<String, String> map : mapList) {
-				result.put(map.get("CD"), map.get("CD_NM"));
+				result.put(map.get("CATEGORY_ID"), map.get("CATEGORY"));
 			}
-
 			return result;
 		}
 	}
+//**************************************************************************************************
+
+	/**
+	 * 地方テーブルから地方コード、地方名を取得する。
+	 *
+	 * @param クラスコード
+	 */
+	public Map<String, String> getTIhou() {
+
+		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
+		Map<String, String> result = new LinkedHashMap<String, String>();
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" SELECT  TIHOU_CD");
+		sql.append("        ,TIHOU_CD || ':' || TIHOU_NM AS TIHOU ");
+		sql.append(" FROM    MST_TIHOU ");
+		
+		mapList = super.search(String.valueOf(sql));
+		if (mapList.size() == 0) {
+			return null;
+
+		} else {
+			// 1つ目に空白をセット
+			result.put("", "");
+
+			// リストの内容分回し、形式を変えて呼び元へ返す
+			for (Map<String, String> map : mapList) {
+				result.put(map.get("TIHOU_CD"), map.get("TIHOU"));
+			}
+			return result;
+		}
+	}
+//**************************************************************************************************
+	/**
+	 * 都道府県マスタから都道県コード、都道府県名を取得する。
+	 *
+	 * @param クラスコード
+	 */
+	public Map<String, String> getTodouhuken() {
+
+		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
+		Map<String, String> result = new LinkedHashMap<String, String>();
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" SELECT  KEN_CD");
+		sql.append("        , KEN_CD || ':' || KEN_NM AS TODOUHUKEN");
+		sql.append(" FROM    MST_TODOUHUKEN ");
+		
+		mapList = super.search(String.valueOf(sql));
+		if (mapList.size() == 0) {
+			return null;
+
+		} else {
+			// 1つ目に空白をセット
+			result.put("", "");
+
+			// リストの内容分回し、形式を変えて呼び元へ返す
+			for (Map<String, String> map : mapList) {
+				result.put(map.get("KEN_CD"), map.get("TODOUHUKEN"));
+			}
+			return result;
+		}
+	}
+//**************************************************************************************************
 
 	/**
 	 * コードマスタより、コード名称を文字列型で取得する

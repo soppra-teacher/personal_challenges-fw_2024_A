@@ -1,6 +1,8 @@
-package cashbook.action.kojin;
+package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
+
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,34 +10,34 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.dto.kojin.KojinListDto;
-import cashbook.service.kojin.KojinService;
-import cashbook.util.KojinConst;
+import cashbook.service.kankou.KankouService;
+import cashbook.util.CommonUtil;
 
 /**
- * 個人マスタメンテ画面 初期表示アクションクラス
+ * 個人マスタメンテ画面削除アクションクラス
  * @author soppra
  */
-public class KojinListInitAction extends BaseAction {
+public class KojinListDeleteAction extends BaseAction {
 
 	/** 個人マスタサービス */
-	private KojinService kojinService;
+	private KankouService kojinService;
 
 	/**
 	 * 個人マスタサービスを設定します。
 	 * @param kojinService 個人マスタサービス
 	 */
-	public void setKojinService(KojinService kojinService) {
+	public void setKojinService(KankouService kojinService) {
 		this.kojinService = kojinService;
 	}
 
 	/**
 	 * <p><b>
 	 * 個人マスタメンテ画面
-	 * <br>初期表示処理
+	 * <br>削除処理
 	 * </b></p>
 	 *
 	 * @param map      アクションマッピング
@@ -49,16 +51,19 @@ public class KojinListInitAction extends BaseAction {
 	protected ActionForward doProcess(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
 
-		// 個人マスタ登録画面の戻り先をセッションから削除する。
-		request.getSession().removeAttribute(SESSION_REGIST_BACK_KOJIN);
+		// フォームの値を取得
+		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 
-		// 個人マスタメンテ初期表示情報を取得
-		KojinListDto dto = kojinService.listInit();
+		// 削除対象チェック
+		if (checkDeleteTarget((String[]) formMap.get(ITEM_CHECKBOX_DELETE), request)) {
+			return map.getInputForward();
+		}
 
-		// 取得した情報をリクエストに設定
-		request.setAttribute(KojinConst.FORM_KOJIN_LIST, dto);
-		// 取得した情報をセッションに設定
-		request.getSession().setAttribute(SESSION_LIST_DTO_KOJIN, dto);
+		// 削除処理
+		kojinService.listDelete(formMap, loginDto);
+
+		// 削除完了メッセージをセッションに保持
+		request.getSession().setAttribute(SESSION_LIST_MESSAGE_KOJIN, MSG_SUCCESS_DELETE);
 
 		// 処理成功時の遷移先を指定する。
 		return map.findForward(ACTION_FOWARD_SUCCESS);

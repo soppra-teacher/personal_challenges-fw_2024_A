@@ -58,21 +58,20 @@
 			<form-property name="seibetsuKbn"    type="java.lang.String" />
 			<form-property name="zokugaraKey"    type="java.lang.String" />
 			<form-property name="setaiNusiFlg"   type="java.lang.String" />
-			<form-property name="revision"        type="java.lang.String" />
+			<form-property name="revision"       type="java.lang.String" />
+			<form-property name="imagePath"       type="java.lang.String" />
 		</form-bean>
-
-		<!-- 個人マスタメンテ画面 -->
-		<form-bean name="kojinListForm"          type="org.apache.struts.validator.DynaValidatorForm">
-			<form-property name="kojinId"        type="java.lang.String"  />
-			<form-property name="setaiId"        type="java.lang.String"  />
-			<form-property name="kojinNm"        type="java.lang.String"  />
-			<form-property name="kojinNmkana"    type="java.lang.String"  />
-			<form-property name="seibetsuKbnKey" type="java.lang.String"  />
-			<form-property name="zokugaraKey"    type="java.lang.String"  />
-			<form-property name="setaiNusiFlg"   type="java.lang.String"  />
-			<form-property name="checkDel"       type="java.lang.String[]"/>
+<!--********************************************************************************************************************-->
+		<!-- 観光地検索・一覧表示画面 -->
+		<form-bean name="kankouListForm"          type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="kankouNm"       type="java.lang.String"  /><!-- 観光地名 -->
+			<form-property name="userId"         type="java.lang.String"  /><!-- ユーザId -->
+			<form-property name="categoryKey"    type="java.lang.String"  /><!-- カテゴリキー -->
+			<form-property name="tihouKey"       type="java.lang.String"  /><!-- 地方キー -->
+			<form-property name="todouhukenKey"  type="java.lang.String"  /><!-- 都道府県キー -->
+			<form-property name="kankoutiId"     type="java.lang.String"  /><!-- 観光地ID -->
 		</form-bean>
-
+<!--********************************************************************************************************************-->
 		<!-- 収支登録画面 -->
 		<form-bean name="shushiRegistForm"     type="org.apache.struts.validator.DynaValidatorForm">
 			<form-property name="shushiKey"    type="java.lang.String" />
@@ -120,6 +119,7 @@
 		* ログイン画面             *
 		****************************
 		-->
+		<!-- ****************************************************************-->
 		<action
 			path="/Login"
 			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -127,8 +127,10 @@
 			validate="true"
 			input="/jsp/common/login.jsp"
 			scope="request">
-			<forward name="success" path="/MenuInit.do?getKey=aaa"/>
+			<forward name="success" path="/KankouListInit.do"/>
 		</action>
+		<!--********************************************************************-->
+		
 		<action
 			path="/Logout"
 			type="cashbook.action.common.LogoutAction"
@@ -324,12 +326,12 @@
 			name="kojinRegistForm"
 			validate="false"
 			scope="request">
-			<forward name="success" path="/jsp/kojin/kojinRegist.jsp"/>
+			<forward name="success" path="/jsp/kankou/kojinRegist.jsp"/>
 		</action>
 		<!-- ディスパッチ -->
 		<action
 			path="/KojinRegistDisp"
-			type="cashbook.action.kojin.KojinRegistDispAction"
+			type="cashbook.action.kankou.KojinRegistDispAction"
 			name="kojinRegistForm"
 			validate="false"
 			parameter="operation"
@@ -337,7 +339,7 @@
 			<forward name="insert" path="/KojinRegistInsUpd.do"/>
 			<forward name="update" path="/KojinRegistInsUpd.do"/>
 			<forward name="backMenu" path="/MenuInit.do"/>
-			<forward name="backList" path="/KojinListSearch.do"/>
+			<forward name="backList" path="/KankouListSearch.do"/>
 		</action>
 		<!-- 登録・更新 -->
 		<action
@@ -345,54 +347,46 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="kojinRegistForm"
 			validate="true"
-			input="/jsp/kojin/kojinRegist.jsp"
+			input="/jsp/kankou/kojinRegist.jsp"
 			scope="request">
 			<forward name="success" path="/KojinRegistInit.do" redirect="true" />
-			<forward name="error" path="/jsp/kojin/kojinRegist.jsp" />
+			<forward name="error" path="/jsp/kankou/kojinRegist.jsp" />
 		</action>
 
 		<!--
 		****************************
-		* 個人マスタメンテ画面     *
+		* 観光検索一覧画面     *
 		****************************
 		-->
-		<!-- 初期表示 -->
+		<!-- 初期表示 --><!--いじる-->
 		<action
-			path="/KojinListInit"
+			path="/KankouListInit"
 			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouListForm"
+			validate="true"
+			input="/jsp/kankou/kankouList.jsp"
 			scope="request">
-			<forward name="success" path="/jsp/kojin/kojinList.jsp"/>
+			<forward name="success" path="/jsp/kankou/kankouList.jsp"/>
 		</action>
 		<!-- ディスパッチ -->
 		<action
 			path="/KojinListDisp"
-			type="cashbook.action.kojin.KojinListDispAction"
-			name="kojinListForm"
+			type="cashbook.action.kankou.KankouListDispAction"
+			name="kankouListForm"
 			validate="false"
 			parameter="operation"
 			scope="request">
-			<forward name="search" path="/KojinListSearch.do"/>
-			<forward name="delete" path="/KojinListDelete.do"/>
+			<forward name="search" path="/KankouListSearch.do"/>
 		</action>
 		<!-- 検索 -->
 		<action
-			path="/KojinListSearch"
+			path="/KankouListSearch"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="kojinListForm"
+			name="kankouListForm"
 			validate="true"
-			input="/jsp/kojin/kojinList.jsp"
+			input="/jsp/kankou/kankouList.jsp"
 			scope="request">
-			<forward name="success" path="/jsp/kojin/kojinList.jsp"/>
-		</action>
-		<!-- 削除 -->
-		<action
-			path="/KojinListDelete"
-			type="org.springframework.web.struts.DelegatingActionProxy"
-			name="kojinListForm"
-			validate="false"
-			input="/jsp/kojin/kojinList.jsp"
-			scope="request">
-			<forward name="success" path="/KojinListSearch.do" redirect="true" />
+			<forward name="success" path="/jsp/kankou/kankouList.jsp"/>
 		</action>
 
 		<!--

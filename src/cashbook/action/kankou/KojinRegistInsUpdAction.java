@@ -1,4 +1,4 @@
-package cashbook.action.kojin;
+package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
@@ -14,9 +14,9 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.service.kojin.KojinService;
+import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KojinConst;
+import cashbook.util.KankouConst;
 import cashbook.util.SetaiConst;
 
 /**
@@ -26,13 +26,13 @@ import cashbook.util.SetaiConst;
 public class KojinRegistInsUpdAction extends BaseAction {
 
 	/** 個人マスタサービス */
-	private KojinService kojinService;
+	private KankouService kojinService;
 
 	/**
 	 * 個人マスタサービスを設定します。
 	 * @param kojinService 個人マスタサービス
 	 */
-	public void setKojinService(KojinService kojinService) {
+	public void setKojinService(KankouService kojinService) {
 		this.kojinService = kojinService;
 	}
 
@@ -57,13 +57,13 @@ public class KojinRegistInsUpdAction extends BaseAction {
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 
 		// 世帯主フラグ有無チェック
-		if (SETAINUSHI_FLG_ON.equals(formMap.get(KojinConst.KEY_SETAINUSI_FLG))) {
+		if (SETAINUSHI_FLG_ON.equals(formMap.get(KankouConst.KEY_SETAINUSI_FLG))) {
 			// チェック済みの場合、パラメータを"1"に設定する。
-			formMap.put(KojinConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_ON);
+			formMap.put(KankouConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_ON);
 
 		} else {
 			// 未チェック済の場合、パラメータを"0"に設定する。
-			formMap.put(KojinConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_OFF);
+			formMap.put(KankouConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_OFF);
 
 		}
 

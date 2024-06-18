@@ -33,13 +33,24 @@ public interface CommonDao {
 	public String getYyyyMmDd();
 
 	/**
-	 * コードマスタより、コード、コード名称をリスト型で取得する
-	 */
-	public Map<String ,String> getCode(String classCd);
-
-	/**
 	 * コードマスタより、コード名称を文字列型で取得する
 	 */
 	public String getCodeName(String classCd ,String cd);
+	
+//*************************************観光地検索システム****************************************************************	
+	/**
+	 * カテゴリテーブルより、カテゴリID、カテゴリ名称をリスト型で取得する
+	 */
+	public Map<String ,String> getKategory();
+	
+	/**
+	 * 地方マスタより、地方コード、地方名称をリスト型で取得する
+	 */
+	public Map<String ,String> getTIhou();
+//	
+//	/**
+//	 * 都道府県マスタより、都道府県コード、都道府県名称をリスト型で取得する
+//	 */
+	public Map<String ,String> getTodouhuken();
 
 }

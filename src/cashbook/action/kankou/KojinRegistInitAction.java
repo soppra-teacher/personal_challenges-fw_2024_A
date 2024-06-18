@@ -1,4 +1,4 @@
-package cashbook.action.kojin;
+package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
@@ -16,10 +16,10 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.dto.kojin.KojinRegistDto;
-import cashbook.service.kojin.KojinService;
+import cashbook.dto.kankou.KankouRegistDto;
+import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KojinConst;
+import cashbook.util.KankouConst;
 
 /**
  * 個人マスタ登録画面 初期表示アクションクラス
@@ -28,13 +28,13 @@ import cashbook.util.KojinConst;
 public class KojinRegistInitAction extends BaseAction {
 
 	/** 個人マスタサービス */
-	private KojinService kojinService;
+	private KankouService kojinService;
 
 	/**
 	 * 個人マスタサービスを設定します。
 	 * @param kojinService 個人マスタサービス
 	 */
-	public void setKojinService(KojinService kojinService) {
+	public void setKojinService(KankouService kojinService) {
 		this.kojinService = kojinService;
 	}
 
@@ -65,7 +65,7 @@ public class KojinRegistInitAction extends BaseAction {
 		if (EMPTY.equals(backAction)) {
 
 			// 個人IDがフォームに設定されていない場合
-			if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(KojinConst.KEY_KOJIN_ID)))) {
+			if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_KOJIN_ID)))) {
 				// メニューからの遷移と判定
 				backAction = ACTION_FOWARD_BACK_MENU;
 
@@ -84,7 +84,7 @@ public class KojinRegistInitAction extends BaseAction {
 		// セッションから取得できた場合
 		if (sessionMap != null) {
 			// 画面に個人IDを設定する。
-			formMap.put(KojinConst.KEY_KOJIN_ID, sessionMap.get(KojinConst.KEY_KOJIN_ID));
+			formMap.put(KankouConst.KEY_KOJIN_ID, sessionMap.get(KankouConst.KEY_KOJIN_ID));
 			// セッションに保持している個人IDを削除する。
 			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KOJIN);
 
@@ -103,10 +103,10 @@ public class KojinRegistInitAction extends BaseAction {
 		}
 
 		// 初期表示取得
-		KojinRegistDto dto = kojinService.registInit(formMap);
+		KankouRegistDto dto = kojinService.registInit(formMap);
 
 		// 取得した情報をリクエストに設定
-		request.setAttribute(KojinConst.FORM_KOJIN_REGIST, dto);
+		request.setAttribute(KankouConst.FORM_KOJIN_REGIST, dto);
 		// 取得した情報をセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_DTO_KOJIN, dto);
 

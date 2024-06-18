@@ -1,4 +1,4 @@
-package cashbook.action.kojin;
+package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 

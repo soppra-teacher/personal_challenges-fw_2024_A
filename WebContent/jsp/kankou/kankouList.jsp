@@ -12,28 +12,35 @@
 	<meta content="ja" http-equiv="Content-Language" />
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>
-		ソプブーのマネーノート　個人マスタメンテ
+		観光地検索システム・検索一覧画面
 	</title>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/KankouList.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
 </head>
 
 <body onload="setDeleteButton();">
 
-	<bean:define id="inputBean" name="kojinListForm" />
-	<bean:define id="viewBean" name="KOJIN_LIST_DTO" />
+	<bean:define id="inputBean" name="kankouListForm" />
+	<bean:define id="viewBean" name="KANKOU_LIST_DTO" />
 
-	<div class="base-width text-center">
+	<div class="kankouList-width text-center">
 
 		<html:form action="/KojinListDisp" focus="kojinNm">
 
-			<jsp:include page="/jsp/common/header.jsp">
-				<jsp:param name="screenTitle" value="個人マスタメンテ"/>
-			</jsp:include>
+		
 
 			<html:hidden property="operation" value="" />
+			<html:hidden property="hiddenKankouNm" value="" />
+			<html:hidden property="hiddenUserId" value="" />
+			<html:hidden property="hiddenTihouKey" value="" />
+			
+	
 
-			<div class="contents block-center">
+			<div class="contents block-center test-a">
+			<jsp:include page="/jsp/common/header.jsp">
+				<jsp:param name="screenTitle" value="検索一覧画面"/>
+			</jsp:include>
 
 				<html:messages id="msg" message="true">
 					<p class="msg-info">
@@ -49,112 +56,109 @@
 
 				<table class="layout-table">
 					<tr>
-						<td colspan="2" class="w-50 text-left">
+						<td colspan="2" class="w-75 text-center">
 							<span class="label-title">
-								個人名
+								観光地名
 							</span>
-							<html:text name="inputBean" property="kojinNm" styleClass="input-text-s" />
+							<html:text name="inputBean" property="kankouNm" styleClass="input-text-s" />
 						</td>
 						<td colspan="2" class="w-50 text-left">
 							<span class="label-title">
-								個人名ｶﾅ
+								ユーザID
 							</span>
-							<html:text name="inputBean" property="kojinNmkana" styleClass="input-text-m" />
+							<html:text name="inputBean" property="userId" styleClass="input-text-m" />
 						</td>
 					</tr>
 					<tr>
 						<td class="w-25 text-left">
 							<span class="label-title">
-								性別
+								カテゴリ名
 							</span>
-							<html:select name="inputBean" property="seibetsuKbnKey" styleClass="input-select-m">
-								<html:optionsCollection name="viewBean" property="seibetsuKbn" value="key" label="value" />
+							<html:select name="inputBean" property="categoryKey" styleClass="input-select-xl">
+								<html:optionsCollection name="viewBean" property="category" value="key" label="value" />
 							</html:select>
 						</td>
 						<td class="w-25 text-left">
 							<span class="label-title">
-								続柄
+								八地方名
 							</span>
-							<html:select name="inputBean" property="zokugaraKey" styleClass="input-select-m">
-								<html:optionsCollection name="viewBean" property="zokugara" value="key" label="value" />
+							<html:select name="inputBean" property="tihouKey" styleClass="input-select-xl">
+								<html:optionsCollection name="viewBean" property="tihou" value="key" label="value" />
 							</html:select>
 						</td>
-						<td colspan="2" class="w-50 text-left">
+						<td class="w-25 text-left">
 							<span class="label-title">
-								世帯主
+								都道県名
 							</span>
-							<html:checkbox name='inputBean' property="setaiNusiFlg" styleClass="input-check"/>
+							<html:select name="inputBean" property="todouhukenKey" styleClass="input-select-xl" >
+								<html:optionsCollection name="viewBean" property="todouhuken" value="key" label="value" />
+							</html:select>
 						</td>
+						
 					</tr>
 				</table>
+				
 
 				<table class="layout-table block-center w-100">
 					<tr>
-						<td class="w-25">
-							<html:button property="delete" onclick="callAction(this.form, 'delete');"
-								styleClass="btn btn-l">
-								削除
-							</html:button>
-						</td>
-						<td class="w-50">
-							&nbsp;
-						</td>
+		
+						
 						<td class="w-25">
 							<html:button property="search" onclick="callAction(this.form, 'search');"
 								styleClass="btn btn-l">
 								検索
 							</html:button>
+				
+							
 						</td>
 					</tr>
 				</table>
 
-				<table class="l-kojin table mb-0" >
+				<table class="l-kankou table mb-0" >
 					<tr class="table-header">
-						<td class="text-center l-kojin-del">削除</td>
-						<td class="text-center l-kojin-kojin-id">個人ID</td>
-						<td class="text-center l-kojin-setai-id">世帯ID</td>
-						<td class="text-center">個人名</td>
-						<td class="text-center">個人名ｶﾅ</td>
-						<td class="text-center l-kojin-sex">性別</td>
-						<td class="text-center l-kojin-zokugara">続柄</td>
-						<td class="text-center l-kojin-setainushi">世帯主</td>
+						<td class="text-center l-kankou-id ">観光地ID</td>
+						<td class="text-center l-kankou-nm">観光地名</td>
+						<td class="text-center l-tihou-nm">八地方名</td>
+						<td class="text-center l-todouhuken-nm">都道府県名</td>
+						<td class="text-center l-category-id">カテゴリ名</td>
+						<td class="text-center l-hyoukati">評価値</td>
+						<td class="text-center l-user-id">ユーザID</td>
 					</tr>
 				</table>
 
 				<div class="table-overflow">
-					<table class="l-himoku table" >
+					<table class="l-kankou table" >
 						<logic:notEmpty name="viewBean" property="list">
 							<logic:iterate id="list" name="viewBean" property="list">
 								<tr>
-									<td class="text-center l-kojin-del">
-										<input type="checkbox" name="checkDel" value="<bean:write name="list" property="kojinId" />" />
-									</td>
-									<td class="l-kojin-kojin-id">
-										<html:link action="/KojinRegistInit" paramId="kojinId" paramName="list" paramProperty="kojinId">
-											<bean:write name="list" property="kojinId" />
+									<td class="l-kankou-id">
+										<html:link action="/KojinRegistInit" paramId="kojinId" paramName="list" paramProperty="kankouId">
+											<bean:write name="list" property="kankouId" />
 										</html:link>
 									</td>
-									<td class="l-kojin-setai-id">
-										<bean:write name="list" property="setaiId" />
-									</td>
-									<td class="text-left">
+									<td class="l-kankou-nm">
 										<span class="p-10">
-											<bean:write name="list" property="kojinNm" />
+											<bean:write name="list" property="kankouNm" />
 										</span>
 									</td>
-									<td class="text-left">
+									<td class="l-tihou-nm">
+										<bean:write name="list" property="tihouNm" />
+									</td>
+									<td class="l-todouhuken-nm">
 										<span class="p-10">
-											<bean:write name="list" property="kojinNmkana" />
+											<bean:write name="list" property="todouhukenNm" />
 										</span>
 									</td>
-									<td class="l-kojin-sex">
-										<bean:write name="list" property="seibetsuNm" />
+									<td class="l-category-id">
+										<span class="p-10">
+											<bean:write name="list" property="categoryNm" />
+										</span>
 									</td>
-									<td class="l-kojin-zokugara">
-										<bean:write name="list" property="zokugaraNm" />
+									<td class="l-hyoukati">
+										<bean:write name="list" property="hyoukati" />
 									</td>
-									<td class="l-kojin-setainushi">
-										<bean:write name="list" property="setaiNusiNm" />
+									<td class="l-user-id">
+										<bean:write name="list" property="userId" />
 									</td>
 								</tr>
 							</logic:iterate>
@@ -166,5 +170,6 @@
 			</div>
 		</html:form>
 	</div>
+
 </body>
 </html:html>

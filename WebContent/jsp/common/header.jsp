@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <div class="header text-white text-center align-middle">
 	<div>
-		お小遣い帳　<%=request.getParameter("screenTitle")%>
+		観光地検索システム　<%=request.getParameter("screenTitle")%>
 	</div>
 
 </div>

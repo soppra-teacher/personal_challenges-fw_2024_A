@@ -1,4 +1,4 @@
-package cashbook.action.kojin;
+package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
@@ -14,7 +14,7 @@ import org.apache.struts.actions.DispatchAction;
  * 個人マスタメンテ画面ディスパッチアクションクラス
  * @author soppra
  */
-public class KojinListDispAction extends DispatchAction {
+public class KankouListDispAction extends DispatchAction {
 
 	/** 検索  */
 	public ActionForward search(

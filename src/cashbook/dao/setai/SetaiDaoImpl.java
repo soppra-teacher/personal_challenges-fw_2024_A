@@ -11,7 +11,7 @@ import org.springframework.dao.CannotAcquireLockException;
 import cashbook.dao.common.BaseDaoImpl;
 import cashbook.dto.common.LoginDto;
 import cashbook.util.CommonUtil;
-import cashbook.util.KojinConst;
+import cashbook.util.KankouConst;
 import cashbook.util.SetaiConst;
 
 /**
@@ -188,7 +188,7 @@ public class SetaiDaoImpl extends BaseDaoImpl implements SetaiDao {
 		sql.append("  FROM MST_KOJIN A ");
 		sql.append(" WHERE A.SETAI_ID = '").append(formMap.get(SetaiConst.KEY_SETAI_ID)).append("' ");
 		sql.append("   AND A.SETAINUSHI_FLG = '1' ");
-		sql.append("   AND A.KOJIN_ID != '").append(formMap.get(KojinConst.KEY_KOJIN_ID)).append("' ");
+		sql.append("   AND A.KOJIN_ID != '").append(formMap.get(KankouConst.KEY_KOJIN_ID)).append("' ");
 
 		return super.find(sql.toString()).size() != 0;
 	}

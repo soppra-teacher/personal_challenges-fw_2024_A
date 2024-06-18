@@ -14,7 +14,7 @@ import cashbook.dto.setai.SetaiListDto;
 import cashbook.dto.setai.SetaiRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.util.CommonUtil;
-import cashbook.util.KojinConst;
+import cashbook.util.KankouConst;
 import cashbook.util.SetaiConst;
 
 
@@ -81,7 +81,7 @@ public class SetaiServiceImpl implements SetaiService{
 		for (int i = 0; i < checkDel.length; i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put(SetaiConst.KEY_SETAI_ID, checkDel[i]);
-			map.put(KojinConst.KEY_KOJIN_ID, loginDto.getKojinId());
+			map.put(KankouConst.KEY_KOJIN_ID, loginDto.getKojinId());
 			judgeSetaiNushi = setaiDao.checkSetainushiFlg(map);
 		}
 		// 1件でも世帯主ではない情報を削除しようとした場合は、Trueを返す。

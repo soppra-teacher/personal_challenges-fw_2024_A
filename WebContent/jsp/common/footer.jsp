@@ -5,22 +5,27 @@
 
 <div class="contents">
 
+
 	<hr />
 	<table class="layout-table w-100">
 		<tr>
-			<td class="w-50">
-				&nbsp;
-			</td>
-			<td class="w-25">
-				<html:link action="/MenuInit" >
+			
+			<td >
+				<html:link action="/MenuInit"  styleClass="btn-green btn-size-m" >
 					メニューへ戻る
 				</html:link>
 			</td>
-			<td class="w-25">
-				<html:link action="/Logout" >
+			<td>
+				<html:link action="/Logout" styleClass="btn-green btn-size-m" >
 					ログアウト
 				</html:link>
 			</td>
+			<td >
+				<html:link action="/KojinRegistInit" styleClass="btn-green btn-size-m">
+					登録画面へ
+				</html:link>
+			</td>
+			
 		</tr>
 	</table>
 </div>
