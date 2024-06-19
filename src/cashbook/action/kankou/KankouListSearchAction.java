@@ -58,6 +58,8 @@ public class KankouListSearchAction extends BaseAction {
 		System.out.println(formMap);
 		System.out.println(request.getParameter(ACTION_FOWARD_OPERATION));
 		System.out.println(request.getParameter("hiddenKankouNm"));
+		System.out.println(request.getParameter("hiddenUserId"));
+		System.out.println(request.getParameter("hiddenCategoryKey"));
 		// リクエストから「operation」の値が"search"だったのかを判定する。
 //		if (!ACTION_FOWARD_SEARCH.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
 

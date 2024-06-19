@@ -19,6 +19,7 @@ import cashbook.util.CommonUtil;
 import cashbook.util.KankouConst;
 import cashbook.util.SetaiConst;
 
+
 /**
  * 個人マスタ登録画面 登録・更新アクションクラス
  * @author soppra
@@ -52,10 +53,10 @@ public class KojinRegistInsUpdAction extends BaseAction {
 	 */
 	protected ActionForward doProcess(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
-
+		
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
-
+        System.out.println(formMap);
 		// 世帯主フラグ有無チェック
 		if (SETAINUSHI_FLG_ON.equals(formMap.get(KankouConst.KEY_SETAINUSI_FLG))) {
 			// チェック済みの場合、パラメータを"1"に設定する。

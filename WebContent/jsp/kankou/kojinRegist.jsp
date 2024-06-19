@@ -31,6 +31,15 @@
       elePassword.focus();
     }
   }
+//////////////////////////////////////////////////////////////////////////////////////
+  window.onload = function(){
+	  document.getElementById('imagePath').addEventListener('change', function() {
+	    document.kojinRegistForm.hiddenImagePath.value = this.value;
+	    console.log(document.kojinRegistForm.hiddenImagePath.value);
+	  });
+	}
+/////////////////////////////////////////////////////////////////////////////////////////
+
 </script>
 </head>
 
@@ -42,14 +51,17 @@
 
   <div class="base-width text-center">
 
-    <html:form action="/KojinRegistDisp" focus="kojinId">
+    <html:form action="/KojinRegistDisp" focus="kojinId" enctype="multipart/form-data">
 
       <jsp:include page="/jsp/common/header.jsp">
         <jsp:param name="screenTitle" value="個人マスタ登録"/>
       </jsp:include>
 
       <html:hidden property="operation" value="" />
+      <html:hidden property="hiddenImagePath" value="" />
       <html:hidden name="viewBean" property="revision" />
+      <html:hidden property="uploadedFilePath" value="" />
+      
 
       <div id="contents">
         <html:messages id="msg" message="true">
@@ -169,18 +181,29 @@
                 <html:checkbox name="inputBean" property="setaiNusiFlg" styleClass="input-check"/>
               </td>
             </tr>
+                        <tr>
+              <td class="w-25 text-right">
+                <span class="label-title">
+                  写真
+                </span>
+              </td>
+              <td class="w-75 text-left">
+                <!-- アップしたい画像をここで指定 -->
+			  	<input type="file" id="imagePath" accept=".png, .jpg, .jpeg">  
+              </td>
+            </tr>
 
           </table>
         </div>
 
         <div class="block-center">
           <logic:empty name="viewBean" property="revision">
-            <html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');">
+            <html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');a();">
               登録
             </html:button>
           </logic:empty>
           <logic:notEmpty name="viewBean" property="revision">
-            <html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'update');">
+            <html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'update'); ">
               更新
             </html:button>
           </logic:notEmpty>

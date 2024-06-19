@@ -7,6 +7,9 @@ import cashbook.dto.common.BaseDto;
 public class KankouRegistDto extends BaseDto {
 
 	/** 個人ID */
+	private String hiddenImagePath;
+	
+	/** 個人ID */
 	private String kojinId;
 
 	/** パスワード */
@@ -184,5 +187,13 @@ public class KankouRegistDto extends BaseDto {
 		this.imagePath = imagePath;
 	}
 	//********************************
+
+	public String getHiddenImagePath() {
+		return hiddenImagePath;
+	}
+
+	public void setHiddenImagePath(String hiddenImagePath) {
+		this.hiddenImagePath = hiddenImagePath;
+	}
 
 }

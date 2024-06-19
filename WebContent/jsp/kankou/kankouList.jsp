@@ -18,6 +18,9 @@
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/KankouList.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
 </head>
+<script>
+
+</script>
 
 <body onload="setDeleteButton();">
 
@@ -28,12 +31,12 @@
 
 		<html:form action="/KojinListDisp" focus="kojinNm">
 
-		
-
 			<html:hidden property="operation" value="" />
 			<html:hidden property="hiddenKankouNm" value="" />
 			<html:hidden property="hiddenUserId" value="" />
 			<html:hidden property="hiddenTihouKey" value="" />
+			<html:hidden property="hiddenCategoryKey" value="" />
+			<html:hidden property="hiddenTodouhukenKey" value="" />
 			
 	
 
@@ -98,9 +101,6 @@
 					</tr>
 				</table>
 				
-
-				<table class="layout-table block-center w-100">
-					<tr>
 		
 						
 						<td class="w-25">
@@ -108,7 +108,6 @@
 								styleClass="btn btn-l">
 								åüçı
 							</html:button>
-				
 							
 						</td>
 					</tr>
