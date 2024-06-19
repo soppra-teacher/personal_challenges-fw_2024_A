@@ -2,8 +2,6 @@ package cashbook.dao.common;
 
 import java.util.Map;
 
-import cashbook.dto.common.LoginDto;
-
 /**
  * ユーザ登録DAOインターフェース
  * @author soppra
@@ -18,7 +16,7 @@ public interface UserRegistDao{
 	 * @param フォーム項目
 	 * @param ログイン情報DTO
 	 */
-	public void registUser(Map<String, Object> formMap, LoginDto loginDto);
+	public void registUser(Map<String, Object> formMap);
 	
 	/**
 	 * <p><b>

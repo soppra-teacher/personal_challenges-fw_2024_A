@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/login.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
-
+	
 </head>
 <body class="bg-yellow image_chizu">
 
@@ -26,8 +26,9 @@
 	<bean:define id="viewBean" name="USER_REGIST_DTO" />
 	<bean:define id="backAction" name="USER_REGIST_BACK" type="java.lang.String" />
 
-		<html:form action="/UserRegistDisp" focus="userId" styleClass="text-center formdesign w-450px form-center" >
-
+		<html:form action="/UserRegistIns" focus="userId" styleClass="text-center formdesign w-450px form-center" >
+		<html:hidden property="operation" value="" />
+		
 			<div class="bg"></div>
 			<div class="bg bg2"></div>
 			<div class="bg bg3 "></div>
@@ -70,9 +71,9 @@
 				<table class="block-center layout-table">
 				<tr>
 					<td>
-					<html:link action="insert" styleClass="btn-green btn-size-m" onclick="callAction(this.form, 'insert');">
+					<a href = "#" id="clicklink" onclick = "callAction(document.forms[0],'insertUser');" class = "btn-green btn-size-m" tabindex = "3" >
 						新規登録
-					</html:link>
+					</a>
 					</td>
 				</tr>
 				<tr>
@@ -85,5 +86,29 @@
 
 		</html:form>
 	</div>
+	
+	<script type="text/javascript">
+		window.onload = function OnLinkClick(){
+			var click = document.getElementById('clicklink');
+			var msg;
+
+			click.addEventListener('click', () => {
+			  msg = "新規登録してもよろしいですか？"
+			  confirm(msg);
+			});
+			
+			//キャンセルボタンを押した場合処理を中断
+			if (!confirm(msg)) {
+				return;
+			}
+			//OKボタンを押した場合
+			else{
+				//登録完了処理をここに記載する。
+				msg = "新規登録が完了しました。ログイン画面へ移行します。"
+				confirm(msg);
+			}
+			
+		}
+	</script>
 </body>
 </html:html>

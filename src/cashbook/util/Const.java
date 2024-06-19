@@ -43,7 +43,7 @@ public class Const {
 	/** 排他エラーメッセージ */
 	public static final String MSG_ERRORS_DATA_LOCK = "errors.lock";
 	/** パスワード不一致メッセージ */
-	public static final String MSG_ERRORS_PASS_FUITTI = "errors.userpass";
+	public static final String MSG_ERRORS_PASS_FUITTI = "userRegistForm.error.userpass";
 
 	/** 登録完了メッセージ */
 	public static final String MSG_SUCCESS_INSERT = "messages.success.insert";
@@ -51,7 +51,10 @@ public class Const {
 	public static final String MSG_SUCCESS_UPDATE = "messages.success.update";
 	/** 削除完了メッセージ */
 	public static final String MSG_SUCCESS_DELETE = "messages.success.delete";
-
+	
+	/** ユーザ登録完了メッセージ */
+	public static final String MSG_SUCCESS_INSERT_USER = "userRegistForm.messages.success.insert.user";
+	
 	/** 個人用エラーメッセージ1 */
 	public static final String MSG_KOJIN_CONSIS_1 = "errors.kojin.seigosei1";
 	/** 個人用エラーメッセージ2 */
@@ -77,7 +80,6 @@ public class Const {
 	public static final String SESSION_REGIST_BACK_USER = "USER_REGIST_BACK";
 	/** ユーザ登録画面 メッセージ  */
 	public static final String SESSION_REGIST_MESSAGE_USER = "USER_REGIST_MESSAGE";
-
 	
 	/** 費目マスタ登録画面 DTO */
 	public static final String SESSION_REGIST_DTO_HIMOKU = "HIMOKU_REGIST_DTO";

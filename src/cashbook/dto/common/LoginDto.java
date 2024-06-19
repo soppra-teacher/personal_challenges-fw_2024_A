@@ -10,24 +10,7 @@ public class LoginDto {
 	private String userId;
 	/** パスワード */
 	private String pass;
-	private String passKakunin;
 
-	
-	/**
-	 * パスワード(確認)を取得します。
-	 * @return パスワード
-	 */
-	public String getPassKakunin() {
-	    return passKakunin;
-	}
-	/**
-	 * パスワード(確認)を設定します。
-	 * @param passKakunin パスワード(確認)
-	 */
-	public void setPassKakunin(String passKakunin) {
-	    this.passKakunin = passKakunin;
-	}
-	
 	/**
 	 * ユーザＩＤを取得します。
 	 * @return ユーザＩＤ

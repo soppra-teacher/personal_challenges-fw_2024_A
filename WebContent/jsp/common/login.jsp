@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td>
-						<html:link action="/UserRegistInit" styleClass= "btn-green btn-size-m">V‹K“o˜^</html:link>
+						<html:link property="insert" action="/UserRegistInit" styleClass= "btn-green btn-size-m">V‹K“o˜^</html:link>
 					</td>
 				</tr>
 				</table>

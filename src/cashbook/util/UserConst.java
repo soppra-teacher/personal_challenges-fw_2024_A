@@ -8,5 +8,7 @@ public class UserConst {
 	public static final String KEY_USER_ID = "userId";
 	/** キー値：パスワード */
 	public static final String KEY_USER_PASS = "pass";
+	/** キー値：パスワード */
+	public static final String KEY_USER_PASS_KAKUNIN = "passKakunin";
 	
 }
