@@ -1,6 +1,6 @@
 /*画面全体のスタイル*/
 html,body {
-	background-color: white;
+	background-color: $ffffff;
 }
 
 hr {
@@ -227,7 +227,7 @@ div.header {
 }
 
 .input-select-xl {
-	width: 200px;
+	width: 250px;
 	height: 30px;
 	font-size: 20px;
 }
@@ -333,6 +333,7 @@ p.msg-err {
 
 tr {
 	height: 50px;
+	
 }
 
 td {
@@ -354,22 +355,22 @@ td {
 }
 
 /* 個人一覧用 */
-.l-kankou {
-	width: 743px;
+.l-kojin {
+	width: 943px;
 }
-.l-kankou-id {
+.l-kojin-del {
 	width: 50px;
 }
-.l-kankou-nm {
+.l-kojin-kojin-id {
 	width: 90px;
 }
-.l-tihou-nm {
+.l-kojin-setai-id {
 	width: 90px;
 }
-.l-hyoukati {
+.l-kojin-sex {
 	width: 60px;
 }
-.l-user-id {
+.l-kojin-zokugara {
 	width: 60px;
 }
 .l-kojin-setainushi {
@@ -424,7 +425,7 @@ td.blank {
 	border: 0px none !important;
 }
 
-/* ------------------------------------------------------------------------------------------------ */
+/* -------------------------------------------------------- */
 
 /* 共通ヘッダ */
 h1 {
@@ -521,7 +522,8 @@ pa
 .plr-20 {
 	padding: 0px 20px;
 }
-/*-------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------ */
+
 /* タイトルテキスト */
 .titletext{
 	text-align:center;
@@ -670,5 +672,3 @@ pa
 	margin-bottom:10px;
 	border:1px solid #eee;
 }
-
-

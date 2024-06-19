@@ -19,10 +19,8 @@ public class LoginServiceImpl implements LoginService{
 	public LoginDto execute(Map<String, Object> formMap){
 		LoginDto result = new LoginDto();
 		Map<String, String> map = loginDao.find(formMap);
-		result.setKojinId(map.get("KOJIN_ID"));
-		result.setSetaiId(map.get("SETAI_ID"));
-		result.setKojinNm(map.get("KOJIN_NM"));
-		result.setSetainushiFlg(map.get("SETAINUSHI_FLG"));
+		result.setUserId(map.get("USER_ID"));
+		result.setPass(map.get("PASS"));
 		return result;
 	}
 

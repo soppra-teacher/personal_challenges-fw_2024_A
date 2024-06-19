@@ -59,7 +59,7 @@
 
 				<table class="layout-table">
 					<tr>
-						<td colspan="2" class="w-75 text-center">
+						<td colspan="1" class="w-50 text-left">
 							<span class="label-title">
 								ŠÏŒõ’n–¼
 							</span>

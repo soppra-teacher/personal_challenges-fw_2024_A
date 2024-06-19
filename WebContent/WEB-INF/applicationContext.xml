@@ -51,6 +51,7 @@
     </property>
   </bean>
 
+
   <!-- 個人マスタ -->
    <bean id="KankouDaoId" class="cashbook.dao.kankou.KankouDaoImpl">
     <property name="dataSource">
@@ -127,6 +128,7 @@
     </property>
   </bean>
 
+  <!-- Action -->
   <!-- Action -->
   <!-- ログイン画面 -->
   <bean name="/Login" class="cashbook.action.common.LoginAction">

@@ -18,8 +18,8 @@ public class LoginDaoImpl extends BaseDaoImpl implements LoginDao {
 		// フォーム項目の入力値でSQLを組み立てる。
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT * ");
-		sql.append("  FROM MST_KOJIN M1 ");
-		sql.append(" WHERE M1.KOJIN_ID = '").append(formMap.get("kojinId")).append("' ");
+		sql.append("  FROM MST_USER M1 ");
+		sql.append(" WHERE M1.USER_ID = '").append(formMap.get("userId")).append("' ");
 		sql.append("   AND M1.PASS = '").append(formMap.get("pass")).append("' ");
 
 		// 組み立てたSQLで検索処理を行う。
