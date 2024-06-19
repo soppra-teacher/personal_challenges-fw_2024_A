@@ -21,16 +21,6 @@ public class KankouRegistDispAction extends DispatchAction{
 		return mapping.findForward(ACTION_FOWARD_INSERT);
 	}
 
-	/** 更新 */
-	public ActionForward update(
-			ActionMapping mapping,
-			ActionForm form,
-			HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		return mapping.findForward(ACTION_FOWARD_UPDATE);
-	}
-
 	/** 戻る（メニュー） */
 	public ActionForward backMenu(
 			ActionMapping mapping,
@@ -41,13 +31,4 @@ public class KankouRegistDispAction extends DispatchAction{
 		return mapping.findForward(ACTION_FOWARD_BACK_MENU);
 	}
 
-	/** 戻る（一覧） */
-	public ActionForward backList(
-			ActionMapping mapping,
-			ActionForm form,
-			HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		return mapping.findForward(ACTION_FOWARD_BACK_LIST);
-	}
 }

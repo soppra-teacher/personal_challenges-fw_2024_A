@@ -32,6 +32,7 @@ public class KankouRegistInitAction extends BaseAction{
 
 	/**
 	 * 個人マスタサービスを設定します。
+	 * 後に消去予定
 	 * @param kojinService 個人マスタサービス
 	 */
 	public void setKojinService(KojinService kojinService) {
@@ -44,7 +45,7 @@ public class KankouRegistInitAction extends BaseAction{
 
 	/**
 	 * <p><b>
-	 * 個人マスタ登録画面
+	 * 観光地登録画面
 	 * <br>初期表示処理
 	 * </b></p>
 	 *
@@ -63,38 +64,41 @@ public class KankouRegistInitAction extends BaseAction{
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 
 		// 戻り先をセッションから取得する。
-		String backAction = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_BACK_KOJIN));
+		String backAction = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_BACK_KANKOU));
 
 		// セッションから取得できない場合
 		if (EMPTY.equals(backAction)) {
 
 			// 個人IDがフォームに設定されていない場合
+			//後に、ユーザIDを設定するようにしておく
 			if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(KojinConst.KEY_KOJIN_ID)))) {
 				// メニューからの遷移と判定
 				backAction = ACTION_FOWARD_BACK_MENU;
 
 			} else {
-				// 個人マスタメンテからの遷移の場合
+				// 観光地検索・一覧からの遷移の場合
 				backAction = ACTION_FOWARD_BACK_LIST;
 
 			}
 			// セッションに戻り先を保持する。
-			request.getSession().setAttribute(SESSION_REGIST_BACK_KOJIN, backAction);
+			request.getSession().setAttribute(SESSION_REGIST_BACK_KANKOU, backAction);
 		}
 
 		// 再検索用の個人IDをセッションから取得する。
-		Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_REGIST_RE_SEARCH_KOJIN);
+		Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_REGIST_RE_SEARCH_KANKOU);
 
 		// セッションから取得できた場合
 		if (sessionMap != null) {
 			// 画面に個人IDを設定する。
+			//後に、ユーザIDに変更しておく。
 			formMap.put(KojinConst.KEY_KOJIN_ID, sessionMap.get(KojinConst.KEY_KOJIN_ID));
 			// セッションに保持している個人IDを削除する。
-			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KOJIN);
+			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KANKOU);
 
 		}
 
 		// メッセージをセッションから取得する。
+		//ユーザIDに変更後に、KANKOUへ変更する
 		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_MESSAGE_KOJIN));
 
 		// セッションから取得できた場合

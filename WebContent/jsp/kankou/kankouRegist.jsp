@@ -19,20 +19,7 @@
 
 <script type="text/javascript">
 </script>
-<!-- フォーカスセット -->
-<script type="text/javascript">
-  window.onload = function(){
-    var eleRevision = document.kojinRegistForm.revision;
-    var eleKojinId  = document.kojinRegistForm.kojinId;
-    var elePassword = document.kojinRegistForm.pass;
 
-    if (eleRevision.defaultValue == ""){
-      eleKojinId.focus();
-    } else {
-      elePassword.focus();
-    }
-  }
-</script>
 </head>
 
 <body>
@@ -40,7 +27,7 @@
   <bean:define id="inputBean" name="kankouRegistForm" />
   <!-- 下二つは後の変更点  -->
   <bean:define id="viewBean" name="KANKOU_REGIST_DTO" />
-  <bean:define id="backAction" name="KOJIN_REGIST_BACK" type="java.lang.String" />
+  <bean:define id="backAction" name="KANKOU_REGIST_BACK" type="java.lang.String" />
 
   <div class="base-width text-center">
 
@@ -52,8 +39,8 @@
       </jsp:include>
 
       <html:hidden property="operation" value="" />
-      <html:hidden name="viewBean" property="revision" />
-
+	
+		<!-- 登録不備などの時にメッセージを投げる場所 -->
       <div id="contents">
         <html:messages id="msg" message="true">
           <p class="msg-info">
@@ -92,8 +79,6 @@
                 </span>
               </td>
               
-              <!-- 後に用変更　categoryKey -->
-              <!-- 後に用変更　category -->
               <td class="w-75 text-left">
                 <html:select name="inputBean" property="categoryKey" styleClass="input-select-xl" >
                   <html:optionsCollection name="viewBean"  property="category" value="key" label="value" />
@@ -108,7 +93,6 @@
                 </span>
               </td>
               
-              <!-- 後に用変更　kankouNm -->
               <td class="w-75 text-left">
                 <logic:empty name="viewBean" property="revision">
                   <html:text name="inputBean" property="kankouNm" styleClass="input-text-l" />
@@ -190,11 +174,10 @@
         </div>
 
         <div class="block-center">
-          <logic:empty name="viewBean" property="revision">
             <html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');">
               登録
             </html:button>
-          </logic:empty>
+
 
         <jsp:include page="/jsp/common/footer.jsp" />
         
