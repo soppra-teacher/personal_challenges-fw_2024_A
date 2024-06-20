@@ -14,13 +14,13 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
+import cashbook.service.common.LoginService;
 import cashbook.service.kankou.KankouService;
-import cashbook.service.kojin.KojinService;
 import cashbook.util.CommonUtil;
 
 public class KankouRegistInsAction extends BaseAction{
-	/** 個人マスタサービス */
-	private KojinService kojinService;
+	/** ログインサービス */
+	private LoginService loginService;
 	
 	/** 観光地登録サービス */
 	private KankouService kankouService;
@@ -28,12 +28,11 @@ public class KankouRegistInsAction extends BaseAction{
 	
 
 	/**
-	 * 個人マスタサービスを設定します。
-	 * 後に消去予定
-	 * @param kojinService 個人マスタサービス
+	 * ログインサービスを設定します。
+	 * @param loginService ログインサービス
 	 */
-	public void setKojinService(KojinService kojinService) {
-		this.kojinService = kojinService;
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 	
 	/**
@@ -65,15 +64,13 @@ public class KankouRegistInsAction extends BaseAction{
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
 		
 		// 登録処理
-		//変更点
 		kankouService.registIns(formMap, loginDto);
 
 		// 登録成功メッセージをセッションに設定
-		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_INSERT);
+		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
 
 		// 検索条件をセッションに保持（再検索用）
-		//これが必要なのかはあまりわかっていない。
-		request.getSession().setAttribute(SESSION_REGIST_RE_SEARCH_KOJIN, formMap);
+		request.getSession().setAttribute(SESSION_REGIST_RE_SEARCH_KANKOU, formMap);
 
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}

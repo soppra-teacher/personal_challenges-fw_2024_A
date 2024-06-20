@@ -2,9 +2,7 @@ package cashbook.dto.kankou;
 
 import java.util.Map;
 
-import cashbook.dto.common.BaseDto;
-
-public class KankouRegistDto extends BaseDto{
+public class KankouRegistDto{
 	
 	
 	/** 都道府県名 （キー） */

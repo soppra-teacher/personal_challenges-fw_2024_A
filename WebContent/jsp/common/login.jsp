@@ -11,49 +11,59 @@
 	<meta content="ja" http-equiv="Content-Language" />
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>
-		ソプブーのマネーノート　ログイン
+		観光地検索システム　ログイン
 	</title>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/login.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
 
 </head>
+<body onload="document.forms[0].elements[0].focus();" class="bg-yellow image_chizu">
 
-<body onload="document.forms[0].elements[0].focus();">
+		<html:form action="/Login?getKey=aaa" focus="userId" styleClass="text-center formdesign w-400px form-center" >
 
-	<div class="base-width bg-yellow text-center">
-
-		<html:form action="/Login?getKey=aaa" focus="kojinId">
-
-			<img class="top-img" src="img/login.png" />
-
-			<div class="contents block-center">
+			<div class="bg"></div>
+			<div class="bg bg2"></div>
+			<div class="bg bg3 "></div>
+			
+			<h1 class="titletext">観光地検索システム</h1>
+			
 				<html:messages id="msg" message="false">
 					<p class="msg-err">
 						・<bean:write name="msg" ignore="true" filter="false"/>
 					</p>
 				</html:messages>
-
-				<table class="block-center layout-table">
+				
+				<table class="layout-table">
 					<tr>
 						<th class="login_field">
-							ログインID:
+							ユーザID
 						</th>
 						<td class="login_field">
-							<html:text property="kojinId" styleClass="input-text-m" tabindex="1" />
+							<html:text property="userId" styleClass="textbox-m" tabindex="1" />
 						</td>
 					</tr>
 					<tr>
 						<th class="login_field">
-							パスワード:
+							パスワード
 						</th>
 						<td class="login_field">
-							<html:password property="pass" styleClass="input-text-m" tabindex="2" />
+							<html:password property="pass" styleClass="textbox-m" tabindex="2" />
 						</td>
 					</tr>
 				</table>
-
-				<html:submit value="ログイン" styleClass="btn" tabindex="3" />
-			</div>
+				<table class="block-center layout-table">
+				<tr>
+					<td>
+						<a href = "#" onclick = "document.forms[0].submit();" class = "btn-green btn-size-m" tabindex = "3" > ログイン </a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<html:link property="insert" action="/UserRegistInit" styleClass= "btn-green btn-size-m">新規登録</html:link>
+					</td>
+				</tr>
+				</table>
 
 		</html:form>
 	</div>

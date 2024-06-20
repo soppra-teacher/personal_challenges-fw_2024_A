@@ -6,9 +6,7 @@ package cashbook.util;
  */
 public class KankouConst {
 
-	/** フォーム名(マスタメンテ) */
-	public static final String FORM_KOJIN_LIST = "kojinListForm";
-	/** フォーム名(マスタ登録) */
+	/** フォーム名(登録) */
 	public static final String FORM_KANKOU_REGIST = "kankouRegistForm";
 
 	/** キー値：都道府県キー */

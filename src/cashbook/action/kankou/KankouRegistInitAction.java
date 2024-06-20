@@ -17,30 +17,34 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
+import cashbook.service.common.LoginService;
 import cashbook.service.kankou.KankouService;
-import cashbook.service.kojin.KojinService;
 import cashbook.util.CommonUtil;
 import cashbook.util.KankouConst;
-import cashbook.util.KojinConst;
+import cashbook.util.LoginConst;
 
 public class KankouRegistInitAction extends BaseAction{
-	/** 個人マスタサービス */
-	private KojinService kojinService;
 	
 	/** 観光地登録サービス */
 	private KankouService kankouService;
+	
+	/** ログインサービス */
+	private LoginService loginService;
 
 	/**
-	 * 個人マスタサービスを設定します。
-	 * 後に消去予定
-	 * @param kojinService 個人マスタサービス
+	 * 観光地登録サービスを設定します。
+	 * @param kankouService 個人マスタサービス
 	 */
-	public void setKojinService(KojinService kojinService) {
-		this.kojinService = kojinService;
-	}
-	
 	public void setKankouService(KankouService kankouService) {
 		this.kankouService = kankouService;
+	}
+	
+	/**
+	 * ログインサービスを設定します。
+	 * @param loginService 個人マスタサービス
+	 */
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 
 	/**
@@ -69,9 +73,8 @@ public class KankouRegistInitAction extends BaseAction{
 		// セッションから取得できない場合
 		if (EMPTY.equals(backAction)) {
 
-			// 個人IDがフォームに設定されていない場合
-			//後に、ユーザIDを設定するようにしておく
-			if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(KojinConst.KEY_KOJIN_ID)))) {
+			// ユーザIDがフォームに設定されていない場合
+			if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(LoginConst.KEY_USER_ID)))) {
 				// メニューからの遷移と判定
 				backAction = ACTION_FOWARD_BACK_MENU;
 
@@ -89,24 +92,22 @@ public class KankouRegistInitAction extends BaseAction{
 
 		// セッションから取得できた場合
 		if (sessionMap != null) {
-			// 画面に個人IDを設定する。
-			//後に、ユーザIDに変更しておく。
-			formMap.put(KojinConst.KEY_KOJIN_ID, sessionMap.get(KojinConst.KEY_KOJIN_ID));
-			// セッションに保持している個人IDを削除する。
+			// 画面にユーザIDを設定する。
+			formMap.put(LoginConst.KEY_USER_ID, sessionMap.get(LoginConst.KEY_USER_ID));
+			// セッションに保持しているユーザIDを削除する。
 			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KANKOU);
 
 		}
 
 		// メッセージをセッションから取得する。
-		//ユーザIDに変更後に、KANKOUへ変更する
-		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_MESSAGE_KOJIN));
+		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_MESSAGE_KANKOU));
 
 		// セッションから取得できた場合
 		if (!EMPTY.equals(messageKey)) {
 			ActionMessages messages = new ActionMessages();
 			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
 			saveMessages(request, messages);
-			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KOJIN);
+			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KANKOU);
 
 		}
 

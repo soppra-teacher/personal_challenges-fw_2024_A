@@ -24,7 +24,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , REVIEW ");
 		sql.append("   , FILE_NM ");
 		sql.append(" ) VALUES ( ");
-		sql.append("    '").append(loginDto.getKojinId()).append("' ");
+		sql.append("    '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
@@ -53,7 +53,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append(" ) VALUES ( ");
 		sql.append("   (SELECT MAX(KANKOU_ID) ");
 		sql.append("    FROM TBL_KANKOU) ");
-		sql.append("   , '").append(loginDto.getKojinId()).append("' ");
+		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_HYOKA)).append("' ");
 		sql.append(" ) ");
 		super.update(sql.toString());
@@ -72,8 +72,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("SELECT COUNT(*) AS COUNT  ");
 		sql.append("  FROM TBL_KANKOU ");
 		//個人IDの部分だけ、ログイン画面が作成され次第変更する
-		sql.append(" WHERE USER_ID = '").append(loginDto.getKojinId()).append("' ");
-		System.out.println(loginDto.getKojinId());
+		sql.append(" WHERE USER_ID = '").append(loginDto.getUserId()).append("' ");
+		System.out.println(loginDto.getUserId());
 		System.out.println(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY));
 		System.out.println(formMap.get(KankouConst.KEY_KANKOU_NM));
 		sql.append(" AND  KEN_CD = '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");

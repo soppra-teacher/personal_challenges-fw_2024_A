@@ -37,24 +37,6 @@ public class CustomValidate implements Serializable {
 		return executeCheck(bean, va, field, errors, validator, request, "^[\\uFF65-\\uFF9F\\s-]+$");
 	}
 
-	/**
-	 * 郵便番号チェック
-	 * @param bean
-	 * @param va
-	 * @param field
-	 * @param errors
-	 * @param validator
-	 * @param request
-	 * @return OK:True,NG:False
-	 */
-	public static boolean validatePostNo(Object bean
-			                           , ValidatorAction va
-			                           , Field field
-			                           , ActionMessages errors
-			                           , Validator validator
-			                           , HttpServletRequest request) {
-		return executeCheck(bean, va, field, errors, validator, request, "^\\d{3}-\\d{4}$");
-	}
 
 	/**
 	 * 正規表現チェック処理

@@ -33,12 +33,6 @@ public class MenuInitAction extends BaseAction {
 	protected ActionForward doProcess(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
 
-		// 各登録画面の戻り先をセッションから削除する。
-		request.getSession().removeAttribute(Const.SESSION_REGIST_BACK_HIMOKU); // 費目マスタ登録画面 戻り先
-		request.getSession().removeAttribute(Const.SESSION_REGIST_BACK_SETAI); // 世帯マスタ登録画面 戻り先
-		request.getSession().removeAttribute(Const.SESSION_REGIST_BACK_KOJIN); // 個人マスタ登録画面 戻り先
-		request.getSession().removeAttribute(Const.SESSION_REGIST_BACK_SHUSHI); // 収支登録画面 戻り先
-
 		// 処理成功時の遷移先を指定する。
 		return map.findForward(Const.ACTION_FOWARD_SUCCESS);
 	}

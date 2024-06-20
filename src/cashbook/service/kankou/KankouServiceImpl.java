@@ -61,7 +61,7 @@ public class KankouServiceImpl implements KankouService{
 			
 		    // 存在チェック
 			if (!kankouDao.checkOverlapKankou(formMap, loginDto)) {
-				throw new CommonValidateException(MSG_ERRORS_PRIMARY_KEY);
+				throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
 			}
 			// 登録処理
 			kankouDao.registKankou(formMap, loginDto);
