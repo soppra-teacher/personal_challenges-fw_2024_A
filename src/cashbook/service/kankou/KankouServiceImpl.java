@@ -57,16 +57,20 @@ public class KankouServiceImpl implements KankouService{
 	 */
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
 
-		// 登録
+		// 観光地・評価値登録
 			
-		    // 存在チェック
+		    // 観光地情報存在チェック
 			if (!kankouDao.checkOverlapKankou(formMap, loginDto)) {
 				throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
 			}
-			// 登録処理
+			// 観光地登録処理
 			kankouDao.registKankou(formMap, loginDto);
 			
-			// 評価値
+			// 評価値登録処理
 			kankouDao.registHyoka(formMap, loginDto); 
+			
+			//写真登録を後に記入予定
+			
+			
 	}
 }

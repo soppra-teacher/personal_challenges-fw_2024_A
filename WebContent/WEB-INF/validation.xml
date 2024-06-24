@@ -52,6 +52,15 @@
 					<var-value>100</var-value>
 				</var>
 			</field>
+			<!-- レビュー -->
+			<field property="review" depends="maxlength">
+				<arg0 key="kankouRegistForm.param.review" resource="true" />
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>1000</var-value>
+				</var>
+			</field>
 
 		</form>
 

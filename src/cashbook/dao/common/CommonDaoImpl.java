@@ -151,8 +151,6 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 			if (ret.size() == 0) {
 				ret.put("", "");
 			}
-			System.out.println(map.get("TODOUHUKEN"));
-			System.out.println(map.get("TODOUHUKENNM"));
 			ret.put(map.get("TODOUHUKEN"), map.get("TODOUHUKENNM"));
 		}
 
@@ -176,8 +174,6 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 			if (ret.size() == 0) {
 				ret.put("", "");
 			}
-			System.out.println(map.get("ID"));
-			System.out.println(map.get("NM"));
 			ret.put(map.get("ID"), map.get("NM"));
 		}
 

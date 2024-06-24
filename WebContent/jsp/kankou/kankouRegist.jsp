@@ -17,9 +17,7 @@
 <script language="JavaScript" type="text/javascript" charset="shift_jis"
 	src="js/common.js"></script>
 
-<script type="text/javascript">
-	
-</script>
+<script type="text/javascript"></script>
 
 </head>
 
@@ -122,9 +120,9 @@
 							<td class="w-25 text-right"><span class="label-title">
 									写真 </span></td>
 							<td class="w-75 text-left">
-								<!-- アップしたい画像をここで指定 --> <input type="file" id="pictures"
-								accept=".png, .jpg, .jpeg"> <!--<html:file  name="inputBean"  property="pictures" accept=".png, .jpg, .jpeg"/>  
-				 -->
+								<!-- アップしたい画像をここで指定 -->
+								 <input type="file" id="pictures" accept=".png, .jpg, .jpeg"> 
+								<!--<html:file  name="inputBean"  property="pictures" accept=".png, .jpg, .jpeg"/>   -->
 							</td>
 						</tr>
 						<tr>
@@ -141,14 +139,10 @@
 				</div>
 
 				<div class="block-center">
-					<html:button property="insert" styleClass="btn btn-l"
-						onclick="callAction(this.form, 'insert');">
-              登録
-            </html:button>
-
-
+					<html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');">
+		              登録
+		            </html:button>
 					<jsp:include page="/jsp/common/footer.jsp" />
-
 				</div>
 		</html:form>
 		<!-- 選択した写真を表示させるスクリプト -->

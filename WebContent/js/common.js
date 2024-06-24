@@ -20,11 +20,7 @@ function callAction(form, operation) {
 	var selected = new Boolean(false);
 	if (operation == "insert") {
 		msg = "登録してもよろしいですか？";
-	} else if (operation == "update") {
-		msg = "更新してもよろしいですか？";
-	} else if (operation == "delete") {
-		msg = "削除してもよろしいですか？";
-	}
+	} 
 	if (msg != null && !confirm(msg)) {
 		return;
 	}

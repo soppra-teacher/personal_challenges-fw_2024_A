@@ -63,6 +63,12 @@
 			scope="request">
 			<forward name="success" path="/jsp/common/menu.jsp"/>
 		</action>
+		<action
+			path="/Logout"
+			type="cashbook.action.common.LogoutAction"
+			scope="request">
+			<forward name="success" path="/jsp/common/login.jsp"/>
+		</action>
 
 		<!--
 		****************************

@@ -71,26 +71,18 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT COUNT(*) AS COUNT  ");
 		sql.append("  FROM TBL_KANKOU ");
-		//個人IDの部分だけ、ログイン画面が作成され次第変更する
 		sql.append(" WHERE USER_ID = '").append(loginDto.getUserId()).append("' ");
-		System.out.println(loginDto.getUserId());
-		System.out.println(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY));
-		System.out.println(formMap.get(KankouConst.KEY_KANKOU_NM));
 		sql.append(" AND  KEN_CD = '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append(" AND  KANKOU_NM = '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
-		System.out.println(super.find(sql.toString()).size());
 		
 		//SQLの結果をresultに格納する。
 		result = super.find(sql.toString());
-		System.out.println(result.get("COUNT"));
-		
 		
 		if(result.get("COUNT").equals("0")) {
 			return true;
 		}else {
 			return false;
 		}
-		//return super.find(sql.toString()).size() == 0;
 	}
 
 }
