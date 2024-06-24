@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface UserRegistService {
 
-	/**
+	/** 
 	 * <p><b>
 	 * ユーザ登録画面
 	 * <br>登録処理

@@ -16,6 +16,7 @@
 			<form-property name="userId" type="java.lang.String" />
 			<form-property name="pass"    type="java.lang.String"/>
 			<form-property name="passKakunin"    type="java.lang.String"/>
+			<form-property name="hidden"    type="java.lang.String"/>
 		</form-bean>
 
 		<!-- 費目マスタ登録画面 -->

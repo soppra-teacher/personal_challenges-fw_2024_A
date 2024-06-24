@@ -12,7 +12,8 @@ public class UserRegistDto{
 	private String pass;
 	/** パスワード(確認) */
 	private String passKakunin;
-
+	/** 登録判定 */
+	private String hidden;
 	
 	/**
 	 * ユーザＩＤを取得します。
@@ -56,5 +57,20 @@ public class UserRegistDto{
 	 */
 	public void setPassKakunin(String passKakunin) {
 	    this.passKakunin = passKakunin;
+	}
+	
+	/**
+	 * 登録判定を取得します。
+	 * @return 登録判定
+	 */
+	public String getHidden() {
+	    return hidden;
+	}
+	/**
+	 * 登録判定を設定します。
+	 * @param hidden 登録判定
+	 */
+	public void setHidden(String hidden) {
+	    this.hidden = hidden;
 	}
 }

@@ -13,5 +13,5 @@ public interface LoginDao {
 	 * @param formMap フォーム項目
 	 * @return ログイン情報
 	 */
-	public Map<String, String> find(Map<String, Object> formMap);
+	public Map<String, String> findLogin(Map<String, Object> formMap);
 }

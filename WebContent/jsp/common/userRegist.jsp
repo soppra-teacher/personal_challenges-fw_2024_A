@@ -18,9 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/login.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
-	
 </head>
-<body class="bg-yellow image_chizu">
+<body class="image_chizu">
 
 	<bean:define id="inputBean" name="userRegistForm" />
 	<bean:define id="viewBean" name="USER_REGIST_DTO" />
@@ -28,6 +27,7 @@
 
 		<html:form action="/UserRegistIns" focus="userId" styleClass="text-center formdesign w-450px form-center" >
 		<html:hidden property="operation" value="" />
+		<html:hidden name="viewBean" property="hidden" />
 		
 			<div class="bg"></div>
 			<div class="bg bg2"></div>
@@ -71,9 +71,9 @@
 				<table class="block-center layout-table">
 				<tr>
 					<td>
-					<a href = "#" id="clicklink" onclick = "callAction(document.forms[0],'insertUser');" class = "btn-green btn-size-m" tabindex = "3" >
+						<a href = "#" id="clicklink" class = "btn-green btn-size-m" tabindex = "3" >
 						新規登録
-					</a>
+						</a>
 					</td>
 				</tr>
 				<tr>
@@ -87,28 +87,37 @@
 		</html:form>
 	</div>
 	
-	<script type="text/javascript">
-		window.onload = function OnLinkClick(){
-			var click = document.getElementById('clicklink');
-			var msg;
 
-			click.addEventListener('click', () => {
-			  msg = "新規登録してもよろしいですか？"
-			  confirm(msg);
-			});
-			
-			//キャンセルボタンを押した場合処理を中断
-			if (!confirm(msg)) {
-				return;
-			}
-			//OKボタンを押した場合
-			else{
-				//登録完了処理をここに記載する。
-				msg = "新規登録が完了しました。ログイン画面へ移行します。"
-				confirm(msg);
-			}
-			
-		}
+	<script type="text/javascript">
+    document.getElementById('clicklink').addEventListener('click', function (event) {
+        var msg = "新規登録してもよろしいですか？";
+        if (!confirm(msg)) {
+        	console.log("キャンセル");
+        	return;
+        } else {
+        	console.log("OK");
+        	document.forms[0].submit(); 
+        }
+    });
 	</script>
+	
 </body>
+
 </html:html>
+<script>
+	window.addEventListener("load",(event) => {
+		var hidden = document.userRegistForm.hidden;
+	     if(hidden.defaultValue == "1"){
+		    //hidden値1：OK
+	    	alert("登録処理が完了しました。ログイン画面へ移行します。");
+			document.forms[0].submit(); 
+			window.location.href = "http://localhost:8080/Cashbook/"
+	    	
+	    }
+	    else {
+	    	return;
+		    
+	    }
+	    
+	});
+</script>

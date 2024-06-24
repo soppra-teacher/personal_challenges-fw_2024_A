@@ -11,25 +11,26 @@ import cashbook.dto.common.LoginDto;
  */
 public class LoginServiceImpl implements LoginService{
 	private LoginDao loginDao;
-
-	/**
-	 * ログイン実行メソッド
-	 * @param loginService
-	 */
-	public LoginDto execute(Map<String, Object> formMap){
-		LoginDto result = new LoginDto();
-		Map<String, String> map = loginDao.find(formMap);
-		result.setUserId(map.get("USER_ID"));
-		result.setPass(map.get("PASS"));
-		return result;
-	}
-
+	
 	/**
 	 * DAOのsetter
 	 * @param loginDao
 	 */
 	public void setLoginDao(LoginDao loginDao){
 		this.loginDao = loginDao;
+	}
+	
+	/**
+	 * ログイン実行メソッド
+	 * @param loginService
+	 */
+	public LoginDto execute(Map<String, Object> formMap){
+		//ログイン情報の取得
+		LoginDto result = new LoginDto();
+		Map<String, String> map = loginDao.findLogin(formMap);
+		result.setUserId(map.get("USER_ID"));
+		result.setPass(map.get("PASS"));
+		return result;
 	}
 
 }

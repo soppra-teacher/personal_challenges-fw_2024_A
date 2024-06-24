@@ -4,7 +4,7 @@ import java.util.Map;
 
 /**
  * ユーザ登録DAOインターフェース
- * @author soppra
+ * @author soppra 
  */
 public interface UserRegistDao{
 	

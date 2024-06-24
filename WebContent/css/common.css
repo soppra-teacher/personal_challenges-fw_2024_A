@@ -48,7 +48,7 @@ tr.table-header {
 	margin: 0px auto;
 }
 
-/* ƒƒOƒCƒ“‰æ–Ê”wŒiF */
+/* ‰æ–Ê”wŒiF */
 .bg-yellow {
 	background-color: rgb(255,220,0);
 	padding: 10px 0px;
@@ -671,5 +671,13 @@ pa
 	border-radius:6px;
 	margin-bottom:10px;
 	border:1px solid #eee;
+}
+/* ”wŒi‰æ‘œi“ú–{’n}j */
+.image_chizu {
+	background-image: url(../img/nihonchizu_white.png);
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position-x: 300px;
+	background-position-y: 20px;
 }
 

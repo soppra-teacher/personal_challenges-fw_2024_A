@@ -6,7 +6,7 @@ import cashbook.util.UserConst;
 
 public class UserRegistDaoImpl extends BaseDaoImpl implements UserRegistDao{
 	
-	/**
+	/** 
 	 * <p><b>
 	 * ユーザ登録画面
 	 * <br>登録処理

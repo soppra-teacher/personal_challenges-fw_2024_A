@@ -16,9 +16,11 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
+import cashbook.dto.common.UserRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.service.common.UserRegistService;
 import cashbook.util.CommonUtil;
+import cashbook.util.UserConst;
 
 /**
  * ユーザ登録画面 登録アクションクラス
@@ -57,12 +59,20 @@ public class UserRegistInsAction extends Action{
 		try {
 			// フォームの値を取得する。
 			Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
-			System.out.println(formMap);
+
+			// hiddenパラメータを"1"に設定する。
+			formMap.put(UserConst.KEY_USER_HIDDEN, SESSION_REGIST_HIDDEN_OK);
+			
 			// 登録
 			userRegistService.registIns(formMap);
+			
+			UserRegistDto dto = new UserRegistDto();
+
 
 			// 登録成功メッセージをセッションに設定
-			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_USER, MSG_SUCCESS_INSERT_USER);
+			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_USER, MSG_SUCCESS_INSERT_USER );
+			// 取得した情報をセッションに設定
+			request.getSession().setAttribute(SESSION_REGIST_SESSION_FORM_USER, formMap);
 			
 			return map.findForward(ACTION_FOWARD_SUCCESS);
 
@@ -70,6 +80,11 @@ public class UserRegistInsAction extends Action{
 			ActionErrors errors = new ActionErrors();
 			errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(e.getMessageKey()));
 			saveErrors(request, errors);
+			
+			Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
+			// hiddenパラメータを"0"に設定する。
+			formMap.put(UserConst.KEY_USER_HIDDEN, SESSION_REGIST_HIDDEN_NG);
+			
 			return map.getInputForward();
 
 		}

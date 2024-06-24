@@ -80,6 +80,15 @@ public class Const {
 	public static final String SESSION_REGIST_BACK_USER = "USER_REGIST_BACK";
 	/** ユーザ登録画面 メッセージ  */
 	public static final String SESSION_REGIST_MESSAGE_USER = "USER_REGIST_MESSAGE";
+	/** 個人マスタ登録画面 再検索値 */
+	public static final String SESSION_REGIST_RE_SEARCH_USER = "USER_REGIST_RE_SEARCH";
+	/** ユーザ登録画面 セッション保持  */
+	public static final String SESSION_REGIST_SESSION_FORM_USER = "REGIST_SESSION_FORM_USER";
+	/** ユーザ登録画面 登録成功判定（OK）  */
+	public static final String SESSION_REGIST_HIDDEN_OK = "1";
+	/** ユーザ登録画面 登録成功判定（NG）  */
+	public static final String SESSION_REGIST_HIDDEN_NG = "0";
+
 	
 	/** 費目マスタ登録画面 DTO */
 	public static final String SESSION_REGIST_DTO_HIMOKU = "HIMOKU_REGIST_DTO";
