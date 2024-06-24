@@ -30,7 +30,7 @@
 
 	<div class="base-width text-center">
 
-		<html:form action="/KankouRegistDisp" focus="todouhuKen">
+		<html:form action="/KankouRegistDisp" >
 
 			<!-- ƒwƒbƒ_[‚Ì–¼Ì‚ð‚±‚±‚Å“Š‚°‚Ä‚¢‚é -->
 			<jsp:include page="/jsp/common/header.jsp">
@@ -138,8 +138,8 @@
 					</table>
 				</div>
 
-				<div class="block-center">
-					<html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');">
+				<div class="block-center layout-table">
+					<html:button property="insert" styleClass="btn-green btn-size-m"   onclick="callAction(this.form, 'insert');">
 		              “o˜^
 		            </html:button>
 					<jsp:include page="/jsp/common/footer.jsp" />
