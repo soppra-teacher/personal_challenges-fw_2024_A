@@ -1,7 +1,6 @@
 package cashbook.util;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -16,31 +15,6 @@ import org.apache.struts.action.DynaActionForm;
  * @author soppra
  */
 public class CommonUtil {
-
-	/**
-	 * 年のコンボボックスの値を取得する
-	 * @return 年コンボボックス
-	 */
-	public static Map<String, String> getYearMap() {
-		Map<String, String> result = new LinkedHashMap<String, String>();
-		for (int i = 2000; i <= 2050; i++ ) {
-			result.put(String.valueOf(i), String.valueOf(i) + "年");
-		}
-		return result;
-	}
-
-	/**
-	 * 月のコンボボックスの値を取得する
-	 * @return 月コンボボックス
-	 */
-	public static Map<String, String> getMonthMap() {
-		Map<String, String> result = new LinkedHashMap<String, String>();
-		for (int i = 1; i <= 12; i++ ) {
-			String month = String.format("%02d", i);
-			result.put(month, month + "月");
-		}
-		return result;
-	}
 
 	/**
 	 * NULLチェック

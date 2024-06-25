@@ -68,12 +68,12 @@
 					</td>
 					<td class="plr-20">
 						<p>
-							<html:link action="/KojinRegistInit">個人マスタ登録</html:link>
+							
 						</p>
 					</td>
 					<td class="plr-20">
 						<p>
-							<html:link action="/KojinListInit">個人マスタメンテ</html:link>
+							
 						</p>
 					</td>
 				</tr>
@@ -81,25 +81,12 @@
 				<tr>
 					<td>
 						<p>
-							<html:link action="/SetaiRegistInit">世帯マスタ登録</html:link>
+							
 						</p>
 					</td>
 					<td>
 						<p>
-							<html:link action="/SetaiListInit">世帯マスタメンテ</html:link>
-						</p>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<p>
-							<html:link action="/HimokuRegistInit">費目マスタ登録</html:link>
-						</p>
-					</td>
-					<td>
-						<p>
-							<html:link action="/HimokuListInit">費目マスタメンテ</html:link>
+							
 						</p>
 					</td>
 				</tr>
@@ -107,12 +94,12 @@
 				<tr>
 					<td>
 						<p>
-							<html:link action="/ShushiRegistInit">収支登録</html:link>
+							
 						</p>
 					</td>
 					<td>
 						<p>
-							&nbsp;
+							
 						</p>
 					</td>
 				</tr>
@@ -120,17 +107,25 @@
 				<tr>
 					<td>
 						<p>
-							<html:link action="/ShushiListKobetsuInit">収支一覧（個別）</html:link>
+							
 						</p>
 					</td>
 					<td>
 						<p>
-							<logic:equal name="loginInfo" property="setainushiFlg" value="<%=Const.SETAINUSHI_ON%>">
-								<html:link action="/ShushiListSetaiInit">収支一覧（世帯）</html:link>
-							</logic:equal>
-							<logic:notEqual name="loginInfo" property="setainushiFlg" value="<%=Const.SETAINUSHI_ON%>">
-								&nbsp;
-							</logic:notEqual>
+							<html:link action="/KankouRegistInit">観光地登録</html:link>
+						</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p>
+							
+						</p>
+					</td>
+					<td>
+						<p>
+
 						</p>
 					</td>
 				</tr>

@@ -5,23 +5,50 @@
 
 <div class="contents">
 
+
+
 	<hr />
 	<table class="layout-table w-100">
 		<tr>
-			<td class="w-50">
-				&nbsp;
-			</td>
 			<td class="w-25">
-				<html:link action="/MenuInit" >
+				<a href = "#" id = "backMenu" class = "btn-green btn-size-m" tabindex = "3" >
 					メニューへ戻る
-				</html:link>
+				</a>
 			</td>
 			<td class="w-25">
-				<html:link action="/Logout" >
+				<a href = "#" id = logOut class = "btn-green btn-size-m" tabindex = "3" >
 					ログアウト
-				</html:link>
+				</a>
 			</td>
 		</tr>
 	</table>
+	
+	<script type="text/javascript">
+		//メニュー画面の画面遷移処理
+	    document.getElementById('backMenu').addEventListener('click', function (event) {
+	        var msg = "別画面に遷移しますがよろしいですか？";
+	        if (!confirm(msg)) {
+	        	console.log("キャンセル");
+	        	return;
+	        } else {
+	        	console.log("OK");
+	        	window.location.href = "http://localhost:8080/Cashbook/MenuInit.do?getKey=aaa"
+	        }
+	    });
+		//ログアウトの画面遷移処理
+	    document.getElementById('logOut').addEventListener('click', function (event) {
+	        var msg = "別画面に遷移しますがよろしいですか？";
+	        if (!confirm(msg)) {
+	        	console.log("キャンセル");
+	        	return;
+	        } else {
+	        	console.log("OK");
+	        	
+	        	window.location.href = "http://localhost:8080/Cashbook/Logout.do"
+	        }
+	    });
+	</script>
+
+	
 </div>
 

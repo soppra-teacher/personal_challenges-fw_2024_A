@@ -7,39 +7,16 @@ import java.util.Map;
  * @author soppra
  */
 public interface CommonDao {
-
+	
 	/**
-	 * システム年(YYYY)を取得する
-	 * @return システム年(YYYY)
+	 * セレクトボックス用都道府県マスタ取得
+	 * @return 都道府県マスタ
 	 */
-	public String getYyyy();
-
+	public Map<String, String> searchSelectboxTodouhuKen();
+	
 	/**
-	 * システム月(MM)を取得する
-	 * @return システム月(MM)
+	 * セレクトボックス用カテゴリマスタ取得
+	 * @return カテゴリマスタ
 	 */
-	public String getMm();
-
-	/**
-	 * システム日(DD)を取得する
-	 * @return システム日(DD)
-	 */
-	public String getDd();
-
-	/**
-	 * システム年月日(YYYY/MM/DD)を取得する
-	 * @return システム年月日(YYYY/MM/DD)
-	 */
-	public String getYyyyMmDd();
-
-	/**
-	 * コードマスタより、コード、コード名称をリスト型で取得する
-	 */
-	public Map<String ,String> getCode(String classCd);
-
-	/**
-	 * コードマスタより、コード名称を文字列型で取得する
-	 */
-	public String getCodeName(String classCd ,String cd);
-
+	public Map<String, String> searchSelectboxCategory();
 }

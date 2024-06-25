@@ -54,17 +54,6 @@ tr.table-header {
 	padding: 10px 0px;
 }
 
-/* ログインページの項目名のセル */
-th.login_field {
-	padding: 8px;
-	font-size :23px;
-}
-
-/* ログイン画面の入力項目のセル */
-td.login_field {
-	padding: 8px;
-	font-size :23px;
-}
 
 /* 共通ヘッダ */
 div.header {
@@ -208,6 +197,22 @@ div.header {
 	font-size: 20px;
 }
 
+/* ------------------------------------------------------------------------------------------------ */
+
+.input-text-l2 {
+	width: 450px;
+	height: 110px;
+	font-size: 20px;
+}
+
+.input-text-l3 {
+	width: 450px;
+	height: 200px;
+	font-size: 20px;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
 .input-select-s {
 	width: 60px;
 	height: 30px;
@@ -225,6 +230,7 @@ div.header {
 	height: 30px;
 	font-size: 20px;
 }
+
 
 .input-select-xl {
 	width: 250px;
@@ -333,7 +339,6 @@ p.msg-err {
 
 tr {
 	height: 50px;
-	
 }
 
 td {
@@ -425,7 +430,7 @@ td.blank {
 	border: 0px none !important;
 }
 
-/* -------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------ */
 
 /* 共通ヘッダ */
 h1 {
@@ -522,6 +527,7 @@ pa
 .plr-20 {
 	padding: 0px 20px;
 }
+
 /* ------------------------------------------------------------------------------------------------ */
 
 /* タイトルテキスト */
@@ -671,5 +677,14 @@ pa
 	border-radius:6px;
 	margin-bottom:10px;
 	border:1px solid #eee;
+}
+
+/* 背景画像（日本地図） */
+.image_chizu {
+	background-image: url(../img/nihonchizu_white.png);
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position-x: 300px;
+	background-position-y: 20px;
 }
 
