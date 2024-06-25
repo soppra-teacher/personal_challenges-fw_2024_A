@@ -48,6 +48,9 @@ public class Const {
 	/** 削除完了メッセージ */
 	public static final String MSG_SUCCESS_DELETE = "messages.success.delete";
 
+	/** ユーザ登録完了メッセージ */
+	public static final String MSG_SUCCESS_INSERT_USER = "userRegistForm.messages.success.insert.user";
+	
 	/** 削除対象チェックボックス */
 	public static final String ITEM_CHECKBOX_DELETE = "checkDel";
 
@@ -61,6 +64,12 @@ public class Const {
 	public static final String SESSION_REGIST_BACK_USER = "USER_REGIST_BACK";
 	/** ユーザ登録画面 メッセージ  */
 	public static final String SESSION_REGIST_MESSAGE_USER = "USER_REGIST_MESSAGE";
+	/** ユーザ登録画面 セッション保持  */
+	public static final String SESSION_REGIST_SESSION_FORM_USER = "REGIST_SESSION_FORM_USER";
+	/** ユーザ登録画面 登録成功判定（OK）  */
+	public static final String SESSION_REGIST_HIDDEN_OK = "1";
+	/** ユーザ登録画面 登録成功判定（NG）  */
+	public static final String SESSION_REGIST_HIDDEN_NG = "0";
 	
 	/** 観光地登録画面 DTO */
 	public static final String SESSION_REGIST_DTO_KANKOU = "KANKOU_REGIST_DTO";

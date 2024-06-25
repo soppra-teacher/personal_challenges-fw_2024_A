@@ -51,6 +51,13 @@
     </property>
   </bean>
   
+    <!-- ユーザ登録画面 -->
+   <bean id="UserRegistDaoId" class="cashbook.dao.common.UserRegistDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+  
     <!-- 観光地テーブル-->
    <bean id="KankouDaoId" class="cashbook.dao.kankou.KankouDaoImpl">
     <property name="dataSource">
@@ -63,6 +70,13 @@
   <bean id="LoginServiceId" class="cashbook.service.common.LoginServiceImpl">
     <property name="loginDao">
       <ref local="LoginDaoId" />
+    </property>
+  </bean>
+  
+    <!-- ユーザ登録画面 -->
+  <bean id="UserRegistServiceId" class="cashbook.service.common.UserRegistServiceImpl">
+    <property name="userRegistDao">
+      <ref local="UserRegistDaoId" />
     </property>
   </bean>
   
@@ -81,6 +95,18 @@
   <bean name="/Login" class="cashbook.action.common.LoginAction">
     <property name="loginService">
       <ref local="LoginServiceId" />
+    </property>
+  </bean>
+  
+    <!-- ユーザ登録画面 -->
+  <bean name="/UserRegistInit" class="cashbook.action.common.UserRegistInitAction">
+  	<property name="userRegistService">
+      <ref local="UserRegistServiceId" />
+    </property>
+  </bean>
+  <bean name="/UserRegistIns" class="cashbook.action.common.UserRegistInsAction">
+    <property name="userRegistService">
+      <ref local="UserRegistServiceId" />
     </property>
   </bean>
   

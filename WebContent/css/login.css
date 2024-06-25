@@ -1,3 +1,15 @@
+/* ログインページの項目名のセル */
+th.login_field {
+	padding: 8px;
+	font-size :23px;
+}
+
+/* ログイン画面の入力項目のセル */
+td.login_field {
+	padding: 8px;
+	font-size :23px;
+}
+
 /* thラベル */
 th.login_field {
 	padding: 8px;

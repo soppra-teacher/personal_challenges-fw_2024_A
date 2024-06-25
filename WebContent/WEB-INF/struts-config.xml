@@ -12,6 +12,14 @@
 			<form-property name="pass"    type="java.lang.String"/>
 		</form-bean>
 		
+		<!-- ユーザ登録画面 -->
+		<form-bean name="userRegistForm"       type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="userId" type="java.lang.String" />
+			<form-property name="pass"    type="java.lang.String"/>
+			<form-property name="passKakunin"    type="java.lang.String"/>
+			<form-property name="hidden"    type="java.lang.String"/>
+		</form-bean>
+		
 		<!-- 観光地登録画面 -->
         <form-bean name="kankouRegistForm"    type="org.apache.struts.validator.DynaValidatorForm">
   			<form-property name="todouhukenKey"     type="java.lang.String" />
@@ -50,6 +58,39 @@
 			type="cashbook.action.common.LogoutAction"
 			scope="request">
 			<forward name="success" path="/jsp/common/login.jsp"/>
+		</action>
+		
+		<!--
+		****************************
+		* ユーザ登録画面           *
+		****************************
+		-->
+		<!-- 初期表示 -->
+		<action
+			path="/UserRegistInit"
+			type="cashbook.action.common.UserRegistInitAction"
+			scope="request">
+			<forward name="success" path="/jsp/common/userRegist.jsp"/>
+		</action>
+		<!-- ディスパッチ -->
+		<action
+			path="/UserRegistDisp"
+			type="cashbook.action.common.UserRegistDispAction"
+			name="userRegistForm"
+			validate="false"
+			parameter="operation"
+			scope="request">
+			<forward name="insert" path="/UserRegistIns.do"/>
+		</action>
+		<!-- 登録 -->
+		<action
+			path="/UserRegistIns"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="userRegistForm"
+			validate="true"
+			input="/jsp/common/userRegist.jsp"
+			scope="request">
+			<forward name="success" path="/UserRegistInit.do" redirect="true" />
 		</action>
 
 		<!--

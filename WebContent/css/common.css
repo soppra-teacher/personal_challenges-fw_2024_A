@@ -54,17 +54,6 @@ tr.table-header {
 	padding: 10px 0px;
 }
 
-/* ログインページの項目名のセル */
-th.login_field {
-	padding: 8px;
-	font-size :23px;
-}
-
-/* ログイン画面の入力項目のセル */
-td.login_field {
-	padding: 8px;
-	font-size :23px;
-}
 
 /* 共通ヘッダ */
 div.header {
@@ -690,5 +679,12 @@ pa
 	border:1px solid #eee;
 }
 
-
+/* 背景画像（日本地図） */
+.image_chizu {
+	background-image: url(../img/nihonchizu_white.png);
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position-x: 300px;
+	background-position-y: 20px;
+}
 
