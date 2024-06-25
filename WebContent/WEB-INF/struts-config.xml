@@ -125,17 +125,7 @@
 			scope="request">
 			<forward name="success" path="/jsp/kankou/kankouRegist.jsp"/>
 		</action>
-	    <!-- ディスパッチ -->
-		<action
-			path="/KankouRegistDisp"
-			type="cashbook.action.kankou.KankouRegistDispAction"
-			name="kankouRegistForm"
-			validate="false"
-			parameter="operation"
-			scope="request">
-			<forward name="insert" path="/KankouRegistIns.do"/>
-			<forward name="backMenu" path="/MenuInit.do"/>
-		</action>
+
 		<!-- 登録-->
 		<action
 			path="/KankouRegistIns"

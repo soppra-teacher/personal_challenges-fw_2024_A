@@ -30,7 +30,7 @@
 
 	<div class="base-width text-center">
 
-		<html:form action="/KankouRegistDisp" >
+		<html:form action="/KankouRegistIns" >
 
 			<!-- ヘッダーの名称をここで投げている -->
 			<jsp:include page="/jsp/common/header.jsp">
@@ -139,14 +139,30 @@
 				</div>
 
 				<div class="block-center layout-table">
-					<html:button property="insert" styleClass="btn-green btn-size-m"   onclick="callAction(this.form, 'insert');">
+					<a href = "#" id = "clicklink" class = "btn-green btn-size-m" tabindex = "3" >
 		              登録
-		            </html:button>
+		            </a>
 					<jsp:include page="/jsp/common/footer.jsp" />
 				</div>
 		</html:form>
 		<!-- 選択した写真を表示させるスクリプト -->
 		<script src="js/picture.js"></script>
+		
+		<!-- 登録リンクの画面遷移用URL -->
+		<script type="text/javascript">
+		    document.getElementById('clicklink').addEventListener('click', function (event) {
+		        var msg = "登録してもよろしいですか？";
+		        if (!confirm(msg)) {
+		        	console.log("キャンセル");
+		        	return;
+		        } else {
+		        	console.log("OK");
+		        	document.forms[0].submit();
+		        	
+		        }
+		    });
+		</script>
+		
 	</div>
 </body>
 </html:html>
