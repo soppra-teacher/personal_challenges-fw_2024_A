@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* ベース横幅 */
+.kankouList-width {
+	width: 1000px;
+	padding: 20px auto;
+	margin: 0px auto;
+}
+/* 観光一覧用 */
+.l-kankou {
+	width: 943px;
+}
+.l-kankou-id {
+	width: 50px;
+}
+.l-kankou-nm {
+	width: 200px;
+}
+.l-tihou-nm {
+	width: 80px;
+}
+.l-todouhuken-nm{
+	width: 80px;
+}
+.l-hyoukati {
+	width: 60px;
+}
+.l-user-id {
+	width: 100px;
+}
+.l-category-id {
+	width: 100px;
+}
+.test-a{
+	border: inset rgb(255, 255, 0) 10px ;
+}

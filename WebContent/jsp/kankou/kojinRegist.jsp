@@ -160,7 +160,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 									</span>
 									</td>
 							<td class="w-75 text-left">
-							<html:text name="viewBean" property="todouhukenNm" styleClass="input-text-m" readonly="true"/>
+							<html:text name="viewBean" property="todouhukenNm" styleClass="input-text-s" readonly="true"/>
 							</td>
 						</tr>
 						</tr>
@@ -171,7 +171,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 									</span>
 									</td>
 							<td class="w-75 text-left">
-							<html:text name="viewBean" property="tihouNm" styleClass="input-text-m" readonly="true"/>
+							<html:text name="viewBean" property="tihouNm" styleClass="input-text-s" readonly="true"/>
 							</td>
 						</tr>
 						
