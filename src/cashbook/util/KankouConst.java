@@ -55,6 +55,11 @@ public class KankouConst {
 	/** キー値：都道府県名 */
 	public static final String KEY_TODOUHUKEN_NM = "todouhukenNm";
 	
+	public static final String KEY_KANKOU2_ID = "kankouId";
+	
+	public static final String KEY_LOG_USER_ID = "logUserId";
+	
+	public static final String KEY_Image_String = "base64Image";
 	
 	
 }

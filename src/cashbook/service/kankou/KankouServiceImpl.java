@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import cashbook.dao.common.CommonDao;
 import cashbook.dao.kankou.KankouDao;
 import cashbook.dao.setai.SetaiDao;
@@ -19,7 +21,7 @@ import cashbook.util.Const;
 import cashbook.util.KankouConst;
 
 /**
- * 個人マスタサービス
+ *観光テーブルサービス
  * @author soppra
  */
 public class KankouServiceImpl implements KankouService {
@@ -44,30 +46,28 @@ public class KankouServiceImpl implements KankouService {
 		result.setTihou(commonDao.getTIhou());
 		//都道府県名コンボボックスの設定
 		result.setTodouhuken(commonDao.getTodouhuken());
-		///////////////////////////////////////////////////////////////
+
 		//------------------------------------------
-				// 一覧
-				//------------------------------------------
-				List<KankouListDto> KojinList = new ArrayList<KankouListDto>();
-				// 検索処理
-				List<Map<String, String>> list = kojinDao.searchKankou(formMap);
-				Iterator<Map<String, String>> it = list.iterator();
-				while (it.hasNext()) {
-					Map<String, String> map = it.next();
-					//KojinRegistDto dto = new KojinRegistDto();
-					KankouListDto dto = new KankouListDto();
-					dto.setKankouId(map.get("KANKOU_ID"));
-					dto.setKankouNm(map.get("KANKOU_NM"));
-					dto.setTihouNm(map.get("TIHOU_NM"));
-					dto.setTodouhukenNm(map.get("KEN_NM"));
-					dto.setCategoryNm(map.get("CATEGORY_NM"));
-					dto.setHhyoukati(map.get("HYOUKATI"));
-					dto.setUserId(map.get("USER_ID"));
-					KojinList.add(dto);
-				}
-				result.setList(KojinList);
-				return result;
-		//////////////////////////////////////////////////////////////////
+		// 一覧
+		//------------------------------------------
+		List<KankouListDto> KojinList = new ArrayList<KankouListDto>();
+		// 検索処理
+		List<Map<String, String>> list = kojinDao.searchKankou(formMap);
+		Iterator<Map<String, String>> it = list.iterator();
+		while (it.hasNext()) {
+			Map<String, String> map = it.next();
+			KankouListDto dto = new KankouListDto();
+			dto.setKankouId(map.get("KANKOU_ID"));
+			dto.setKankouNm(map.get("KANKOU_NM"));
+			dto.setTihouNm(map.get("TIHOU_NM"));
+			dto.setTodouhukenNm(map.get("KEN_NM"));
+			dto.setCategoryNm(map.get("CATEGORY_NM"));
+			dto.setHhyoukati(map.get("HYOUKATI"));
+			dto.setUserId(map.get("USER_ID"));
+			KojinList.add(dto);
+		}
+		result.setList(KojinList);
+		return result;
 	}
 
 	/**
@@ -100,7 +100,6 @@ public class KankouServiceImpl implements KankouService {
 		Iterator<Map<String, String>> it = list.iterator();
 		while (it.hasNext()) {
 			Map<String, String> map = it.next();
-			//KojinRegistDto dto = new KojinRegistDto();
 			KankouListDto dto = new KankouListDto();
 			dto.setKankouId(map.get("KANKOU_ID"));
 			dto.setKankouNm(map.get("KANKOU_NM"));
@@ -128,34 +127,27 @@ public class KankouServiceImpl implements KankouService {
 	/**
 	 * 登録画面初期表示メソッド
 	 */
-	public KankouRegistDto registInit(Map<String, Object> formMap) {
-
+	public KankouRegistDto registInit(Map<String, Object> formMap, LoginDto loginDto) {
 		KankouRegistDto result = new KankouRegistDto();
 
-		// 続柄区分コンボボックスの設定
-		result.setZokugara(commonDao.getTIhou());
-		// 世帯名コンボボックスの設定
-		result.setSetaiNm(setaiDao.searchSelectboxSetai());
-
 		// 更新モードの場合は、対象の個人マスタを取得する
-		if (formMap != null && !CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_KOJIN_ID)))) {
-			Map<String, String> map = kojinDao.findKojin(formMap);
-			if (map != null) {
-				result.setKojinId(map.get("KOJIN_ID"));
-				result.setSetaiNmKey(map.get("SETAI_ID"));
-				result.setPass(map.get("PASS"));
-				result.setKojinNm(map.get("KOJIN_NM"));
-				result.setKojinNmkana(map.get("KOJIN_NM_KANA"));
-				result.setSeibetsuKbn(map.get("SEIBETSU_KBN"));
-				result.setZokugaraKey(map.get("ZOKUGARA"));
-				if (SETAINUSHI_ON.equals(map.get("SETAINUSHI_FLG"))) {
-					result.setSetaiNusiFlg(SETAINUSHI_FLG_ON);
-				}
-				result.setRevision(map.get("REVISION"));
-			}
+
+		Map<String, String> map = kojinDao.findKankou(formMap, loginDto);
+		result.setImagePath("FILE_NM");
+		result.setKankouNm(map.get("KANKOU_NM"));
+		result.setCategoryNm(map.get("CATEGORY_NM"));
+		result.setTodouhukenNm(map.get("KEN_NM"));
+		result.setTihouNm(map.get("TIHOU_NM"));
+		result.setSetsumei(map.get("SETSUMEI"));
+		result.setUserId(map.get("USER_ID"));
+		if ((map.get("HYOUKATI") != null)) {
+			result.setHyokaJudge("1");
+			result.setHyoka(map.get("HYOUKATI"));
 		} else {
-			result.setSeibetsuKbn(SEIBETSU_KBN_MAN); // 初期値："1"(男)
+			result.setHyokaJudge("0");
+			result.setHyoka("3");
 		}
+		System.out.println("map" + map);
 		return result;
 	}
 
@@ -194,6 +186,22 @@ public class KankouServiceImpl implements KankouService {
 			// 更新処理
 			kojinDao.updateKojin(formMap, loginDto);
 		}
+	}
+
+	/**
+	 * 登録画面登録・更新メソッド
+	 * @throws CommonValidateException
+	 */
+	public void updInsDel(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
+
+	}
+	
+	/**
+	 * 更新・削除画面評価値登録メソッド
+	 * @throws CommonValidateException
+	 */
+	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
+		kojinDao.insHyoka(formMap, loginDto);
 	}
 
 	/**

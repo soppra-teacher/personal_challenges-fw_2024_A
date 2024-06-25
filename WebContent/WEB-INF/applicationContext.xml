@@ -52,7 +52,7 @@
   </bean>
 
 
-  <!-- 個人マスタ -->
+  <!-- 観光テーブル -->
    <bean id="KankouDaoId" class="cashbook.dao.kankou.KankouDaoImpl">
     <property name="dataSource">
       <ref local="dataSource" />
@@ -93,7 +93,7 @@
     <property name="commonDao">
       <ref local="CommonDaoId" />
     </property>
-    <property name="setaiDao">
+        <property name="setaiDao">
       <ref local="SetaiDaoId" />
     </property>
     <property name="kojinDao">
@@ -155,6 +155,7 @@
       <ref local="KankouServiceId" />
     </property>
   </bean>
+  
   <bean name="/KojinRegistInsUpd" class="cashbook.action.kankou.KojinRegistInsUpdAction">
     <property name="kojinService">
       <ref local="KankouServiceId" />

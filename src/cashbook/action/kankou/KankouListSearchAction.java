@@ -20,20 +20,20 @@ import cashbook.util.CommonUtil;
 import cashbook.util.KankouConst;
 
 /**
- * 個人マスタメンテ画面検索アクションクラス
+ * 観光地検索画面アクションクラス
  * @author soppra
  */
 public class KankouListSearchAction extends BaseAction {
 
-	/** 個人マスタサービス */
-	private KankouService kojinService;
+	/** 観光地検索サービス */
+	private KankouService kankouService;
 
 	/**
-	 * 個人マスタサービスを設定します。
-	 * @param kojinService 個人マスタサービス
+	 * 観光サービスを設定します。
+	 * @param kankouService 観光テーブルサービス
 	 */
-	public void setKojinService(KankouService kojinService) {
-		this.kojinService = kojinService;
+	public void setKojinService(KankouService kankouService) {
+		this.kankouService = kankouService;
 	}
 
 	/**
@@ -60,51 +60,9 @@ public class KankouListSearchAction extends BaseAction {
 		System.out.println(request.getParameter("hiddenKankouNm"));
 		System.out.println(request.getParameter("hiddenUserId"));
 		System.out.println(request.getParameter("hiddenCategoryKey"));
-		// リクエストから「operation」の値が"search"だったのかを判定する。
-//		if (!ACTION_FOWARD_SEARCH.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
-
-			// "search"でない場合、再検索用の値をセッションから取得する。/			
-		//Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_LIST_RE_SEARCH_KOJIN);
-			
-			// 取得できた場合
-//			if (sessionMap != null) {
-//				formMap.put(KojinConst.KEY_KOJIN_ID, sessionMap.get(KojinConst.KEY_KOJIN_ID));
-//				formMap.put(KojinConst.KEY_KOJIN_NM, sessionMap.get(KojinConst.KEY_KOJIN_NM));
-//				formMap.put(KojinConst.KEY_KOJIN_NM_KANA, sessionMap.get(KojinConst.KEY_KOJIN_NM_KANA));
-//				formMap.put(KojinConst.KEY_SEIBETSU_KBN_KEY, sessionMap.get(KojinConst.KEY_SEIBETSU_KBN_KEY));
-//				formMap.put(KojinConst.KEY_ZOKUGARA, sessionMap.get(KojinConst.KEY_ZOKUGARA));
-//				formMap.put(KojinConst.KEY_SETAINUSI_FLG, sessionMap.get(KojinConst.KEY_SETAINUSI_FLG));
-//				formMap.put(ITEM_CHECKBOX_DELETE, null);
-//			}
-//		}
-
-//		// 世帯主フラグ有無チェック
-//		if (SETAINUSHI_FLG_ON.equals(formMap.get(KojinConst.KEY_SETAINUSI_FLG))) {
-//			// チェック済みの場合、パラメータを"1"に設定する。
-//			formMap.put(KojinConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_ON);
-//
-//		} else {
-//			// 未チェック済の場合、パラメータを"0"に設定する。
-//			formMap.put(KojinConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_OFF);
-//
-//		}
-
-//		// セッションからメッセージを取得する。
-//		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_LIST_MESSAGE_KOJIN));
-//
-//		// 取得できた場合
-//		if (!EMPTY.equals(messageKey)) {
-//			// 取得したメッセージを表示する。
-//			ActionMessages messages = new ActionMessages();
-//			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
-//			saveMessages(request, messages);
-//			// セッションからメッセージを削除する。
-//			request.getSession().removeAttribute(SESSION_LIST_MESSAGE_KOJIN);
-//
-//		}
 
 		// 個人マスタメンテ画面 検索処理
-		KankouListDto dto = kojinService.listSearch(formMap);
+		KankouListDto dto = kankouService.listSearch(formMap);
 
 		// 取得した情報をリクエストに登録
 		request.setAttribute(KankouConst.FORM_KANKOU_LIST, dto);
@@ -112,11 +70,6 @@ public class KankouListSearchAction extends BaseAction {
 		request.getSession().setAttribute(SESSION_LIST_DTO_KANKOU, dto);
 		// 検索条件をセッションに登録（再検索用）
 		//request.getSession().setAttribute(SESSION_LIST_RE_SEARCH_KOJIN, formMap);
-
-		// 検索結果が存在しない場合
-//		if (dto.getList().size() == 0) {
-//			throw new CommonValidateException(MSG_ERRORS_NO_DATA);
-//		}
 
 		// 処理成功時の遷移先を指定する。
 		return map.findForward(ACTION_FOWARD_SUCCESS);

@@ -70,7 +70,6 @@ public class LoginAction extends Action {
 			return map.findForward(Const.ACTION_FOWARD_SUCCESS);
 
 		} else {
-
 			// ログイン失敗
 			ActionErrors errors = new ActionErrors();
 			// ログイン失敗メッセージを設定
@@ -80,7 +79,6 @@ public class LoginAction extends Action {
 
 			// このアクションのinputプロパティに対応する ActionForwardを（必要に応じて）生成して返します。
 			return map.getInputForward();
-
 		}
 	}
 }

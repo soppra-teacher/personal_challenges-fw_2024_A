@@ -22,6 +22,8 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	
 
 	<!-- Standard Action Servlet Configuration -->
 	<servlet>
@@ -44,4 +46,6 @@
 	<welcome-file-list>
 		<welcome-file>/jsp/common/login.jsp</welcome-file>
 	</welcome-file-list>
+	
+	
 </web-app>

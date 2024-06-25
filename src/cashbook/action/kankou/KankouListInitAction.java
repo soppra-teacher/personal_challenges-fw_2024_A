@@ -21,20 +21,20 @@ import cashbook.util.KankouConst;
 
 
 /**
- * 個人マスタメンテ画面 初期表示アクションクラス
+ * 観光地検索一覧画面 初期表示アクションクラス
  * @author soppra
  */
 public class KankouListInitAction extends BaseAction {
 
-	/** 個人マスタサービス */
-	private KankouService kojinService;
+	/** 観光サービス */
+	private KankouService kankouService;
 
 	/**
-	 * 個人マスタサービスを設定します。
-	 * @param kojinService 個人マスタサービス
+	 * 観光サービスを設定します。
+	 * @param kankouService 観光テーブルサービス
 	 */
-	public void setKojinService(KankouService kojinService) {
-		this.kojinService = kojinService;
+	public void setKojinService(KankouService kankouService) {
+		this.kankouService = kankouService;
 	}
 
 	/**
@@ -59,8 +59,8 @@ public class KankouListInitAction extends BaseAction {
 //		// 個人マスタ登録画面の戻り先をセッションから削除する。
 //		request.getSession().removeAttribute(SESSION_REGIST_BACK_KOJIN);
 
-		// 個人マスタメンテ初期表示情報を取得
-		KankouListDto dto = kojinService.listInit(formMap);
+		// 観光地検索初期表示情報を取得
+		KankouListDto dto = kankouService.listInit(formMap);
 
 		// 取得した情報をリクエストに設定
 		request.setAttribute(KankouConst.FORM_KANKOU_LIST, dto);

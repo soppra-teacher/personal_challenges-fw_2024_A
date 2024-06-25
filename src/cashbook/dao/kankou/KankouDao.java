@@ -17,6 +17,12 @@ public interface KankouDao {
 	 * @return 観光地検索一覧
 	 */
 	public List<Map<String, String>> searchKankou(Map<String, Object> formMap);
+	
+	/**
+	 * 観光テーブルを検索する
+	 * @return 観光テーブル
+	 */
+	public Map<String, String> findKankou(Map<String, Object> formMap, LoginDto loginDto);
 
 	/**
 	 * 個人マスタを削除する
@@ -60,5 +66,21 @@ public interface KankouDao {
 	 * @return
 	 */
 	public boolean lockKojin(Map<String, Object> formMap);
+	
+	/**
+	 * 観光地テーブルを更新する
+	 * @param formMap
+	 * @param loginDto
+	 */
+	public void updateKankou(Map<String, Object> formMap, LoginDto loginDto);
+	
+	/**
+	 * 評価値テーブルを更新する
+	 * @param formMap
+	 * @param loginDto
+	 */
+	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto);
+	
+	
 
 }

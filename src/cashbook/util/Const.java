@@ -202,4 +202,6 @@ public class Const {
 	/** 観光地検索画面 DTO */
 	public static final String SESSION_LIST_DTO_KANKOU = "KANKOU_LIST_DTO";
 	
+
+	
 }

@@ -72,6 +72,36 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	    return result;
 	}
 	
+	/**
+	 * 観光テーブルを検索する
+	 * @return 観光テーブル
+	 */
+	public Map<String, String> findKankou(Map<String, Object> formMap, LoginDto loginDto) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT K.FILE_NM ");
+		sql.append("     , K.KANKOU_NM ");
+		sql.append("     , C.CATEGORY_NM ");
+		sql.append("     , T.KEN_NM ");
+		sql.append("     , TI.TIHOU_NM ");
+		sql.append("     , K.SETSUMEI ");
+		sql.append("     , K.REVIEW ");
+		sql.append("     , H.HYOUKATI ");
+		sql.append("     , K.USER_ID ");
+		sql.append("  FROM TBL_KANKOU K ");
+		sql.append("  INNER JOIN MST_TODOUHUKEN T ");
+		sql.append("  ON K.KEN_CD = T.KEN_CD ");
+		sql.append("  INNER JOIN MST_TIHOU TI ");
+		sql.append("  ON T.TIHOU_CD = TI.TIHOU_CD ");
+		sql.append("  INNER JOIN TBL_CATEGORY C ");
+		sql.append("  ON K.CATEGORY_ID = C.CATEGORY_ID ");
+		sql.append("  LEFT JOIN TBL_HYOUKATI H ");
+		sql.append("  ON K.KANKOU_ID = H.KANKOU_ID AND H.USER_ID = '").append(loginDto.getUserId()).append("' ");
+		sql.append("  INNER JOIN MST_USER U ");
+		sql.append("  ON K.USER_ID = U.USER_ID ");
+		sql.append("  WHERE K.KANKOU_ID = '").append(formMap.get(KankouConst.KEY_KANKOU2_ID)).append("' ");
+		return super.find(sql.toString());
+	}
+	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	
@@ -117,12 +147,39 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 
 	/**
-	 * 個人マスタを更新する
+	 * 観光テーブルを更新する
 	 */
-	public void updateKojin(Map<String, Object> formMap, LoginDto loginDto) {
+	public void updateKankou(Map<String, Object> formMap, LoginDto loginDto) {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE MST_KOJIN M1 ");
+		sql.append("   SET M1.SETAI_ID = '").append(formMap.get(SetaiConst.KEY_SETAI_ID)).append("' ");
+		sql.append("     , M1.PASS = '").append(formMap.get(KankouConst.KEY_PASS)).append("' ");
+		sql.append("     , M1.KOJIN_NM = '").append(formMap.get(KankouConst.KEY_KOJIN_NM)).append("' ");
+		sql.append("     , M1.KOJIN_NM_KANA = '").append(formMap.get(KankouConst.KEY_KOJIN_NM_KANA)).append("' ");
+		sql.append("     , M1.SEIBETSU_KBN = '").append(formMap.get(KankouConst.KEY_SEIBETSU_KBN)).append("' ");
+		sql.append("     , M1.ZOKUGARA = '").append(formMap.get(KankouConst.KEY_ZOKUGARA)).append("' ");
+		sql.append("     , M1.SETAINUSHI_FLG = '").append(formMap.get(KankouConst.KEY_SETAINUSI_FLG_VALUE)).append("' ");
+		sql.append("     , M1.UPD_USER = '").append(loginDto.getKojinId()).append("' ");
+		sql.append("     , M1.UPD_DATE = SYSDATE ");
+		sql.append("     , M1.REVISION = M1.REVISION + 1 ");
+		sql.append(" WHERE M1.KOJIN_ID = '").append(formMap.get(KankouConst.KEY_KOJIN_ID)).append("' ");
+
+		super.update(sql.toString());
+	}
+	
+	
+	/**
+	 * 評価値テーブルを登録する
+	 */
+	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto) {
+
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO TBL_HYOUKATI ");
+		sql.append("  (KANKOU_ID,");
+		sql.append("   USER_ID,");
+		sql.append("   HYOUKATI) ");
+		sql.append("   VALUES (' ").append();
 		sql.append("   SET M1.SETAI_ID = '").append(formMap.get(SetaiConst.KEY_SETAI_ID)).append("' ");
 		sql.append("     , M1.PASS = '").append(formMap.get(KankouConst.KEY_PASS)).append("' ");
 		sql.append("     , M1.KOJIN_NM = '").append(formMap.get(KankouConst.KEY_KOJIN_NM)).append("' ");

@@ -6,12 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
@@ -57,11 +56,16 @@ public class KojinRegistInitAction extends BaseAction {
 
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
+		
+		 // ユーザーIDをセッションに保存
+	    String logUserId = loginDto.getUserId();
+        HttpSession session = request.getSession();
+        session.setAttribute("logUserId", logUserId);
 
 		// 戻り先をセッションから取得する。
 		String backAction = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_BACK_KOJIN));
 
-		// セッションから取得できない場合
+//		// セッションから取得できない場合
 		if (EMPTY.equals(backAction)) {
 
 			// 個人IDがフォームに設定されていない場合
@@ -79,31 +83,32 @@ public class KojinRegistInitAction extends BaseAction {
 		}
 
 		// 再検索用の個人IDをセッションから取得する。
-		Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_REGIST_RE_SEARCH_KOJIN);
-
-		// セッションから取得できた場合
-		if (sessionMap != null) {
-			// 画面に個人IDを設定する。
-			formMap.put(KankouConst.KEY_KOJIN_ID, sessionMap.get(KankouConst.KEY_KOJIN_ID));
-			// セッションに保持している個人IDを削除する。
-			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KOJIN);
-
-		}
-
-		// メッセージをセッションから取得する。
-		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_MESSAGE_KOJIN));
-
-		// セッションから取得できた場合
-		if (!EMPTY.equals(messageKey)) {
-			ActionMessages messages = new ActionMessages();
-			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
-			saveMessages(request, messages);
-			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KOJIN);
-
-		}
+//		Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_REGIST_RE_SEARCH_KOJIN);
+//
+//		// セッションから取得できた場合
+//		if (sessionMap != null) {
+//			// 画面に個人IDを設定する。
+//			formMap.put(KankouConst.KEY_KOJIN_ID, sessionMap.get(KankouConst.KEY_KOJIN_ID));
+//			// セッションに保持している個人IDを削除する。
+//			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KOJIN);
+//
+//		}
+//
+//		// メッセージをセッションから取得する。
+//		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_MESSAGE_KOJIN));
+//
+//		// セッションから取得できた場合
+//		if (!EMPTY.equals(messageKey)) {
+//			ActionMessages messages = new ActionMessages();
+//			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
+//			saveMessages(request, messages);
+//			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KOJIN);
+//
+//		}
+		
 
 		// 初期表示取得
-		KankouRegistDto dto = kojinService.registInit(formMap);
+		KankouRegistDto dto = kojinService.registInit(formMap, loginDto);
 
 		// 取得した情報をリクエストに設定
 		request.setAttribute(KankouConst.FORM_KOJIN_REGIST, dto);

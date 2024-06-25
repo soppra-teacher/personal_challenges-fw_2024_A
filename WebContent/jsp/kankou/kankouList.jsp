@@ -63,7 +63,7 @@
 							<span class="label-title">
 								äœåıínñº
 							</span>
-							<html:text name="inputBean" property="kankouNm" styleClass="input-text-s" />
+							<html:text name="inputBean" property="kankouNm" styleClass="input-text-l" />
 						</td>
 						<td colspan="2" class="w-50 text-left">
 							<span class="label-title">
@@ -104,7 +104,7 @@
 		
 						
 						<td class="w-25">
-							<html:button property="search" onclick="callAction(this.form, 'search');"
+							<html:button property="search" onclick="setParam(this.form);callAction(this.form, 'search');"
 								styleClass="btn btn-l">
 								åüçı
 							</html:button>
@@ -130,8 +130,9 @@
 						<logic:notEmpty name="viewBean" property="list">
 							<logic:iterate id="list" name="viewBean" property="list">
 								<tr>
+									
 									<td class="l-kankou-id">
-										<html:link action="/KojinRegistInit" paramId="kojinId" paramName="list" paramProperty="kankouId">
+										<html:link action="/KojinRegistInit" paramId="kankouId" paramName="list" paramProperty="kankouId">
 											<bean:write name="list" property="kankouId" />
 										</html:link>
 									</td>

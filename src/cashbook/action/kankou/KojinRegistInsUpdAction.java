@@ -2,6 +2,8 @@ package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
+import java.io.FileOutputStream;
+import java.util.Base64;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,22 +18,21 @@ import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
+import cashbook.util.Const;
 import cashbook.util.KankouConst;
-import cashbook.util.SetaiConst;
-
 
 /**
- * 個人マスタ登録画面 登録・更新アクションクラス
+ * 観光地更新削除・画面・更新クションクラス
  * @author soppra
  */
 public class KojinRegistInsUpdAction extends BaseAction {
 
-	/** 個人マスタサービス */
+	/** 観光テーブルサービス */
 	private KankouService kojinService;
 
 	/**
-	 * 個人マスタサービスを設定します。
-	 * @param kojinService 個人マスタサービス
+	 * テーブルサービスを設定します。
+	 * @param kankouService 観光サービス
 	 */
 	public void setKojinService(KankouService kojinService) {
 		this.kojinService = kojinService;
@@ -39,8 +40,8 @@ public class KojinRegistInsUpdAction extends BaseAction {
 
 	/**
 	 * <p>
-	 * 個人マスタ登録画面
-	 * <br>登録・更新処理
+	 * 観光地詳細表示・更新・削除画面
+	 * <br>詳細表示・更新・削除処理
 	 * </p>
 	 *
 	 * @param map      アクションマッピング
@@ -53,24 +54,43 @@ public class KojinRegistInsUpdAction extends BaseAction {
 	 */
 	protected ActionForward doProcess(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
-		
+
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
-        System.out.println(formMap);
-		// 世帯主フラグ有無チェック
-		if (SETAINUSHI_FLG_ON.equals(formMap.get(KankouConst.KEY_SETAINUSI_FLG))) {
-			// チェック済みの場合、パラメータを"1"に設定する。
-			formMap.put(KankouConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_ON);
+		System.out.println(formMap);
+		// フォームのbase64Imageフィールドからデータを取得
+		String base64Image = (String) formMap.get(KankouConst.KEY_Image_String);
+		// Base64データURIスキーム部分を削除
+		String[] parts = base64Image.split(",");
+		String imageData = parts[1];
 
-		} else {
-			// 未チェック済の場合、パラメータを"0"に設定する。
-			formMap.put(KankouConst.KEY_SETAINUSI_FLG_VALUE, SETAINUSHI_OFF);
+		// Base64デコード
+		byte[] imageBytes = Base64.getDecoder().decode(imageData);
+		// ファイル名を設定
+		String fileName = "1.png";
 
+        // デコードされたバイト配列をファイルとして保存
+		String filePath = request.getServletContext().getRealPath("/img/") + fileName;
+		try (FileOutputStream fos = new FileOutputStream(filePath)) {
+		    fos.write(imageBytes);
+		}
+		
+		System.out.println();
+		
+		//更新処理
+		if(Const.ACTION_FOWARD_INSERT.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
+			//登録処理
+			//kojinService.hyokaIns();
+			
+		}
+		if(Const.ACTION_FOWARD_UPDATE.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
+			// 更新処理
+		}
+		if(Const.ACTION_FOWARD_DELETE.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
+			// 削除処理
 		}
 
-		// 世帯ＩＤを設定する
-		formMap.put(SetaiConst.KEY_SETAI_ID, formMap.get(SetaiConst.KEY_SETAI_NM_KEY));
-		// 登録・更新
+		// 更新・削除処理
 		kojinService.registInsUpd(formMap, loginDto);
 
 		// フォーム．リビジョンが未設定の場合

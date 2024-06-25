@@ -38,7 +38,7 @@ public interface KankouService {
 	 * @param formMap
 	 * @return
 	 */
-	public KankouRegistDto registInit(Map<String, Object> formMap);
+	public KankouRegistDto registInit(Map<String, Object> formMap, LoginDto loginDto);
 
 	/**
 	 *
@@ -47,4 +47,22 @@ public interface KankouService {
 	 * @throws Exception
 	 */
 	public void registInsUpd(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	
+	
+	/**
+	 *観光地テーブルのアップデート処理
+	 * @param formMap
+	 * @param loginDto
+	 * @throws Exception
+	 */
+	public void updInsDel(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	
+	/**
+	 *観光地テーブルのアップデート処理
+	 * @param formMap
+	 * @param loginDto
+	 * @throws Exception
+	 */
+	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	
 }
