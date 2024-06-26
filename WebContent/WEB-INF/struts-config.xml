@@ -97,7 +97,7 @@
 		****************************
 		* メニュー画面             *
 		****************************
-		-->
+		後に、検索・一覧画面に変更予定-->
 		<action
 			path="/MenuInit"
 			type="cashbook.action.common.MenuInitAction"

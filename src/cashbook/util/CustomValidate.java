@@ -18,25 +18,6 @@ public class CustomValidate implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 半角カタカナのみチェック
-	 * @param bean
-	 * @param va
-	 * @param field
-	 * @param errors
-	 * @param validator
-	 * @param request
-	 * @return OK:True,NG:False
-	 */
-	public static boolean validateHalfKanaOnly(Object bean
-			                                 , ValidatorAction va
-			                                 , Field field
-			                                 , ActionMessages errors
-			                                 , Validator validator
-			                                 , HttpServletRequest request) {
-		return executeCheck(bean, va, field, errors, validator, request, "^[\\uFF65-\\uFF9F\\s-]+$");
-	}
-
 
 	/**
 	 * 正規表現チェック処理
@@ -72,25 +53,6 @@ public class CustomValidate implements Serializable {
 		}
 
 		return bRet;
-	}
-
-	/**
-	 * 全角文字列チェック
-	 * @param bean
-	 * @param va
-	 * @param field
-	 * @param errors
-	 * @param validator
-	 * @param request
-	 * @return OK:True,NG:False
-	 */
-	public static boolean validateZenCharOnly(Object bean
-			                                 , ValidatorAction va
-			                                 , Field field
-			                                 , ActionMessages errors
-			                                 , Validator validator
-			                                 , HttpServletRequest request) {
-		return executeCheck(bean, va, field, errors, validator, request, "^[^ -~｡-ﾟ]+$");
 	}
 
 }

@@ -111,7 +111,6 @@
   </bean>
   
   <!-- 観光地登録 -->
-  <!--  ここに明記されているクラスを記入する -->
   <bean name="/KankouRegistInit" class="cashbook.action.kankou.KankouRegistInitAction">
     <property name="kankouService">
       <ref local="KankouServiceId" />
