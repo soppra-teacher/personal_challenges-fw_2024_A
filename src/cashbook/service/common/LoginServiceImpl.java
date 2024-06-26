@@ -22,7 +22,8 @@ public class LoginServiceImpl implements LoginService{
 	
 	/**
 	 * ログイン実行メソッド
-	 * @param loginService
+	 * @param formMap 画面項目
+	 * @return LoginDto ログインDTO
 	 */
 	public LoginDto execute(Map<String, Object> formMap){
 		//ログイン情報の取得

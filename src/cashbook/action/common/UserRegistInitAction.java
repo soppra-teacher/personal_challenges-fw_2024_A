@@ -1,7 +1,5 @@
 package cashbook.action.common;
 
-import static cashbook.util.Const.*;
-
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,14 +50,10 @@ public class UserRegistInitAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
 			/*-------------------------------------------------*
 			 * １．セッションから戻り先のアクションを取得する。*
 			 *-------------------------------------------------*/
-			
-			// 戻り先をセッションから取得する。
-			String backAction = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_BACK_USER));
-			// セッションに戻り先を保持する。
-			request.getSession().setAttribute(SESSION_REGIST_BACK_USER, backAction);
 			
 			// 再検索用のhiddenをセッションから取得する。
 			Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, Const.SESSION_REGIST_SESSION_FORM_USER);
@@ -73,13 +67,11 @@ public class UserRegistInitAction extends Action{
 			
 			// セッションから取得できた場合
 			if (sessionMap != null) {
-				// 画面に費目コードを設定する。
+				// 画面にHiddenを設定する。
 				userRegistDto.setHidden(CommonUtil.getStr(sessionMap.get(UserConst.KEY_USER_HIDDEN)));
-				// セッションに保持している費目コードを削除する。
+				// セッションに保持しているHiddenを削除する。
 				request.getSession().removeAttribute(Const.SESSION_REGIST_SESSION_FORM_USER);
 			}
-			// 取得した情報をリクエストに登録
-			request.getSession().setAttribute(UserConst.FORM_USER_REGIST, userRegistDto);
 			// 取得した情報をセッションに登録
 			request.getSession().setAttribute(Const.SESSION_REGIST_DTO_USER, userRegistDto);
 			

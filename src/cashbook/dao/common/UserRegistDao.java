@@ -8,13 +8,12 @@ import java.util.Map;
  */
 public interface UserRegistDao{
 	
-	/**
+	/** 
 	 * <p><b>
 	 * ユーザ登録画面
 	 * <br>登録処理
 	 * </b></p>
 	 * @param フォーム項目
-	 * @param ログイン情報DTO
 	 */
 	public void registUser(Map<String, Object> formMap);
 	
@@ -24,6 +23,7 @@ public interface UserRegistDao{
 	 * <br>重複チェック
 	 * </b></p>
 	 * @param フォーム項目
+	 * @return 検索処理
 	 */
 	public boolean checkOverlapUserRegist(Map<String, Object> formMap);
 }
