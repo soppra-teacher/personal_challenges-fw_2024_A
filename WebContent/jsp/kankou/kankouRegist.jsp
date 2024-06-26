@@ -12,10 +12,9 @@
 <meta content="ja" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>観光地登録画面</title>
-<link rel="stylesheet" type="text/css"
-	href="<%= request.getContextPath() %>/css/common.css" />
-<script language="JavaScript" type="text/javascript" charset="shift_jis"
-	src="js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouRegist.css" />
+<script language="JavaScript" type="text/javascript" charset="shift_jis" src="js/common.js"></script>
 
 <script type="text/javascript"></script>
 
@@ -30,11 +29,13 @@
 
 	<div class="base-width text-center">
 
-		<html:form action="/KankouRegistDisp" >
-
+		<html:form action="/KankouRegistIns" styleClass="text-center formdesign w-400px form-center"  >
+		<div class="bg"></div>
+		<div class="bg bg2"></div>
+		<div class="bg bg3 "></div>
 			<!-- ヘッダーの名称をここで投げている -->
 			<jsp:include page="/jsp/common/header.jsp">
-				<jsp:param name="screenTitle" value="観光地登録画面" />
+				<jsp:param name="screenTitle" value="観光地登録画面"/>
 			</jsp:include>
 
 			<html:hidden property="operation" value="" />
@@ -56,58 +57,58 @@
 				</html:messages>
 
 				<div>
-					<table class="layout-table w-100">
+					<table class="layout-table top-10">
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									都道府県 </span></td>
 
 							<td class="w-75 text-left"><html:select name="inputBean"
-									property="todouhukenKey" styleClass="input-select-xl">
+									property="todouhukenKey" styleClass="textbox-s margin-15">
 									<html:optionsCollection name="viewBean" property="todouhuken"
 										value="key" label="value" />
 								</html:select></td>
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									カテゴリ </span></td>
 
 							<td class="w-75 text-left"><html:select name="inputBean"
-									property="categoryKey" styleClass="input-select-xl">
+									property="categoryKey" styleClass="textbox-s margin-15">
 									<html:optionsCollection name="viewBean" property="category"
 										value="key" label="value" />
 								</html:select></td>
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									観光地名 </span></td>
 
 							<td class="w-75 text-left"><html:text name="inputBean"
-									property="kankouNm" styleClass="input-text-l" /></td>
+									property="kankouNm" styleClass="textbox-m margin-15" /></td>
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									説明 </span></td>
 							<td class="w-75 text-left"><html:textarea name="inputBean"
-									property="setsumei" styleClass="input-text-l2" /></td>
+									property="setsumei" styleClass="textbox-l margin-15" /></td>
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									レビュー </span></td>
 
 							<td class="w-75 text-left"><html:textarea name="inputBean"
-									property="review" styleClass="input-text-l3" /></td>
+									property="review" styleClass="textbox-xl margin-15" /></td>
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right"><span class="label-title">
 									評価値 </span></td>
 
 							<td class="w-75 text-left"><html:select name="inputBean"
-									property="hyoka" styleClass="input-select-m">
+									property="hyoka" styleClass="textbox-mini margin-15">
 									<html:option value="1"></html:option>
 									<html:option value="2"></html:option>
 									<html:option value="3"></html:option>
@@ -117,16 +118,16 @@
 						</tr>
 
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right top-10"><span class="label-title">
 									写真 </span></td>
-							<td class="w-75 text-left">
+							<td class="w-75 text-left top-10">
 								<!-- アップしたい画像をここで指定 -->
 								 <input type="file" id="pictures" accept=".png, .jpg, .jpeg"> 
 								<!--<html:file  name="inputBean"  property="pictures" accept=".png, .jpg, .jpeg"/>   -->
 							</td>
 						</tr>
 						<tr>
-							<td class="w-25 text-right"><span class="label-title">
+							<td class="w-20 text-right margin-15"><span class="label-title">
 							</span></td>
 							<td class="w-75 text-left">
 								<div class="images">
@@ -139,14 +140,30 @@
 				</div>
 
 				<div class="block-center layout-table">
-					<html:button property="insert" styleClass="btn-green btn-size-m"   onclick="callAction(this.form, 'insert');">
+					<a href = "#" id = "clicklink" class = "btn-green btn-size-m" tabindex = "3" >
 		              登録
-		            </html:button>
+		            </a>
 					<jsp:include page="/jsp/common/footer.jsp" />
 				</div>
 		</html:form>
 		<!-- 選択した写真を表示させるスクリプト -->
 		<script src="js/picture.js"></script>
+		
+		<!-- 登録リンクの画面遷移用URL -->
+		<script type="text/javascript">
+		    document.getElementById('clicklink').addEventListener('click', function (event) {
+		        var msg = "登録してもよろしいですか？";
+		        if (!confirm(msg)) {
+		        	console.log("キャンセル");
+		        	return;
+		        } else {
+		        	console.log("OK");
+		        	document.forms[0].submit();
+		        	
+		        }
+		    });
+		</script>
+		
 	</div>
 </body>
 </html:html>
