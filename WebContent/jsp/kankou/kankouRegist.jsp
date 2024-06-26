@@ -24,25 +24,19 @@
 
 	<bean:define id="inputBean" name="kankouRegistForm" />
 	<bean:define id="viewBean" name="KANKOU_REGIST_DTO" />
-	<bean:define id="backAction" name="KANKOU_REGIST_BACK"
-		type="java.lang.String" />
+
 
 	<div class="base-width text-center">
-
-
-		<html:form action="/KankouRegistIns" >
 
 		<html:form action="/KankouRegistIns" styleClass="text-center formdesign w-400px form-center"  >
 		<div class="bg"></div>
 		<div class="bg bg2"></div>
 		<div class="bg bg3 "></div>
-
 			<!-- ÉwÉbÉ_Å[ÇÃñºèÃÇÇ±Ç±Ç≈ìäÇ∞ÇƒÇ¢ÇÈ -->
 			<jsp:include page="/jsp/common/header.jsp">
 				<jsp:param name="screenTitle" value="äœåıínìoò^âÊñ "/>
 			</jsp:include>
 
-			<html:hidden property="operation" value="" />
 
 			<!-- ìoò^ïsîıÇ»Ç«ÇÃéûÇ…ÉÅÉbÉZÅ[ÉWÇìäÇ∞ÇÈèÍèä -->
 			<div id="contents">
@@ -66,11 +60,13 @@
 							<td class="w-20 text-right"><span class="label-title">
 									ìsìπï{åß </span></td>
 
-							<td class="w-75 text-left"><html:select name="inputBean"
+							<td class="w-75 text-left">
+								<html:select name="inputBean" 
 									property="todouhukenKey" styleClass="textbox-s margin-15">
 									<html:optionsCollection name="viewBean" property="todouhuken"
 										value="key" label="value" />
-								</html:select></td>
+								</html:select>
+							</td>
 						</tr>
 
 						<tr>
@@ -158,10 +154,8 @@
 		    document.getElementById('clicklink').addEventListener('click', function (event) {
 		        var msg = "ìoò^ÇµÇƒÇ‡ÇÊÇÎÇµÇ¢Ç≈Ç∑Ç©ÅH";
 		        if (!confirm(msg)) {
-		        	console.log("ÉLÉÉÉìÉZÉã");
 		        	return;
 		        } else {
-		        	console.log("OK");
 		        	document.forms[0].submit();
 		        	
 		        }

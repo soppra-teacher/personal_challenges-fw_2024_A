@@ -29,7 +29,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_SETSUMEI)).append("' ");
-		sql.append("   , '").append(formMap.get(KankouConst.KEY_review)).append("' ");
+		sql.append("   , '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
 		//写真だけ、現在は任意の値を入力
 		//sql.append("   , '").append(formMap.get(KankouConst.KEY_PICTURES)).append("' ");
 		sql.append("   , 'testpicture.jpeg'");

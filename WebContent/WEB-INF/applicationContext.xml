@@ -115,9 +115,7 @@
     <property name="kankouService">
       <ref local="KankouServiceId" />
     </property>
-    <property name="loginService">
-      <ref local="LoginServiceId" />
-    </property>
+    
   </bean>
   <bean name="/KankouRegistIns" class="cashbook.action.kankou.KankouRegistInsAction">
     <property name="kankouService">

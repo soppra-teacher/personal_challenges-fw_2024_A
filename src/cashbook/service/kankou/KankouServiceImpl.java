@@ -37,6 +37,8 @@ public class KankouServiceImpl implements KankouService{
 
 	/**
 	 * 観光地登録画面初期表示メソッド
+	 * @param  formMap 
+	 * @return result
 	 */
 	public KankouRegistDto registInit(Map<String, Object> formMap) {
 
@@ -53,7 +55,8 @@ public class KankouServiceImpl implements KankouService{
 
 	/**
 	 * 観光地登録メソッド
-	 * @throws CommonValidateException
+	 * @param
+	 * @throws Exception
 	 */
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
 

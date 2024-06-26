@@ -14,26 +14,14 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.service.common.LoginService;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 
 public class KankouRegistInsAction extends BaseAction{
-	/** ログインサービス */
-	private LoginService loginService;
 	
 	/** 観光地登録サービス */
 	private KankouService kankouService;
 
-	
-
-	/**
-	 * ログインサービスを設定します。
-	 * @param loginService ログインサービス
-	 */
-	public void setLoginService(LoginService loginService) {
-		this.loginService = loginService;
-	}
 	
 	/**
 	 * 観光地登録サービスを設定します。
