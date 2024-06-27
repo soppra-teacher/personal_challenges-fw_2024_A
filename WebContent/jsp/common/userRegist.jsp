@@ -112,7 +112,6 @@
 	    	alert("登録処理が完了しました。ログイン画面へ移行します。");
 			document.forms[0].submit(); 
 			window.location.href = "http://localhost:8080/Cashbook/"
-	    	
 	    }
 	    else {
 	    	return;

@@ -1,0 +1,91 @@
+/* 観光地登録ページの項目名のセル */
+th.kankou_field {
+	padding: 8px;
+	font-size :23px;
+}
+
+/* 観光地登録画面の入力項目のセル */
+td.kanko_field {
+	padding: 8px;
+	font-size :23px;
+}
+
+/* thラベル */
+th.login_field {
+	padding: 8px;
+	font-size :15px;
+}
+/* tdラベル */
+td.login_field {
+	padding: 8px;
+	font-size :15px;
+}
+
+/* フォーム（中央） */
+.form-center {
+	font-size:100%;
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* フォームデザイン（ログイン画面） */
+.formdesign {
+	background:#fff;
+	border-radius:6px;
+	border: double 5px #66CC00;
+	padding:20px;
+	padding-top:30px;
+	margin:50px auto;
+	box-shadow:15px 15px 0px rgba(0,0,0,.1);
+}
+
+/* 動く背景 （bg2・bg3をセットで使用）*/
+.bg {
+	animation:slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(-60deg, #f6ff71 50%, #2ec57a 50%);
+	bottom:0;
+	left:-50%;
+	opacity:.5;
+	position:fixed;
+	right:-50%;
+	top:0;
+	z-index:-1;
+}
+
+.bg2 {
+	animation-direction:alternate-reverse;
+	animation-duration:4s;
+}
+
+.bg3 {
+	animation-duration:5s;
+}
+
+/* 動く背景 */
+@keyframes slide {
+	0% {
+		transform:translateX(-25%);
+	}
+	100% {
+		transform:translateX(25%);
+	}
+}
+
+/* フォームデザイン（観光地登録画面） */
+.formdesign {
+	background:#fff;
+	border-radius:6px;
+	border: double 5px #66CC00;
+	padding:20px;
+	padding-top:30px;
+	margin:50px auto;
+	box-shadow:15px 15px 0px rgba(0,0,0,.1);
+	width: 700px;
+}
+
+.font-s{
+	font-family:'メイリオ';
+}

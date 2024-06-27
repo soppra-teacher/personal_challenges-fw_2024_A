@@ -97,7 +97,7 @@
 		****************************
 		* メニュー画面             *
 		****************************
-		-->
+		後に、検索・一覧画面に変更予定-->
 		<action
 			path="/MenuInit"
 			type="cashbook.action.common.MenuInitAction"
@@ -135,7 +135,7 @@
 			input="/jsp/kankou/kankouRegist.jsp"
 			scope="request">
 			<forward name="success" path="/KankouRegistInit.do" redirect="true" />
-			<forward name="error" path="/jsp/kankou/kankouRegist.jsp" />
+			<forward name="error" path="/jsp/common/error.jsp" />
 		</action>
 
 	</action-mappings>

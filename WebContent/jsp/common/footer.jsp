@@ -28,10 +28,8 @@
 	    document.getElementById('backMenu').addEventListener('click', function (event) {
 	        var msg = "別画面に遷移しますがよろしいですか？";
 	        if (!confirm(msg)) {
-	        	console.log("キャンセル");
 	        	return;
 	        } else {
-	        	console.log("OK");
 	        	window.location.href = "http://localhost:8080/Cashbook/MenuInit.do?getKey=aaa"
 	        }
 	    });
@@ -39,11 +37,9 @@
 	    document.getElementById('logOut').addEventListener('click', function (event) {
 	        var msg = "別画面に遷移しますがよろしいですか？";
 	        if (!confirm(msg)) {
-	        	console.log("キャンセル");
+
 	        	return;
 	        } else {
-	        	console.log("OK");
-	        	
 	        	window.location.href = "http://localhost:8080/Cashbook/Logout.do"
 	        }
 	    });

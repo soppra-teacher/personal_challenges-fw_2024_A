@@ -18,7 +18,7 @@ public class KankouConst {
 	/** キー値：説明 */
 	public static final String KEY_SETSUMEI = "setsumei";
 	/** キー値：レビュー */
-	public static final String KEY_review = "review";
+	public static final String KEY_REVIEW = "review";
 	/** キー値：評価 */
 	public static final String KEY_HYOKA = "hyoka";
 	/** キー値：性別区分キー */

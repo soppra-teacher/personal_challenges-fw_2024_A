@@ -14,26 +14,14 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.service.common.LoginService;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 
 public class KankouRegistInsAction extends BaseAction{
-	/** ログインサービス */
-	private LoginService loginService;
 	
 	/** 観光地登録サービス */
 	private KankouService kankouService;
 
-	
-
-	/**
-	 * ログインサービスを設定します。
-	 * @param loginService ログインサービス
-	 */
-	public void setLoginService(LoginService loginService) {
-		this.loginService = loginService;
-	}
 	
 	/**
 	 * 観光地登録サービスを設定します。
@@ -63,8 +51,16 @@ public class KankouRegistInsAction extends BaseAction{
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
 		
-		// 登録処理
-		kankouService.registIns(formMap, loginDto);
+			try {
+				// 登録処理
+				kankouService.registIns(formMap, loginDto);
+			}catch (Exception e) {
+				
+				System.out.println(e.getMessage());
+				
+				return map.findForward(ACTION_FOWARD_ERROR);
+				
+			}
 
 		// 登録成功メッセージをセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
