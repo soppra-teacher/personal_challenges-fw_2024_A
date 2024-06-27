@@ -16,6 +16,7 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
+import cashbook.dto.kankou.KankouRegistDto;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
@@ -28,14 +29,14 @@ import cashbook.util.KankouConst;
 public class KojinRegistInsUpdAction extends BaseAction {
 
 	/** 観光テーブルサービス */
-	private KankouService kojinService;
+	private KankouService kankouService;
 
 	/**
 	 * テーブルサービスを設定します。
 	 * @param kankouService 観光サービス
 	 */
-	public void setKojinService(KankouService kojinService) {
-		this.kojinService = kojinService;
+	public void setKankouService(KankouService kankouService) {
+		this.kankouService = kankouService;
 	}
 
 	/**
@@ -55,9 +56,12 @@ public class KojinRegistInsUpdAction extends BaseAction {
 	protected ActionForward doProcess(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
 
+		
+
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
-		System.out.println(formMap);
+		System.out.println("こっちや" + formMap);
+		if((String) formMap.get(KankouConst.KEY_Image_String) != "") {
 		// フォームのbase64Imageフィールドからデータを取得
 		String base64Image = (String) formMap.get(KankouConst.KEY_Image_String);
 		// Base64データURIスキーム部分を削除
@@ -74,38 +78,58 @@ public class KojinRegistInsUpdAction extends BaseAction {
 		try (FileOutputStream fos = new FileOutputStream(filePath)) {
 		    fos.write(imageBytes);
 		}
+		}
 		
-		System.out.println();
+		//観光IDのIDを取得
+		String kankouId = (String) request.getSession().getAttribute("kankouId");
+		//評価値を取得
+		String hyoka1 = (String) request.getSession().getAttribute("hyoka1");
 		
-		//更新処理
+		//登録処理
 		if(Const.ACTION_FOWARD_INSERT.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
 			//登録処理
-			//kojinService.hyokaIns();
+			kankouService.hyokaIns(formMap, loginDto, kankouId);
+			KankouRegistDto dto = kankouService.valueSet(formMap);
+			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_INSERT);
+			// 取得した情報をリクエストに設定
+			request.setAttribute(KankouConst.FORM_KOJIN_REGIST, dto);
+			// 取得した情報をセッションに設定
+			request.getSession().setAttribute(SESSION_REGIST_DTO_KOJIN, dto);
 			
 		}
 		if(Const.ACTION_FOWARD_UPDATE.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
 			// 更新処理
+			//kankouService.update(formMap, loginDto, kankouId, hyoka);
+			KankouRegistDto dto = kankouService.valueSet(formMap);
+			// 取得した情報をリクエストに設定
+			request.setAttribute(KankouConst.FORM_KOJIN_REGIST, dto);
+			// 取得した情報をセッションに設定
+			request.getSession().setAttribute(SESSION_REGIST_DTO_KOJIN, dto);
+			System.out.println("setTest" + dto.getKankouNm());
 		}
 		if(Const.ACTION_FOWARD_DELETE.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
 			// 削除処理
 		}
 
 		// 更新・削除処理
-		kojinService.registInsUpd(formMap, loginDto);
-
-		// フォーム．リビジョンが未設定の場合
-		if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(ITEM_REVISION)))) {
-			// 登録成功メッセージをセッションに設定
-			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_INSERT);
-
-		} else {
-			// 更新成功メッセージをセッションに設定
-			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_UPDATE);
-
-		}
+//		kankouService.registInsUpd(formMap, loginDto);
+//
+//		// フォーム．リビジョンが未設定の場合
+//		if (CommonUtil.isNull(CommonUtil.getStr(formMap.get(ITEM_REVISION)))) {
+//			// 登録成功メッセージをセッションに設定
+//			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_INSERT);
+//
+//		} else {
+//			// 更新成功メッセージをセッションに設定
+//			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KOJIN, MSG_SUCCESS_UPDATE);
+//
+//		}
 
 		// 検索条件をセッションに保持（再検索用）
 		request.getSession().setAttribute(SESSION_REGIST_RE_SEARCH_KOJIN, formMap);
+		
+
+		
 
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}

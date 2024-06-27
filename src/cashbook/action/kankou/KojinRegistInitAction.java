@@ -27,14 +27,14 @@ import cashbook.util.KankouConst;
 public class KojinRegistInitAction extends BaseAction {
 
 	/** 個人マスタサービス */
-	private KankouService kojinService;
+	private KankouService kankouService;
 
 	/**
 	 * 個人マスタサービスを設定します。
-	 * @param kojinService 個人マスタサービス
+	 * @param kankouService 個人マスタサービス
 	 */
-	public void setKojinService(KankouService kojinService) {
-		this.kojinService = kojinService;
+	public void setKankouService(KankouService kankouService) {
+		this.kankouService = kankouService;
 	}
 
 	/**
@@ -57,11 +57,20 @@ public class KojinRegistInitAction extends BaseAction {
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 		
+		
 		 // ユーザーIDをセッションに保存
 	    String logUserId = loginDto.getUserId();
         HttpSession session = request.getSession();
         session.setAttribute("logUserId", logUserId);
-
+		
+		// 観光地IDをセッションに保存
+		 String kankouId = CommonUtil.getStr(formMap.get(KankouConst.KEY_KANKOU2_ID));
+		 session.setAttribute("kankouId", kankouId);
+		 //評価値をセッションに保持
+		 String hyoka1 = CommonUtil.getStr(formMap.get(KankouConst.KEY_HYOKA));
+		 session.setAttribute("hyoka1", hyoka1);
+		 
+		 
 		// 戻り先をセッションから取得する。
 		String backAction = CommonUtil.getStr(request.getSession().getAttribute(SESSION_REGIST_BACK_KOJIN));
 
@@ -82,7 +91,7 @@ public class KojinRegistInitAction extends BaseAction {
 			request.getSession().setAttribute(SESSION_REGIST_BACK_KOJIN, backAction);
 		}
 
-		// 再検索用の個人IDをセッションから取得する。
+//		// 再検索用の個人IDをセッションから取得する。
 //		Map<String, Object> sessionMap = CommonUtil.getSessionMap(request, SESSION_REGIST_RE_SEARCH_KOJIN);
 //
 //		// セッションから取得できた場合
@@ -108,7 +117,7 @@ public class KojinRegistInitAction extends BaseAction {
 		
 
 		// 初期表示取得
-		KankouRegistDto dto = kojinService.registInit(formMap, loginDto);
+		KankouRegistDto dto = kankouService.registInit(formMap, loginDto);
 
 		// 取得した情報をリクエストに設定
 		request.setAttribute(KankouConst.FORM_KOJIN_REGIST, dto);
@@ -116,6 +125,7 @@ public class KojinRegistInitAction extends BaseAction {
 		request.getSession().setAttribute(SESSION_REGIST_DTO_KOJIN, dto);
 
 		// 処理成功時の遷移先を指定する。
+		//return map.findForward(ACTION_FOWARD_SUCCESS);
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}
 }

@@ -79,7 +79,7 @@ public interface KankouDao {
 	 * @param formMap
 	 * @param loginDto
 	 */
-	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto);
+	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto, String kankouId);
 	
 	
 

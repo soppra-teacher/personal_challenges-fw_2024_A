@@ -32,7 +32,7 @@ public class KankouListSearchAction extends BaseAction {
 	 * 観光サービスを設定します。
 	 * @param kankouService 観光テーブルサービス
 	 */
-	public void setKojinService(KankouService kankouService) {
+	public void setKankouService(KankouService kankouService) {
 		this.kankouService = kankouService;
 	}
 

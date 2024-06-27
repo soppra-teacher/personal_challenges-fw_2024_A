@@ -25,7 +25,6 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	 * @return 観光地一覧
 	 */
 	public List<Map<String, String>> searchKankou(Map<String, Object> formMap) {
-		
 	    List<Map<String, String>> result;
 	    StringBuffer sql = new StringBuffer();
 	    sql.append("SELECT  K.KANKOU_ID ");
@@ -68,6 +67,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	 		}
 	    sql.append("  ORDER BY H.HYOUKATI DESC ");
 	    result = super.search(sql.toString());
+	    System.out.println(super.find(sql.toString()).size() );
 
 	    return result;
 	}
@@ -172,26 +172,16 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	/**
 	 * 評価値テーブルを登録する
 	 */
-	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto) {
+	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto, String kankouId) {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO TBL_HYOUKATI ");
 		sql.append("  (KANKOU_ID,");
 		sql.append("   USER_ID,");
 		sql.append("   HYOUKATI) ");
-		sql.append("   VALUES (' ").append();
-		sql.append("   SET M1.SETAI_ID = '").append(formMap.get(SetaiConst.KEY_SETAI_ID)).append("' ");
-		sql.append("     , M1.PASS = '").append(formMap.get(KankouConst.KEY_PASS)).append("' ");
-		sql.append("     , M1.KOJIN_NM = '").append(formMap.get(KankouConst.KEY_KOJIN_NM)).append("' ");
-		sql.append("     , M1.KOJIN_NM_KANA = '").append(formMap.get(KankouConst.KEY_KOJIN_NM_KANA)).append("' ");
-		sql.append("     , M1.SEIBETSU_KBN = '").append(formMap.get(KankouConst.KEY_SEIBETSU_KBN)).append("' ");
-		sql.append("     , M1.ZOKUGARA = '").append(formMap.get(KankouConst.KEY_ZOKUGARA)).append("' ");
-		sql.append("     , M1.SETAINUSHI_FLG = '").append(formMap.get(KankouConst.KEY_SETAINUSI_FLG_VALUE)).append("' ");
-		sql.append("     , M1.UPD_USER = '").append(loginDto.getKojinId()).append("' ");
-		sql.append("     , M1.UPD_DATE = SYSDATE ");
-		sql.append("     , M1.REVISION = M1.REVISION + 1 ");
-		sql.append(" WHERE M1.KOJIN_ID = '").append(formMap.get(KankouConst.KEY_KOJIN_ID)).append("' ");
-
+		sql.append("   VALUES ('").append(kankouId).append("'");
+		sql.append("     ,'").append(loginDto.getUserId()).append("' ");
+		sql.append("     ,'").append(formMap.get(KankouConst.KEY_HYOKA)).append("' )");
 		super.update(sql.toString());
 	}
 
@@ -246,5 +236,11 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   AND A.KOJIN_ID != '").append(formMap.get(KankouConst.KEY_KOJIN_ID)).append("' ");
 
 		return super.find(sql.toString()).size() != 0;
+	}
+
+	@Override
+	public void updateKojin(Map<String, Object> formMap, LoginDto loginDto) {
+		// TODO 自動生成されたメソッド・スタブ
+		
 	}
 }

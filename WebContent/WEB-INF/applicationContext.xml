@@ -139,25 +139,25 @@
 
   <!-- 観光地検索画面 -->
   <bean name="/KankouListInit" class="cashbook.action.kankou.KankouListInitAction">
-    <property name="kojinService">
+    <property name="kankouService">
       <ref local="KankouServiceId" />
     </property>
   </bean>
   <bean name="/KankouListSearch" class="cashbook.action.kankou.KankouListSearchAction">
-    <property name="kojinService">
+    <property name="kankouService">
       <ref local="KankouServiceId" />
     </property>
   </bean>
 
   <!-- 個人マスタ登録 -->
   <bean name="/KojinRegistInit" class="cashbook.action.kankou.KojinRegistInitAction">
-    <property name="kojinService">
+    <property name="kankouService">
       <ref local="KankouServiceId" />
     </property>
   </bean>
   
   <bean name="/KojinRegistInsUpd" class="cashbook.action.kankou.KojinRegistInsUpdAction">
-    <property name="kojinService">
+    <property name="kankouService">
       <ref local="KankouServiceId" />
     </property>
   </bean>

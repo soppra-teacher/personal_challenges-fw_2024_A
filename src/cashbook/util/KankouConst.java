@@ -40,6 +40,8 @@ public class KankouConst {
 //	public static final String KEY_SEIBETSU_KBN = "category";
 	/** キー値：カテゴリMAP */
 	public static final String KEY_CATEGORY = "category";
+	/** キー値：カテゴリ名 */
+	public static final String KEY_CATEGORY_NM = "categoryNm";
 //	/** キー値：地方キー */
 //	public static final String KEY_ZOKUGARA = "tihouKey";
 	/** キー値：地方キー */
@@ -60,6 +62,10 @@ public class KankouConst {
 	public static final String KEY_LOG_USER_ID = "logUserId";
 	
 	public static final String KEY_Image_String = "base64Image";
+	
+	public static final String KEY_HYOKA = "hyoka";
+	
+	public static final String KEY_SETUMEI = "setsumei";
 	
 	
 }

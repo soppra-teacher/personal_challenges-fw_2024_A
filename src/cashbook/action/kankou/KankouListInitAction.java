@@ -33,7 +33,7 @@ public class KankouListInitAction extends BaseAction {
 	 * 観光サービスを設定します。
 	 * @param kankouService 観光テーブルサービス
 	 */
-	public void setKojinService(KankouService kankouService) {
+	public void setKankouService(KankouService kankouService) {
 		this.kankouService = kankouService;
 	}
 
@@ -66,7 +66,7 @@ public class KankouListInitAction extends BaseAction {
 		request.setAttribute(KankouConst.FORM_KANKOU_LIST, dto);
 		// 取得した情報をセッションに設定
 		request.getSession().setAttribute(SESSION_LIST_DTO_KANKOU, dto);
-
+System.out.println("ttt");
 		// 処理成功時の遷移先を指定する。
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}

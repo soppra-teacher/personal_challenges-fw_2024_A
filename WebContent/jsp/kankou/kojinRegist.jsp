@@ -182,10 +182,15 @@ document.getElementById('profileImage').addEventListener('change', function(even
 									</span>
 									</td>
 							<td class="w-75 text-left">
-							<html:text name="inputBean" property="setsumei" styleClass="input-text-m" readonly="true"/>
+							
+							<logic:notEqual name="viewBean" property="userId" value="<%= logUserId %>">
+								<html:text name="inputBean" property="setsumei" styleClass="input-text-m" readonly="true"/>
+							</logic:notEqual>
+							
 							<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
 									<html:text name="inputBean" property="setsumei" styleClass="input-text-m" readonly="false"/>
-								</logic:equal>
+							</logic:equal>
+							
 							</td>
 						</tr>
 						
@@ -196,7 +201,14 @@ document.getElementById('profileImage').addEventListener('change', function(even
 									</span>
 									</td>
 							<td class="w-75 text-left">
-							<html:text name="inputBean" property="review" styleClass="input-text-m" readonly="true"/>
+							
+							<logic:notEqual name="viewBean" property="userId" value="<%= logUserId %>">
+								<html:text name="inputBean" property="review" styleClass="input-text-m" readonly="true"/>
+							</logic:notEqual>
+							
+							<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
+								<html:text name="inputBean" property="review" styleClass="input-text-m" readonly="false"/>
+							</logic:equal>
 							</td>
 						</tr>
 						            <tr>
@@ -252,9 +264,9 @@ document.getElementById('profileImage').addEventListener('change', function(even
     if (file) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            // Base64エンコーディングされた画像データを隠しフィールドに設定
+            //エンコーディングされた画像データを隠しフィールドに設定
             document.kojinRegistForm.base64Image.value = e.target.result;
-            // プレビュー画像を更新
+            //プレビュー画像を更新
             document.getElementById('preview').src = e.target.result;
         }
         reader.readAsDataURL(file);

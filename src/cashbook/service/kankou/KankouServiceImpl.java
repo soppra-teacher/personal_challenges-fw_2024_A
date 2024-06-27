@@ -65,6 +65,7 @@ public class KankouServiceImpl implements KankouService {
 			dto.setHhyoukati(map.get("HYOUKATI"));
 			dto.setUserId(map.get("USER_ID"));
 			KojinList.add(dto);
+			System.out.println(map);
 		}
 		result.setList(KojinList);
 		return result;
@@ -109,6 +110,7 @@ public class KankouServiceImpl implements KankouService {
 			dto.setHhyoukati(map.get("HYOUKATI"));
 			dto.setUserId(map.get("USER_ID"));
 			KojinList.add(dto);
+			System.out.println("map" + map);
 		}
 		result.setList(KojinList);
 		return result;
@@ -147,7 +149,6 @@ public class KankouServiceImpl implements KankouService {
 			result.setHyokaJudge("0");
 			result.setHyoka("3");
 		}
-		System.out.println("map" + map);
 		return result;
 	}
 
@@ -187,6 +188,17 @@ public class KankouServiceImpl implements KankouService {
 			kojinDao.updateKojin(formMap, loginDto);
 		}
 	}
+	
+	public KankouRegistDto valueSet(Map<String, Object> formMap) {
+		KankouRegistDto result = new KankouRegistDto();
+		result.setKankouNm(CommonUtil.getStr(formMap.get(KankouConst.KEY_KANKOU_NM)));
+		result.setCategoryNm(CommonUtil.getStr(formMap.get(KankouConst.KEY_CATEGORY_NM)));
+		result.setTodouhukenNm(CommonUtil.getStr(formMap.get(KankouConst.KEY_TODOUHUKEN_NM)));
+		result.setTihouNm(CommonUtil.getStr(formMap.get(KankouConst.KEY_TIHOU_NM)));
+		result.setSetsumei(CommonUtil.getStr(formMap.get(KankouConst.KEY_SETUMEI)));
+		result.setHyoka(CommonUtil.getStr(formMap.get(KankouConst.KEY_HYOKA)));
+		return result;
+	}
 
 	/**
 	 * 登録画面登録・更新メソッド
@@ -200,8 +212,21 @@ public class KankouServiceImpl implements KankouService {
 	 * 更新・削除画面評価値登録メソッド
 	 * @throws CommonValidateException
 	 */
-	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
-		kojinDao.insHyoka(formMap, loginDto);
+	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto, String kankouId) throws Exception {
+		kojinDao.insHyoka(formMap, loginDto, kankouId);
+	}
+	
+	/**
+	 * 更新・削除画面評価値登録メソッド
+	 * @throws CommonValidateException
+	 */
+	public void update(Map<String, Object> formMap, LoginDto loginDto, String kankouId, String hyoka) throws Exception{
+		System.out.println("１："+ hyoka);
+		System.out.println("2：" + formMap.get(KankouConst.KEY_HYOKA));
+		if(!(hyoka.equals(formMap.get(KankouConst.KEY_HYOKA)))) {
+			
+		}
+		
 	}
 
 	/**
@@ -259,6 +284,17 @@ public class KankouServiceImpl implements KankouService {
 	 */
 	public void setCommonDao(CommonDao commonDao) {
 		this.commonDao = commonDao;
+	}
+
+	@Override
+	public void updInsDel(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void update(Map<String, Object> formMap, LoginDto loginDto, String kankouId) throws Exception {
+		// TODO 自動生成されたメソッド・スタブ
+		
 	}
 
 }
