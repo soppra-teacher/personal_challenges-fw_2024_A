@@ -1,6 +1,7 @@
 /*画面全体のスタイル*/
 html,body {
-	background-color: seashell;
+	/*background-color: seashell;*/
+	background-color: $ffffff;
 }
 
 hr {
@@ -36,7 +37,7 @@ hr {
 
 /*一覧のヘッダースタイル*/
 tr.table-header {
-	background:#98FB98;
+	background:#b5f87d;
 	text-align: center;
 }
 
@@ -68,12 +69,11 @@ td.login_field {
 
 /* 共通ヘッダ */
 div.header {
-	background-color: darkSlateGrey;
-	width: 95%;
-	height: 50px;
-	margin: 5px auto;
-	font-weight: bold;
-	font-size: 25px;
+	text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #84c83f;
+    margin-bottom: 24px;
 }
 
 .label-title {
@@ -662,13 +662,76 @@ pa
 	width: 450px;
 }
 
-/* テキストボックスのデザイン */
-.textbox-m{
-	width:80%;
+/* テキストボックスのデザイン（極小） */
+.textbox-mini{
+	width:30%;
 	background:#f5f5f5;
+	font-size: 16px;
 	border:0;
-	padding:20px;
+	padding:15px;
 	border-radius:6px;
 	margin-bottom:10px;
-	border:1px solid #eee;
+	border:1px solid #e2e2e2;
 }
+ 
+/* テキストボックスのデザイン（小）50% */
+.textbox-s{
+	width:250px;
+	background:#f5f5f5;
+	font-size: 16px;
+	border:0;
+	padding:15px;
+	border-radius:6px;
+	margin-bottom:10px;
+	border:1px solid #e2e2e2;
+}
+
+ 
+/* テキストボックスのデザイン（中） */
+.textbox-m{
+	width:70%;
+	background:#f5f5f5;
+	font-size: 16px;
+	border:0;
+	padding:18px;
+	border-radius:6px;
+	margin-bottom:10px;
+	border:1px solid #e2e2e2;
+}
+ 
+/* テキストボックスのデザイン（大） */
+.textbox-l{
+	width: 450px;
+	height: 90px;
+	font-size: 18px;
+	background:#f5f5f5;
+	border:0;
+	padding:15px;
+	border-radius:6px;
+	margin-bottom:10px;
+	border:1px solid #e2e2e2;
+}
+ 
+/* テキストボックスのデザイン（特大） */
+.textbox-xl{
+	width: 450px;
+	height: 110px;
+	font-size: 18px;
+	background:#f5f5f5;
+	border:0;
+	padding:15px;
+	border-radius:6px;
+	margin-bottom:10px;
+	border:1px solid #e2e2e2;
+}
+
+
+.margin-15{
+	margin-top: 15px;
+}
+
+.w-40{
+	width: 40%;
+}
+
+

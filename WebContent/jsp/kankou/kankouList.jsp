@@ -24,10 +24,11 @@
 
 <body onload="setDeleteButton();">
 
+
 	<bean:define id="inputBean" name="kankouListForm" />
 	<bean:define id="viewBean" name="KANKOU_LIST_DTO" />
 
-	<div class="kankouList-width text-center">
+	<div class="formdesign text-center">
 
 		<html:form action="/KojinListDisp" focus="kojinNm">
 
@@ -38,9 +39,11 @@
 			<html:hidden property="hiddenCategoryKey" value="" />
 			<html:hidden property="hiddenTodouhukenKey" value="" />
 			
-	
+			<div class="bg"></div>
+			<div class="bg bg2"></div>
+			<div class="bg bg3 "></div>
 
-			<div class="contents block-center test-a">
+			<div class="contents block-center">
 			<jsp:include page="/jsp/common/header.jsp">
 				<jsp:param name="screenTitle" value="検索一覧画面"/>
 			</jsp:include>
@@ -59,33 +62,32 @@
 
 				<table class="layout-table">
 					<tr>
-						<td colspan="1" class="w-50 text-left">
+						<td colspan="1" class="w-25 text-left">
 							<span class="label-title">
-								観光地名
+								　観光地名
 							</span>
-							<html:text name="inputBean" property="kankouNm" styleClass="input-text-l" />
-						</td>
-						<td colspan="2" class="w-50 text-left">
+							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m" />
 							<span class="label-title">
 								ユーザID
 							</span>
-							<html:text name="inputBean" property="userId" styleClass="input-text-m" />
+						</td>
+						<td colspan="2" class="w-25 text-left">
+							<html:text name="inputBean" property="userId" styleClass="textbox-m2" />
 						</td>
 					</tr>
 					<tr>
-						<td class="w-25 text-left">
+						<td class="w-40 text-left">
 							<span class="label-title">
 								カテゴリ名
 							</span>
-							<html:select name="inputBean" property="categoryKey" styleClass="input-select-xl">
+							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s2">
 								<html:optionsCollection name="viewBean" property="category" value="key" label="value" />
 							</html:select>
-						</td>
-						<td class="w-25 text-left">
+						
 							<span class="label-title">
 								八地方名
 							</span>
-							<html:select name="inputBean" property="tihouKey" styleClass="input-select-xl">
+							<html:select name="inputBean" property="tihouKey" styleClass="textbox-s">
 								<html:optionsCollection name="viewBean" property="tihou" value="key" label="value" />
 							</html:select>
 						</td>
@@ -93,7 +95,7 @@
 							<span class="label-title">
 								都道県名
 							</span>
-							<html:select name="inputBean" property="todouhukenKey" styleClass="input-select-xl" >
+							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s" >
 								<html:optionsCollection name="viewBean" property="todouhuken" value="key" label="value" />
 							</html:select>
 						</td>
@@ -105,7 +107,7 @@
 						
 						<td class="w-25">
 							<html:button property="search" onclick="setParam(this.form);callAction(this.form, 'search');"
-								styleClass="btn btn-l">
+								styleClass="btn-blue btn-size-m pad">
 								検索
 							</html:button>
 							
