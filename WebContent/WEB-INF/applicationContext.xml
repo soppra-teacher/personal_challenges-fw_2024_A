@@ -35,6 +35,10 @@
       <ref local="dataSource" />
     </property>
   </bean>
+  <bean id="transactionTemplateRequired" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRED" />
+</bean>
 
   <!-- DAO -->
   <!-- 共通 -->
@@ -87,6 +91,9 @@
     </property>
     <property name="kankouDao">
       <ref local="KankouDaoId" />
+    </property>
+   <property name="transactionTemplate">
+      <ref local="transactionTemplateRequired" />
     </property>
   </bean>
 

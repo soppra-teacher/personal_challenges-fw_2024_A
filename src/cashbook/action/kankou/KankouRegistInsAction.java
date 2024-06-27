@@ -51,8 +51,16 @@ public class KankouRegistInsAction extends BaseAction{
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
 		
-		// 登録処理
-		kankouService.registIns(formMap, loginDto);
+			try {
+				// 登録処理
+				kankouService.registIns(formMap, loginDto);
+			}catch (Exception e) {
+				
+				System.out.println(e.getMessage());
+				
+				return map.findForward(ACTION_FOWARD_ERROR);
+				
+			}
 
 		// 登録成功メッセージをセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
