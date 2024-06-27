@@ -14,7 +14,7 @@
 <title>観光地登録画面</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouRegist.css" />
-<script language="JavaScript" type="text/javascript" charset="shift_jis" src="js/common.js"></script>
+
 
 <script type="text/javascript"></script>
 
@@ -89,18 +89,19 @@
 						</tr>
 
 						<tr>
-							<td class="w-20 text-right"><span class="label-title">
+							<td class = "w-20 text-right position-kankou" ><span class = "label-title" >
+							
 									説明 </span></td>
 							<td class="w-75 text-left"><html:textarea name="inputBean"
-									property="setsumei" styleClass="textbox-l margin-15" /></td>
+									property="setsumei" styleClass="textbox-l margin-15 re-none" /></td>
 						</tr>
 
 						<tr>
-							<td class="w-20 text-right"><span class="label-title">
+							<td class="w-20 text-right position-kankou"><span class="label-title">
 									レビュー </span></td>
 
 							<td class="w-75 text-left"><html:textarea name="inputBean"
-									property="review" styleClass="textbox-xl margin-15" /></td>
+									property="review" styleClass="textbox-xl margin-15 re-none" /></td>
 						</tr>
 
 						<tr>
@@ -122,18 +123,14 @@
 									写真 </span></td>
 							<td class="w-75 text-left top-10">
 								<!-- アップしたい画像をここで指定 -->
-								 <input type="file" id="pictures" accept=".png, .jpg, .jpeg"> 
-								<!--<html:file  name="inputBean"  property="pictures" accept=".png, .jpg, .jpeg"/>   -->
+								 <input type="file" id="profileImage" name="profileImage" accept="image/*" />
 							</td>
 						</tr>
 						<tr>
 							<td class="w-20 text-right margin-15"><span class="label-title">
 							</span></td>
 							<td class="w-75 text-left">
-								<div class="images">
-									<!-- アップした写真を表示する場所 -->
-									<div id="preview" class="imt-item"></div>
-								</div>
+								<img id="preview" src="<%=request.getContextPath()%>/img/login.png" style="max-width: 100%; " alt="Default Image"/>
 							</td>
 						</tr>
 					</table>
@@ -146,8 +143,6 @@
 					<jsp:include page="/jsp/common/footer.jsp" />
 				</div>
 		</html:form>
-		<!-- 選択した写真を表示させるスクリプト -->
-		<script src="js/picture.js"></script>
 		
 		<!-- 登録リンクの画面遷移用URL -->
 		<script type="text/javascript">
@@ -161,7 +156,34 @@
 		        }
 		    });
 		</script>
-		
+		<script type="text/javascript">
+			document.getElementById('profileImage').addEventListener('change', function(event) {
+			    var file = event.target.files[0];
+			    if (file) {
+			        var reader = new FileReader();
+			        reader.onload = function(e) {
+			            // Base64エンコーディングされた画像データを隠しフィールドに設定
+			            document.kojinRegistForm.base64Image.value = e.target.result;
+			            // プレビュー画像を更新
+			            document.getElementById('preview').src = e.target.result;
+			        }
+			        reader.readAsDataURL(file);
+			    }
+			});
+		</script>
+		<script type="text/javascript">
+			document.getElementById('profileImage').addEventListener('change', function(event) {
+			    var file = event.target.files[0];
+			    if (file) {
+			        var reader = new FileReader();
+			        reader.onload = function(e) {
+			            document.getElementById('preview').src = e.target.result;
+			            document.kojinRegistForm.operation.value = 'insert';
+			        }
+			        reader.readAsDataURL(file);
+			    }
+			});
+		</script>
 	</div>
 </body>
 </html:html>

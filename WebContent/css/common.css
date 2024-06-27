@@ -667,19 +667,11 @@ pa
 	width: 450px;
 }
 
-/* テキストボックスのデザイン（中） */
-.textbox-m{
-	width:80%;
-	background:#f5f5f5;
-	font-size: 16px;
-	border:0;
-	padding:18px;
-	border-radius:6px;
-	margin-bottom:10px;
-	border:1px solid #eee;
+.margin-15 {
+ margin-top: 15px;
 }
 
-/* テキストボックスのデザイン（観光地登録画面） */
+/* テキストボックスのデザイン（極小） */
 .textbox-mini{
 	width:30%;
 	background:#f5f5f5;
@@ -688,22 +680,35 @@ pa
 	padding:15px;
 	border-radius:6px;
 	margin-bottom:10px;
-	border:1px solid #eee;
+	border:1px solid #e2e2e2;
 }
-
-/* テキストボックスのデザイン（観光地登録画面） */
+ 
+/* テキストボックスのデザイン（小）50% */
 .textbox-s{
-	width:50%;
+	width:250px;
 	background:#f5f5f5;
 	font-size: 16px;
 	border:0;
 	padding:15px;
 	border-radius:6px;
 	margin-bottom:10px;
-	border:1px solid #eee;
+	border:1px solid #e2e2e2;
 }
-
-/* テキストボックスのデザイン（観光地登録画面） */
+ 
+ 
+/* テキストボックスのデザイン（中） */
+.textbox-m{
+	width:70%;
+	background:#f5f5f5;
+	font-size: 16px;
+	border:0;
+	padding:18px;
+	border-radius:6px;
+	margin-bottom:10px;
+	border:1px solid #e2e2e2;
+}
+ 
+/* テキストボックスのデザイン（大） */
 .textbox-l{
 	width: 450px;
 	height: 90px;
@@ -713,10 +718,10 @@ pa
 	padding:15px;
 	border-radius:6px;
 	margin-bottom:10px;
-	border:1px solid #eee;
+	border:1px solid #e2e2e2;
 }
-
-/* テキストボックスのデザイン（観光地登録画面） */
+ 
+/* テキストボックスのデザイン（特大） */
 .textbox-xl{
 	width: 450px;
 	height: 110px;
@@ -726,7 +731,7 @@ pa
 	padding:15px;
 	border-radius:6px;
 	margin-bottom:10px;
-	border:1px solid #eee;
+	border:1px solid #e2e2e2;
 }
 
 .margin-15{
@@ -760,4 +765,15 @@ pa
 
 .top-10{
 	margin-top: 10px;
+}
+
+/* テキストボックスサイズ固定 */
+.re-none{
+	resize: none;	
+}
+
+/* 説明・レビューラベルの位置調整 */
+.position-kankou{
+	position: relative;
+	top: -40px;
 }
