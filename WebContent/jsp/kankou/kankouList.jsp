@@ -72,7 +72,7 @@
 							</span>
 						</td>
 						<td colspan="2" class="w-25 text-left p-right2">
-							<html:text name="inputBean" property="userId" styleClass="textbox-m2 p-right2" />
+							<html:text name="inputBean" property="userId" styleClass="textbox-m-w58 p-right2" />
 						</td>
 					</tr>
 					<tr>
@@ -80,7 +80,7 @@
 							<span class="label-title">
 								ÉJÉeÉSÉäñº
 							</span>
-							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s2">
+							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s-w250">
 								<html:optionsCollection name="viewBean" property="category" value="key" label="value" />
 							</html:select>
 						
@@ -107,7 +107,7 @@
 						
 						<td class="w-25">
 							<html:button property="search" onclick="setParam(this.form);callAction(this.form, 'search');"
-								styleClass="btn-blue btn-size-m pad">
+								styleClass="btn-blue btn-size-m padding-b-1">
 								åüçı
 							</html:button>
 							

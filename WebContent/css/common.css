@@ -734,4 +734,46 @@ pa
 	width: 40%;
 }
 
+.padding-t-1{
+ padding-top: 1%;	
+}
 
+/* à íuí≤êÆ */
+.padding-b-1{
+	margin-bottom: 1.25%;
+}
+
+.p-right{
+	position: relative; 
+	left: 65px; /* ç∂Ç©ÇÁ65px */
+}
+
+.p-right2{
+	position: relative; 
+	left: 2%; /* ç∂Ç©ÇÁ2% */
+}
+
+.p-right2-5{
+	position: relative; 
+	left: 2.5%; /* ç∂Ç©ÇÁ2.5% */
+}
+
+.p-right2-7{
+	position: relative; 
+	left: 2.7%; /* ç∂Ç©ÇÁ2.7% */
+}
+
+.p-right7-7{
+	position: relative; 
+	left: 7.7%; /* ç∂Ç©ÇÁ7.7% */
+}
+
+.p-right33{
+	position: relative; 
+	left: 33%; /* ç∂Ç©ÇÁ33% */
+}
+
+/* íÜâõäÒÇπ */
+.m-center{
+	margin: auto;
+}

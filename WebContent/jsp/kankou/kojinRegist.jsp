@@ -1,4 +1,3 @@
-
 <%@ page pageEncoding="Windows-31J"%>
 <%@ page contentType="text/html;charset=Windows-31J"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
@@ -11,13 +10,15 @@
 <html:html lang="ja">
 <head>
 
-<meta content="ja" http-equiv="Content-Language" />
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>ソプブーのマネーノート 個人マスタ登録</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/common.css" />
-<script language="JavaScript" type="text/javascript" charset="shift_jis"
-	src="js/common.js"></script>
+	<meta content="ja" http-equiv="Content-Language" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<title>
+		観光地検索システム・更新削除画面
+	</title>
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/KankouList.css" />
+		
+<script language="JavaScript" type="text/javascript" charset="shift_jis" src="js/common.js"></script>
 <script type="text/javascript">
 </script>
 <!-- フォーカスセット -->
@@ -52,7 +53,7 @@
 	<bean:define id="backAction" name="KOJIN_REGIST_BACK"
 		type="java.lang.String" />
 
-	<div class="base-width text-center">
+	<div class="formdesign text-center padding-t-1">
 
 		<html:form action="/KojinRegistDisp" focus="kojinId">
 
@@ -69,7 +70,9 @@
 			<html:hidden property="base64Image"  value=""/>
 			<html:hidden name="inputBean" property="kankouId"  value=""/>
 			
-
+			<div class="bg"></div>
+			<div class="bg bg2"></div>
+			<div class="bg bg3 "></div>
 
 			<div id="contents">
 				<html:messages id="msg" message="true">
@@ -90,14 +93,14 @@
 					
 						<table>
 						<tr>
-    <td class="w-25 text-right">
+    <!--<td class="w-25 text-right">
         <span class="label-title">
-            <!-- ラベルのタイトルをここに記載 -->
+            <!-- ラベルのタイトルをここに記載 
         </span>
-    </td>
+    </td> -->
 <td class="w-75 text-left">
-    <div style="width: 1000px; height: 400px; border: 1px solid #000; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-        <img id="preview" src="<%=request.getContextPath()%>/img/login.png" style="max-width: 100%; max-height: 100%;" alt="Default Image"/>
+    <div class="image-style-div">
+        <img id="preview" src="<%=request.getContextPath()%>/img/login.png" class="image-style-img" alt="Default Image"/>
     </div>
 </td>
 </tr>
@@ -124,89 +127,84 @@ document.getElementById('profileImage').addEventListener('change', function(even
 });
 </script>
 
-<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-    <html:button property="insert" styleClass="btn btn-l" >
-        キャンセル
-    </html:button>
-</logic:equal>
-
+					<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
+					    <html:button property="insert" styleClass="btn-green btn-size-m padding-b-1" >
+					        キャンセル
+					    </html:button>
+					</logic:equal>
 
 
                     <table class="layout-table w-100">
 						<tr>
 							<td class="w-25 text-right">
-							<span class="label-title">
-									観光地名 
-							</span>
+								<span class="label-title">
+										観光地名 
+								</span>
 							</td>
 							<td class="w-75 text-left">
-							<html:text name="viewBean" property="kankouNm" styleClass="input-text-l" readonly="true"/>
+								<html:text name="viewBean" property="kankouNm" styleClass="textbox-m-w90" readonly="true"/>
+							</td>
+						
+							<td class="w-25 text-right">
+								<span class="label-title">
+										カテゴリ名 
+								</span>
+							</td>
+							<td class="w-75 text-left">
+								<html:text name="viewBean" property="categoryNm" styleClass="textbox-m" readonly="true"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="w-25 text-right">
-							<span class="label-title">
-									カテゴリ名 
-									</span>
-									</td>
-							<td class="w-75 text-left">
-							<html:text name="viewBean" property="categoryNm" styleClass="input-text-m" readonly="true"/>
-							</td>
-						</tr>
-						<tr>
-							<td class="w-25 text-right">
-							<span class="label-title">
+								<span class="label-title">
 									都道府県名 
-									</span>
-									</td>
-							<td class="w-75 text-left">
-							<html:text name="viewBean" property="todouhukenNm" styleClass="input-text-s" readonly="true"/>
+								</span>
 							</td>
-						</tr>
-						</tr>
-						<tr>
-							<td class="w-25 text-right">
-							<span class="label-title">
-									八地方名 
-									</span>
-									</td>
 							<td class="w-75 text-left">
-							<html:text name="viewBean" property="tihouNm" styleClass="input-text-s" readonly="true"/>
+								<html:text name="viewBean" property="todouhukenNm" styleClass="textbox-m" readonly="true"/>
+							</td>
+							<td class="w-25 text-left">
+								<span class="label-title p-right33">
+										八地方名 
+								</span>
+							</td>
+							<td class="w-75 text-left">
+								<html:text name="viewBean" property="tihouNm" styleClass="w-75 textbox-m" readonly="true"/>
 							</td>
 						</tr>
 						
 						<tr>
-							<td class="w-25 text-right">
-							<span class="label-title">
-									説明 
-									</span>
-									</td>
+							<td class="w-25 text-right position-kankou">
+								<span class="label-title">
+										説明
+								</span>
+							</td>
 							<td class="w-75 text-left">
-							<html:text name="inputBean" property="setsumei" styleClass="input-text-m" readonly="true"/>
-							<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-									<html:text name="inputBean" property="setsumei" styleClass="input-text-m" readonly="false"/>
+							
+								<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
+									<html:text name="inputBean" property="setsumei" styleClass="textbox-l-kr margin-15 re-none" readonly="false"/>
 								</logic:equal>
 							</td>
 						</tr>
 						
 						<tr>
-							<td class="w-25 text-right">
-							<span class="label-title">
-									レビュー
-									</span>
-									</td>
+							<td class="w-25 text-right position-kankou">
+								<span class="label-title">
+										レビュー
+								</span>
+							</td>
 							<td class="w-75 text-left">
-							<html:text name="inputBean" property="review" styleClass="input-text-m" readonly="true"/>
+							<html:text name="inputBean" property="review" styleClass="textbox-l-kr margin-15 re-none" readonly="true"/>
 							</td>
 						</tr>
 						            <tr>
-              <td class="w-25 text-right">
+              <td class="w-25 text-right p-right33">
                 <span class="label-title">
                   評価値
                 </span>
               </td>
-              <td class="w-75 text-left">
-                <html:select name="inputBean" property="hyoka" styleClass="input-select-m">
+              <td class="w-75 text-left p-right33">
+                <html:select name="inputBean" property="hyoka" styleClass="textbox-mini">
                   <html:option value="1"></html:option>
                   <html:option value="2"></html:option>
                   <html:option value="3"></html:option>
@@ -222,23 +220,23 @@ document.getElementById('profileImage').addEventListener('change', function(even
 
 				<div class="block-center">
 					<logic:equal name="viewBean" property="hyokaJudge" value="0">
-    					<html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'insert');">
+    					<html:button property="insert" styleClass="btn-green btn-size-m" onclick="callAction(this.form, 'insert');">
         					登録
     					</html:button>
 					</logic:equal>
 
 					<logic:equal name="viewBean" property="hyokaJudge" value="1">
-    					<html:button property="insert" styleClass="btn btn-l" onclick="callAction(this.form, 'update');">
+    					<html:button property="insert" styleClass="btn-green btn-size-m" onclick="callAction(this.form, 'update');">
         					更新
     					</html:button>
 					</logic:equal>
 				</div>
 
-				<div class="block-center">
-					<html:button property="back" styleClass="btn btn-l"
+				<div class="block-center padding-t-1">
+					<html:button property="back" styleClass="btn-blue btn-size-m"
 						onclick='<%="callAction(this.form,\'" + backAction + "\');"%>'>
-            戻る
-          </html:button>
+            				戻る
+         			 </html:button>
 				</div>
 
 				<jsp:include page="/jsp/common/footer.jsp" />
