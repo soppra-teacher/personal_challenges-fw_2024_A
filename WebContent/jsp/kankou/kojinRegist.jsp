@@ -15,8 +15,8 @@
 	<title>
 		観光地検索システム・更新削除画面
 	</title>
-	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
-	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/KankouList.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" /> 
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouListUpdDel.css" />
 		
 <script language="JavaScript" type="text/javascript" charset="shift_jis" src="js/common.js"></script>
 <script type="text/javascript">
@@ -128,7 +128,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 </script>
 
 					<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-					    <html:button property="insert" styleClass="btn-green btn-size-m padding-b-1" >
+					    <html:button property="insert" styleClass="btn-blue btn-size-m padding-b-1" >
 					        キャンセル
 					    </html:button>
 					</logic:equal>
@@ -151,7 +151,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 								</span>
 							</td>
 							<td class="w-75 text-left">
-								<html:text name="viewBean" property="categoryNm" styleClass="textbox-m" readonly="true"/>
+								<html:text name="viewBean" property="categoryNm" styleClass="textbox-m-w60" readonly="true"/>
 							</td>
 						</tr>
 						<tr>
@@ -161,7 +161,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 								</span>
 							</td>
 							<td class="w-75 text-left">
-								<html:text name="viewBean" property="todouhukenNm" styleClass="textbox-m" readonly="true"/>
+								<html:text name="viewBean" property="todouhukenNm" styleClass="textbox-m-w60" readonly="true"/>
 							</td>
 							<td class="w-25 text-left">
 								<span class="label-title p-right33">
@@ -182,7 +182,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 							<td class="w-75 text-left">
 							
 								<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-									<html:text name="inputBean" property="setsumei" styleClass="textbox-l-kr margin-15 re-none" readonly="false"/>
+									<html:textarea name="inputBean" property="setsumei" styleClass="textbox-l-ks margin-15 re-none" readonly="false"/>
 								</logic:equal>
 							</td>
 						</tr>
@@ -194,7 +194,7 @@ document.getElementById('profileImage').addEventListener('change', function(even
 								</span>
 							</td>
 							<td class="w-75 text-left">
-							<html:text name="inputBean" property="review" styleClass="textbox-l-kr margin-15 re-none" readonly="true"/>
+							<html:textarea name="inputBean" property="review" styleClass="textbox-l-ks margin-15 re-none" readonly="true"/>
 							</td>
 						</tr>
 						            <tr>
@@ -220,13 +220,13 @@ document.getElementById('profileImage').addEventListener('change', function(even
 
 				<div class="block-center">
 					<logic:equal name="viewBean" property="hyokaJudge" value="0">
-    					<html:button property="insert" styleClass="btn-green btn-size-m" onclick="callAction(this.form, 'insert');">
+    					<html:button property="insert" styleClass="btn-blue btn-size-m" onclick="callAction(this.form, 'insert');">
         					登録
     					</html:button>
 					</logic:equal>
 
 					<logic:equal name="viewBean" property="hyokaJudge" value="1">
-    					<html:button property="insert" styleClass="btn-green btn-size-m" onclick="callAction(this.form, 'update');">
+    					<html:button property="insert" styleClass="btn-blue btn-size-m" onclick="callAction(this.form, 'update');">
         					更新
     					</html:button>
 					</logic:equal>

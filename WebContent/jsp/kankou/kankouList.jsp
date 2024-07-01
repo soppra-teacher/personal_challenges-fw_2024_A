@@ -15,7 +15,7 @@
 		観光地検索システム・検索一覧画面
 	</title>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
-	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/KankouList.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouListSearch.css" />
 	<script type="text/javascript" charset="shift_jis" src="js/common.js" ></script>
 </head>
 <script>
@@ -66,13 +66,13 @@
 							<span class="label-title p-right2-5">
 								観光地名
 							</span>
-							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m p-right2-7" />
+							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m-w60 p-right2-7" />
 							<span class="label-title p-right7-7">
 								ユーザID
 							</span>
 						</td>
 						<td colspan="2" class="w-25 text-left p-right2">
-							<html:text name="inputBean" property="userId" styleClass="textbox-m-w58 p-right2" />
+							<html:text name="inputBean" property="userId" styleClass="textbox-m-w60 p-right2-w200" />
 						</td>
 					</tr>
 					<tr>
@@ -80,14 +80,14 @@
 							<span class="label-title">
 								カテゴリ名
 							</span>
-							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s-w250">
+							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s-w200">
 								<html:optionsCollection name="viewBean" property="category" value="key" label="value" />
 							</html:select>
 						
 							<span class="label-title">
 								八地方名
 							</span>
-							<html:select name="inputBean" property="tihouKey" styleClass="textbox-s">
+							<html:select name="inputBean" property="tihouKey" styleClass="textbox-s-w200">
 								<html:optionsCollection name="viewBean" property="tihou" value="key" label="value" />
 							</html:select>
 						</td>
@@ -95,7 +95,7 @@
 							<span class="label-title">
 								都道県名
 							</span>
-							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s" >
+							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s-193px" >
 								<html:optionsCollection name="viewBean" property="todouhuken" value="key" label="value" />
 							</html:select>
 						</td>
