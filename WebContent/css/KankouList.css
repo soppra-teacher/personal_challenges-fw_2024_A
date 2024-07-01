@@ -142,5 +142,14 @@
 .p-right{
 	position: relative; /* 今の位置を基準 */
 	left: 65px; /* 左から20px */
-	
+}
+
+.p-right2{
+	position: relative; /* 今の位置を基準 */
+	left: 2%; /* 左から10% */
+}
+
+.p-right2-5{
+	position: relative; /* 今の位置を基準 */
+	left: 2.5%; /* 左から10% */
 }

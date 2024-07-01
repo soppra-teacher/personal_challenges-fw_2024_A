@@ -67,12 +67,12 @@
 								　観光地名
 							</span>
 							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m" />
-							<span class="label-title">
+							<span class="label-title p-right2-5">
 								ユーザID
 							</span>
 						</td>
-						<td colspan="2" class="w-25 text-left">
-							<html:text name="inputBean" property="userId" styleClass="textbox-m2" />
+						<td colspan="2" class="w-25 text-left p-right2">
+							<html:text name="inputBean" property="userId" styleClass="textbox-m2 p-right10" />
 						</td>
 					</tr>
 					<tr>
