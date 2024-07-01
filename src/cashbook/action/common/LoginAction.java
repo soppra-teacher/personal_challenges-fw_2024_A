@@ -62,16 +62,13 @@ public class LoginAction extends Action {
 		// フォームの値をもとに、ログイン処理
 		LoginDto loginDto = loginService.execute(formMap);
 
-		// ログイン情報DTO.ユーザIDが設定されている場合
-		if (loginDto.getUserId() != null) {
+		// ログイン成功
+		request.getSession().setAttribute(Const.SESSION_LOGIN_DTO, loginDto);
 
-			// ログイン成功
-			request.getSession().setAttribute(Const.SESSION_LOGIN_DTO, loginDto);
+		// 処理成功時の遷移先を指定する。
+		return map.findForward(Const.ACTION_FOWARD_SUCCESS);
 
-			// 処理成功時の遷移先を指定する。
-			return map.findForward(Const.ACTION_FOWARD_SUCCESS);
-
-		}
+		
 	} catch (CommonValidateException e) {
 
 			// ログイン失敗
@@ -85,6 +82,5 @@ public class LoginAction extends Action {
 			return map.getInputForward();
 
 		}
-		return null;
 	}
 }
