@@ -63,16 +63,16 @@
 				<table class="layout-table">
 					<tr>
 						<td colspan="1" class="w-25 text-left">
-							<span class="label-title">
-								　観光地名
-							</span>
-							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m" />
 							<span class="label-title p-right2-5">
+								観光地名
+							</span>
+							<html:text name="inputBean" property="kankouNm" styleClass="textbox-m p-right2-7" />
+							<span class="label-title p-right7-7">
 								ユーザID
 							</span>
 						</td>
 						<td colspan="2" class="w-25 text-left p-right2">
-							<html:text name="inputBean" property="userId" styleClass="textbox-m2 p-right10" />
+							<html:text name="inputBean" property="userId" styleClass="textbox-m2 p-right2" />
 						</td>
 					</tr>
 					<tr>

@@ -136,20 +136,33 @@
 	margin-bottom:10px;
 	border:1px solid #e2e2e2;
 }
+
+/* 位置調整 */
 .pad{
 	margin-bottom: 1.25%;
 }
+
 .p-right{
-	position: relative; /* 今の位置を基準 */
-	left: 65px; /* 左から20px */
+	position: relative; 
+	left: 65px; /* 左から65px */
 }
 
 .p-right2{
-	position: relative; /* 今の位置を基準 */
-	left: 2%; /* 左から10% */
+	position: relative; 
+	left: 2%; /* 左から2% */
 }
 
 .p-right2-5{
-	position: relative; /* 今の位置を基準 */
-	left: 2.5%; /* 左から10% */
+	position: relative; 
+	left: 2.5%; /* 左から2.5% */
+}
+
+.p-right2-7{
+	position: relative; 
+	left: 2.7%; /* 左から2.7% */
+}
+
+.p-right7-7{
+	position: relative; 
+	left: 7.7%; /* 左から7.7% */
 }
