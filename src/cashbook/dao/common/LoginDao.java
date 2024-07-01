@@ -13,5 +13,12 @@ public interface LoginDao {
 	 * @param formMap フォーム項目
 	 * @return ログイン情報
 	 */
-	public boolean findLogin(Map<String, Object> formMap);
+	public Map<String, String> findLogin(Map<String, Object> formMap);
+	
+	/**
+	 * ユーザID・パスワードが一致しているかチェックする
+	 * @param formMap フォーム項目
+	 * @return ログイン情報
+	 */
+	public boolean checkLogin(Map<String, Object> formMap);
 }
