@@ -17,7 +17,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" INSERT INTO TBL_KANKOU  ( ");
-		sql.append("   USER_ID ");
+		sql.append("   KANKOU_ID ");
+		sql.append("   , USER_ID ");
 		sql.append("   , KEN_CD ");
 		sql.append("   , CATEGORY_ID ");
 		sql.append("   , KANKOU_NM ");
@@ -25,7 +26,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , REVIEW ");
 		sql.append("   , FILE_NM ");
 		sql.append(" ) VALUES ( ");
-		sql.append("    '").append(loginDto.getUserId()).append("' ");
+		sql.append(" (COALESCE((SELECT MAX(KANKOU_ID) + 1 FROM TBL_KANKOU), 1)) ");
+		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
@@ -34,7 +36,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		//写真だけ、現在は任意の値を入力
 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_ENCODINGIMAGE)))) {
 			//観光IDのマックス値＋1の値を写真の名前として追加 
-			sql.append(" ,(SELECT LAST_NUMBER || '.jpeg' FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'ISEQ$$_76563') )");
+			sql.append(" ,COALESCE((SELECT MAX(KANKOU_ID) + 1 FROM TBL_KANKOU), 1) || '.jpeg'");
+			sql.append(" ) ");
 		}else {
 			sql.append("   , 'testpicture.jpeg'");
 			sql.append(" ) ");

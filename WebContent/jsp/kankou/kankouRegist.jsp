@@ -124,7 +124,7 @@
 							<td class="w-75 text-left top-10">
 							<html:hidden property="encodingImage" value="" />
 								<!-- アップしたい画像をここで指定 -->
-								 <input type="file" id="profileImage" name="profileImage" accept="image/*" />
+								 <input type="file" id="profileImage" name="profileImage" accept="image/jpeg"" />
 							</td>
 						</tr>
 						<tr>

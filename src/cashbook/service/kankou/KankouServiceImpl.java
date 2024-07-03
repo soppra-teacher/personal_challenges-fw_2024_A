@@ -103,7 +103,7 @@ public class KankouServiceImpl implements KankouService {
 				// 評価値登録処理
 				kankouDao.registHyoka(formMap, loginDto);
 				
-				//写真登録を後に記入予定
+				//写真登録
 				
 				if(!CommonUtil.isNull((String)formMap.get(KankouConst.KEY_ENCODINGIMAGE))) {
 					// フォームのbase64Imageフィールドからデータを取得

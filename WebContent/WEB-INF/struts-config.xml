@@ -71,16 +71,6 @@
 			scope="request">
 			<forward name="success" path="/jsp/common/userRegist.jsp"/>
 		</action>
-		<!-- ディスパッチ -->
-		<action
-			path="/UserRegistDisp"
-			type="cashbook.action.common.UserRegistDispAction"
-			name="userRegistForm"
-			validate="false"
-			parameter="operation"
-			scope="request">
-			<forward name="insert" path="/UserRegistIns.do"/>
-		</action>
 		<!-- 登録 -->
 		<action
 			path="/UserRegistIns"

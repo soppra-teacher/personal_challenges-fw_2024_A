@@ -95,7 +95,6 @@
         	console.log("ƒLƒƒƒ“ƒZƒ‹");
         	return;
         } else {
-        	console.log("OK");
         	document.forms[0].submit(); 
         }
     });
