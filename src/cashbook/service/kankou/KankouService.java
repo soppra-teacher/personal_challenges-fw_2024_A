@@ -2,6 +2,8 @@ package cashbook.service.kankou;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
 
@@ -20,5 +22,5 @@ public interface KankouService {
 	 * @param loginDto
 	 * @throws Exception
 	 */
-	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception;
 }

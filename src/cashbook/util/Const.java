@@ -87,7 +87,8 @@ public class Const {
 	public static final String SESSION_LIST_MESSAGE_KANKOU = "KANKOU_LIST_MESSAGE";
 	/** 重複データ存在ありメッセージ */
 	public static final String MSG_ERRORS_KANKOU_DATA = "errors.overlap.kankou";
-
+	/** 観光ID重複によるトランザクションエラーメッセージ */
+	public static final String MSG_ERRORS_KANKOU_DATA_ID = "errors.overlapId.kankou";
 	
 	/************* 画面ID *************/
 	

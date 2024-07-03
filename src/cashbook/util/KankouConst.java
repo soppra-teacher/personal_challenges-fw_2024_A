@@ -22,7 +22,7 @@ public class KankouConst {
 	/** キー値：評価 */
 	public static final String KEY_HYOKA = "hyoka";
 	/** キー値：性別区分キー */
-	public static final String KEY_PICTURES = "pictures";
+	public static final String KEY_ENCODINGIMAGE = "encodingImage";
 	
 }
 
