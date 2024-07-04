@@ -8,7 +8,9 @@ public class KankouConst {
 
 	/** フォーム名(登録) */
 	public static final String FORM_KANKOU_REGIST = "kankouRegistForm";
-
+	
+	/** キー値：都道府県キー */
+	public static final String KEY_ID = "id";
 	/** キー値：都道府県キー */
 	public static final String KEY_TODOUFUKEN_KEY = "todouhukenKey";
 	/** キー値：カテゴリーキー */

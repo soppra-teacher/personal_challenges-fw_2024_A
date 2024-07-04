@@ -38,7 +38,7 @@ public interface KankouDao {
 	/**
 	 * 観光地IDのMAX値を取得
 	 * @param formMap
-	 * @param loginDto
+	 * @return 観光地テーブルの観光地IDの最大値
 	 */
 	public String maxKankou();
 

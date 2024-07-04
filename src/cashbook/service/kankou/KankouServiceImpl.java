@@ -97,6 +97,9 @@ public class KankouServiceImpl implements KankouService {
 				//テーブルロック
 				kankouDao.lockKankou();
 				
+				//formMapに、観光IDの最大値をセット
+				formMap.put("id", kankouDao.maxKankou());
+				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);
 
@@ -115,7 +118,6 @@ public class KankouServiceImpl implements KankouService {
 					// Base64デコード
 					byte[] imageBytes = Base64.getDecoder().decode(imageData);
 					// ファイル名を設定
-					System.out.println((kankouDao.maxKankou() +".png"));
 					String fileName =  (kankouDao.maxKankou() +".png");
 		 
 					// デコードされたバイト配列をファイルとして保存
