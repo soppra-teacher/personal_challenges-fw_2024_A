@@ -150,11 +150,6 @@
   </bean>
   
   <!-- ユーザ登録画面 -->
-  <bean name="/UserRegistInit" class="cashbook.action.common.UserRegistInitAction">
-  	<property name="userRegistService">
-      <ref local="UserRegistServiceId" />
-    </property>
-  </bean>
   <bean name="/UserRegistIns" class="cashbook.action.common.UserRegistInsAction">
     <property name="userRegistService">
       <ref local="UserRegistServiceId" />
