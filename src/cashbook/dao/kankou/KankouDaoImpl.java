@@ -11,6 +11,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 	/**
 	 * 観光地情報を登録する
+	 * @param Map<String, Object> formMap
+	 * @param  LoginDto loginDto
 	 * @throws Exception
 	 */
 	public void registKankou(Map<String, Object> formMap, LoginDto loginDto) {
@@ -49,6 +51,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	
 	/**
 	 * 評価値を登録する
+	 * @param Map<String, Object> formMap
+	 * @param LoginDto loginDto
 	 * @throws Exception
 	 */
 	public void registHyoka(Map<String, Object> formMap, LoginDto loginDto) {
@@ -69,6 +73,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 	/**
 	 * 重複チェック
+	 * @param Map<String, Object> formMap
+	 * @param LoginDto loginDto
 	 * @return true：正常、false：重複エラー
 	 */
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto) {
@@ -94,7 +100,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	
 	/**
 	 * テーブルロック
-	 * 	 * @throws Exception
+	 * @throws Exception
 	 */
 	public void lockKankou() {
 
@@ -106,7 +112,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	
 	/**
 	 * 観光地IDの最大値を取得
-	 * 	 * @throws Exception
+	 * @throws Exception
+	 * @return 観光地テーブル
 	 */
 	public String maxKankou(){
 		
