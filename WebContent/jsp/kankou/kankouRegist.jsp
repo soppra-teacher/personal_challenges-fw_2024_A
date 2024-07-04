@@ -122,8 +122,9 @@
 							<td class="w-20 text-right top-10"><span class="label-title">
 									写真 </span></td>
 							<td class="w-75 text-left top-10">
+							<html:hidden property="encodingImage" value="" />
 								<!-- アップしたい画像をここで指定 -->
-								 <input type="file" id="profileImage" name="profileImage" accept="image/*" />
+								 <input type="file" id="profileImage" name="profileImage" accept="image/jpeg"" />
 							</td>
 						</tr>
 						<tr>
@@ -162,28 +163,14 @@
 			    if (file) {
 			        var reader = new FileReader();
 			        reader.onload = function(e) {
-			            // Base64エンコーディングされた画像データを隠しフィールドに設定
-			            document.kojinRegistForm.base64Image.value = e.target.result;
-			            // プレビュー画像を更新
 			            document.getElementById('preview').src = e.target.result;
+			            document.kankouRegistForm.encodingImage.value = e.target.result;
 			        }
 			        reader.readAsDataURL(file);
 			    }
 			});
 		</script>
-		<script type="text/javascript">
-			document.getElementById('profileImage').addEventListener('change', function(event) {
-			    var file = event.target.files[0];
-			    if (file) {
-			        var reader = new FileReader();
-			        reader.onload = function(e) {
-			            document.getElementById('preview').src = e.target.result;
-			            document.kojinRegistForm.operation.value = 'insert';
-			        }
-			        reader.readAsDataURL(file);
-			    }
-			});
-		</script>
+		
 	</div>
 </body>
 </html:html>

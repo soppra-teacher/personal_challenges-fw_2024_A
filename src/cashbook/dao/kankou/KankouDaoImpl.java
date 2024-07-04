@@ -4,6 +4,7 @@ import java.util.Map;
 
 import cashbook.dao.common.BaseDaoImpl;
 import cashbook.dto.common.LoginDto;
+import cashbook.util.CommonUtil;
 import cashbook.util.KankouConst;
 
 public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
@@ -16,7 +17,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" INSERT INTO TBL_KANKOU  ( ");
-		sql.append("   USER_ID ");
+		sql.append("   KANKOU_ID ");
+		sql.append("   , USER_ID ");
 		sql.append("   , KEN_CD ");
 		sql.append("   , CATEGORY_ID ");
 		sql.append("   , KANKOU_NM ");
@@ -24,16 +26,23 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , REVIEW ");
 		sql.append("   , FILE_NM ");
 		sql.append(" ) VALUES ( ");
-		sql.append("    '").append(loginDto.getUserId()).append("' ");
+		sql.append("    '").append(formMap.get(KankouConst.KEY_ID)).append("' ");
+		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_SETSUMEI)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
 		//写真だけ、現在は任意の値を入力
-		//sql.append("   , '").append(formMap.get(KankouConst.KEY_PICTURES)).append("' ");
-		sql.append("   , 'testpicture.jpeg'");
-		sql.append(" ) ");
+		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_ENCODINGIMAGE)))) {
+			//観光IDのマックス値＋1の値を写真の名前として追加 
+			sql.append("   , '").append(formMap.get(KankouConst.KEY_ID) + ".jpeg").append("' ");
+			sql.append(" ) ");
+		}else {
+			sql.append("   , 'testpicture.jpeg'");
+			sql.append(" ) ");
+		}
+		
 
 		super.update(sql.toString());
 	}
@@ -50,8 +59,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , USER_ID ");
 		sql.append("   , HYOUKATI ");
 		sql.append(" ) VALUES ( ");
-		sql.append("   (SELECT MAX(KANKOU_ID) ");
-		sql.append("    FROM TBL_KANKOU) ");
+		sql.append("    '").append(formMap.get(KankouConst.KEY_ID)).append("' ");
 		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_HYOKA)).append("' ");
 		sql.append(" ) ");
@@ -83,5 +91,35 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 			return false;
 		}
 	}
+	
+	/**
+	 * テーブルロック
+	 * 	 * @throws Exception
+	 */
+	public void lockKankou() {
 
+		StringBuffer sql = new StringBuffer();
+		sql.append(" LOCK TABLE TBL_KANKOU ");
+		sql.append("  IN EXCLUSIVE MODE ");
+		sql.append("  NOWAIT ");
+	}
+	
+	/**
+	 * 観光地IDの最大値を取得
+	 * 	 * @throws Exception
+	 */
+	public String maxKankou(){
+		
+		Map<String, String> result;
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT COALESCE((SELECT MAX(KANKOU_ID) + 1 FROM TBL_KANKOU), 1) AS MAX ");
+		sql.append("  FROM TBL_KANKOU ");
+		sql.append("  FETCH NEXT 1 ROWS ONLY ");
+
+		//SQLの結果をresultに格納する。
+		result = super.find(sql.toString());
+		
+		return result.get("MAX");
+	}
 }

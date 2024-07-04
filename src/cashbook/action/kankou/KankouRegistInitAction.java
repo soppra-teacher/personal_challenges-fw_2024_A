@@ -78,7 +78,6 @@ public class KankouRegistInitAction extends BaseAction{
 			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
 			saveMessages(request, messages);
 			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KANKOU);
-
 		}
 
 		// 初期表示取得

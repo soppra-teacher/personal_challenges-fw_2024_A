@@ -28,8 +28,7 @@
   			<form-property name="setsumei"        type="java.lang.String" />
 			<form-property name="review"           type="java.lang.String" />
 			<form-property name="hyoka"    type="java.lang.String" />
-			<form-property name="pictures"          type="java.lang.String" />
-			<form-property name="revision"        type="java.lang.String" />
+			<form-property name="encodingImage"          type="java.lang.String" />
 		</form-bean>
 
 	</form-beans>
@@ -71,16 +70,6 @@
 			type="cashbook.action.common.UserRegistInitAction"
 			scope="request">
 			<forward name="success" path="/jsp/common/userRegist.jsp"/>
-		</action>
-		<!-- ディスパッチ -->
-		<action
-			path="/UserRegistDisp"
-			type="cashbook.action.common.UserRegistDispAction"
-			name="userRegistForm"
-			validate="false"
-			parameter="operation"
-			scope="request">
-			<forward name="insert" path="/UserRegistIns.do"/>
 		</action>
 		<!-- 登録 -->
 		<action

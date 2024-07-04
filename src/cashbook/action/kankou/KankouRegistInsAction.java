@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.TransactionRolledbackException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -14,6 +15,7 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
+import cashbook.exception.CommonValidateException;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 
@@ -50,15 +52,17 @@ public class KankouRegistInsAction extends BaseAction{
 
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
-		
+		System.out.println(formMap);
 			try {
 				// 登録処理
-				kankouService.registIns(formMap, loginDto);
-			}catch (Exception e) {
+				kankouService.registIns(formMap, loginDto, request);
+			//ロールバック専用のTransactionRolledbackException
+			}catch (TransactionRolledbackException e) {
 				
 				System.out.println(e.getMessage());
 				
-				return map.findForward(ACTION_FOWARD_ERROR);
+				//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
+				throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
 				
 			}
 

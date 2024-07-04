@@ -2,7 +2,13 @@ package cashbook.service.kankou;
 
 import static cashbook.util.Const.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -13,6 +19,8 @@ import cashbook.dao.kankou.KankouDao;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
 import cashbook.exception.CommonValidateException;
+import cashbook.util.CommonUtil;
+import cashbook.util.KankouConst;
 
 public class KankouServiceImpl implements KankouService {
 
@@ -72,7 +80,7 @@ public class KankouServiceImpl implements KankouService {
 	 * @param
 	 * @throws Exception
 	 */
-	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
+	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
 
 		// 観光地・評価値登録
 
@@ -87,7 +95,10 @@ public class KankouServiceImpl implements KankouService {
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
 				
 				//テーブルロック
+				kankouDao.lockKankou();
 				
+				//formMapに、観光IDの最大値をセット
+				formMap.put("id", kankouDao.maxKankou());
 				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);
@@ -95,11 +106,33 @@ public class KankouServiceImpl implements KankouService {
 				// 評価値登録処理
 				kankouDao.registHyoka(formMap, loginDto);
 				
-				//写真登録を後に記入予定
+				//写真登録
 				
+				if(!CommonUtil.isNull((String)formMap.get(KankouConst.KEY_ENCODINGIMAGE))) {
+					// フォームのbase64Imageフィールドからデータを取得
+					String base64Image = (String) formMap.get(KankouConst.KEY_ENCODINGIMAGE);
+					// Base64データURIスキーム部分を削除
+					String[] parts = base64Image.split(",");
+					String imageData = parts[1];
+					
+					// Base64デコード
+					byte[] imageBytes = Base64.getDecoder().decode(imageData);
+					// ファイル名を設定
+					String fileName =  (kankouDao.maxKankou() +".png");
+		 
+					// デコードされたバイト配列をファイルとして保存
+					String filePath = request.getServletContext().getRealPath("/img/") + fileName;
+					try (FileOutputStream fos = new FileOutputStream(filePath)) {
+						fos.write(imageBytes);
+					} catch (FileNotFoundException e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();
+					}
+				}
 			}
 		});
-
-
 	}
 }

@@ -12,7 +12,7 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 	
 	/**
 	 * セレクトボックス用都道府県マスタ取得
-	 * @return カテゴリマスタ
+	 * @return 都道府県マスタ
 	 */
 	public Map<String, String> searchSelectboxTodouhuKen() {
 
