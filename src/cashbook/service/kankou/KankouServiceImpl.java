@@ -114,7 +114,7 @@ public class KankouServiceImpl implements KankouService {
 					// Base64データURIスキーム部分を削除
 					String[] parts = base64Image.split(",");
 					String imageData = parts[1];
-		 
+					
 					// Base64デコード
 					byte[] imageBytes = Base64.getDecoder().decode(imageData);
 					// ファイル名を設定
