@@ -22,8 +22,8 @@ public class LoginDaoImpl extends BaseDaoImpl implements LoginDao {
 		sql.append("SELECT M1.USER_ID ");
 		sql.append("      ,M1.PASS ");
 		sql.append("  FROM MST_USER M1 ");
-		sql.append(" WHERE M1.USER_ID = '").append(formMap.get("userId")).append("' ");
-		sql.append("   AND M1.PASS = '").append(formMap.get("pass")).append("' ");
+		sql.append(" WHERE M1.USER_ID = '").append(formMap.get(UserConst.KEY_USER_ID)).append("' ");
+		sql.append("   AND M1.PASS = '").append(formMap.get(UserConst.KEY_USER_PASS)).append("' ");
 
 		// 組み立てたSQLで検索処理を行う。
 		Map<String, String> result = super.find(sql.toString());

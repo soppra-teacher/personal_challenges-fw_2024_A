@@ -21,12 +21,8 @@
 </head>
 <body class="image_chizu">
 
-	<bean:define id="inputBean" name="userRegistForm" />
-	<bean:define id="viewBean" name="USER_REGIST_DTO" />
-	<bean:define id="backAction" name="USER_REGIST_BACK" type="java.lang.String" />
-
+		<bean:define id="viewBean" name="USER_REGIST_DTO" />
 		<html:form action="/UserRegistIns" focus="userId" styleClass="text-center formdesign w-450px form-center" >
-		<html:hidden property="operation" value="" />
 		<html:hidden name="viewBean" property="hidden" />
 		
 			<div class="bg"></div>
@@ -47,7 +43,7 @@
 							ユーザID
 						</th>
 						<td class="login_field">
-							<html:text name="viewBean" property="userId" styleClass="textbox-m" tabindex="1" />
+							<html:text property="userId" styleClass="textbox-m" tabindex="1" />
 						</td>
 					</tr>
 					<tr>
@@ -55,7 +51,7 @@
 							パスワード
 						</th>
 						<td class="login_field">
-							<html:password name="viewBean" property="pass" styleClass="textbox-m" tabindex="2" />
+							<html:password property="pass" styleClass="textbox-m" tabindex="2" />
 						</td>
 					</tr>
 					<tr>
@@ -63,7 +59,7 @@
 							パスワード(確認)
 						</th>
 						<td class="login_field">
-							<html:password name="viewBean" property="passKakunin" styleClass="textbox-m" tabindex="2" />
+							<html:password property="passKakunin" styleClass="textbox-m" tabindex="2" />
 							
 						</td>
 					</tr>
@@ -78,7 +74,7 @@
 				</tr>
 				<tr>
 					<td>
-						<html:link action="/Logout" styleClass= "btn-blue btn-size-s" > ログイン画面へ戻る </html:link>
+						<html:link action="/Login" styleClass= "btn-blue btn-size-s" > ログイン画面へ戻る </html:link>
 					</td>
 					
 				</tr>
@@ -87,35 +83,27 @@
 		</html:form>
 	</div>
 	
+</body>
 
-	<script type="text/javascript">
+</html:html>
+<script type="text/javascript">
     document.getElementById('clicklink').addEventListener('click', function (event) {
         var msg = "新規登録してもよろしいですか？";
         if (!confirm(msg)) {
-        	console.log("キャンセル");
         	return;
         } else {
         	document.forms[0].submit(); 
         }
     });
-	</script>
-	
-</body>
-
-</html:html>
-<script>
+    
 	window.addEventListener("load",(event) => {
 		var hidden = document.userRegistForm.hidden;
 	     if(hidden.defaultValue == "1"){
 		    //hidden値1：OK
 	    	alert("登録処理が完了しました。ログイン画面へ移行します。");
-			document.forms[0].submit(); 
 			window.location.href = "http://localhost:8080/Cashbook/"
 	    }
-	    else {
-	    	return;
-		    
-	    }
+	    
 	    
 	});
 </script>
