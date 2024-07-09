@@ -34,15 +34,16 @@ public class UserRegistServiceImpl implements UserRegistService{
 	 * @throws CommonValidateException
 	 */
 	public void registIns(Map<String, Object> formMap) throws CommonValidateException {
-				// 存在チェック
-			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
-				// キー重複エラー
-				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
-			}
+			
 			// パスワード一致チェック
 			if (!checkPass(formMap)) {
 				// パスワード不一致エラー
 				throw new CommonValidateException(Const.MSG_ERRORS_PASS_FUITTI);
+			}
+			// 存在チェック
+			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
+				// キー重複エラー
+				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
 			}
 			
 			// 登録処理
