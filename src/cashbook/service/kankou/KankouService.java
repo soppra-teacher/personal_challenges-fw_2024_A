@@ -24,7 +24,7 @@ public interface KankouService {
 	 * @param loginDto
 	 * @throws Exception
 	 */
-	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest reques) throws Exception;
 	
 	/**
 	 * @param form     フォーム
@@ -54,7 +54,7 @@ public interface KankouService {
 	 * @param loginDto
 	 * @throws Exception
 	 */
-	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception;
+	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto,String kankouId) throws Exception;
 	
 	/**
 	 *評価値テーブル・観光テーブルの更新処理
@@ -64,5 +64,10 @@ public interface KankouService {
 	 */
 	public void update(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request,String kankouId, String hyoka) throws Exception;
 	
+	/**
+	 *評価値テーブル・観光テーブルの削除処理
+	 * @param formMap
+	 * @throws Exception
+	 */
 	public void delete(Map<String, Object> formMap, HttpServletRequest request) throws Exception;
 }

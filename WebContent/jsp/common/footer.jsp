@@ -15,12 +15,6 @@
 					メニューへ戻る
 				</a>
 			</td>
-			<td> 
-				<html:link action="/KankouListInit" styleClass="btn-green btn-size-m">
-					<html:param name="operation" value="reserch" />
-    					検索・一覧表示
-					</html:link>
-			</td>
 			<td class="w-25">
 				<a href = "#" id = logOut class = "btn-green btn-size-m" tabindex = "3" >
 					ログアウト

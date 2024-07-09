@@ -79,7 +79,7 @@ public class KankouUpdDelAction extends BaseAction {
 		//登録
 		if (Const.ACTION_FOWARD_INSERT.equals(operation)) {
 			//評価値登録処理
-			kankouService.hyokaIns(formMap, loginDto);
+			kankouService.hyokaIns(formMap, loginDto, kankouId);
 			
 			//登録メッセージ
 			messageKey = MSG_SUCCESS_INSERT;

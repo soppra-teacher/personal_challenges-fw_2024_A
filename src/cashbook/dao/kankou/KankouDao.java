@@ -29,6 +29,18 @@ public interface KankouDao {
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto);
 	
 	/**
+	 * テーブルロック及び、排他チェック
+	 * @param loginDto
+	 */
+	public void lockKankou();
+	
+	/**
+	 * 観光地IDのMAX値を取得
+	 * @return 観光地テーブルの観光地IDの最大値 + 1
+	 */
+	public String getmaxKankou();
+	
+	/**
 	 * 観光地情報を一覧を検索する
 	 * @return 観光地一覧
 	 */

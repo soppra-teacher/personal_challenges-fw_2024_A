@@ -97,12 +97,16 @@ public class Const {
 	public static final String SESSION_LIST_MESSAGE_KANKOU = "KANKOU_LIST_MESSAGE";
 	/** 重複データ存在ありメッセージ */
 	public static final String MSG_ERRORS_KANKOU_DATA = "errors.overlap.kankou";
+	/** 観光ID重複によるトランザクションエラーメッセージ */
+	public static final String MSG_ERRORS_KANKOU_DATA_ID = "errors.overlapId.kankou";
+	/** 写真処理の失敗メッセージ */
+	public static final String MSG_ERRORS_IMAGE_EXEPTION = "errors.image.kankou";
 	
 	
 	/** 観光地更新削除画面 戻り先 変更 */
 	public static final String SESSION_UPD_DEL_BACK = "KANKOU_UPD_DEL_BACK";
 	
-	/** 個人マスタ登録画面 DTO　変更 */
+	/** 更新削除画面 DTO  */
 	public static final String SESSION_UPD_DEL_DTO = "KANKOU_UPD_DEL_DTO";
 	
 

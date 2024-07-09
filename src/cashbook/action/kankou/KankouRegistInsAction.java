@@ -2,10 +2,12 @@ package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.TransactionRolledbackException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -14,6 +16,7 @@ import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
+import cashbook.exception.CommonValidateException;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 
@@ -51,16 +54,20 @@ public class KankouRegistInsAction extends BaseAction{
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
 		
-			try {
-				// 登録処理
-				kankouService.registIns(formMap, loginDto);
-			}catch (Exception e) {
-				
-				System.out.println(e.getMessage());
-				
-				return map.findForward(ACTION_FOWARD_ERROR);
-				
-			}
+		try {
+			// 登録処理
+			kankouService.registIns(formMap, loginDto, request);
+		//ロールバック専用のTransactionRolledbackException
+		}catch (TransactionRolledbackException e) {
+			//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
+			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
+			
+		}catch(IOException e){
+			//写真の例外処理が発生した時
+			throw new CommonValidateException(MSG_ERRORS_IMAGE_EXEPTION);
+		}catch(Exception e){
+			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
+		}
 
 		// 登録成功メッセージをセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);

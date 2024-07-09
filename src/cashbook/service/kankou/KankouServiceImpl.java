@@ -2,7 +2,11 @@ package cashbook.service.kankou;
 
 import static cashbook.util.Const.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -82,7 +86,7 @@ public class KankouServiceImpl implements KankouService {
 	 * @param
 	 * @throws Exception
 	 */
-	public void registIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
+	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
 
 		// 観光地・評価値登録
 
@@ -97,15 +101,43 @@ public class KankouServiceImpl implements KankouService {
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
 
 				//テーブルロック
-
+				kankouDao.lockKankou();
+				
+				//formMapに、観光IDの最大値をセット
+				formMap.put(KankouConst.KEY_ID, kankouDao.getmaxKankou());
+				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);
 
 				// 評価値登録処理
 				kankouDao.registHyoka(formMap, loginDto);
-
-				//写真登録を後に記入予定
-
+				
+				//写真登録
+				if(!CommonUtil.isNull((String)formMap.get(KankouConst.KEY_ENCODINGIMAGE))) {
+					// フォームのbase64Imageフィールドからデータを取得
+					String base64Image = (String) formMap.get(KankouConst.KEY_ENCODINGIMAGE);
+					// Base64データURIスキーム部分を削除
+					String[] parts = base64Image.split(",");
+					String imageData = parts[1];
+					
+					// Base64デコード
+					byte[] imageBytes = Base64.getDecoder().decode(imageData);
+					//MAX(観光ID) + 1.jpegの値をファイル名として設定
+					String fileName =  (formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG);
+					
+					// デコードされたバイト配列をファイルとして保存
+					String filePath = request.getServletContext().getRealPath("/img/") + fileName;
+					
+					try (FileOutputStream fos = new FileOutputStream(filePath)) {
+						fos.write(imageBytes);
+					} catch (FileNotFoundException e) {
+						// アップロードするファイルが見つからなかった時
+						e.printStackTrace();
+					} catch (IOException e) {
+						// その他の例外処理
+						e.printStackTrace();
+					}
+				}
 			}
 		});
 
@@ -259,8 +291,8 @@ public class KankouServiceImpl implements KankouService {
 	 * @param loginDto ログイン情報
 	 * @throws Exception
 	 */
-	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto) throws Exception {
-		kankouDao.registHyoka(formMap, loginDto);
+	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto, String kankouId) throws Exception {
+		kankouDao.insHyoka(formMap, loginDto,kankouId);
 	}
 
 	/**
@@ -302,7 +334,6 @@ public class KankouServiceImpl implements KankouService {
 				//観光地テーブルの削除
 				kankouDao.delKankou(formMap);
 				
-
 			}
 		});
 	}
