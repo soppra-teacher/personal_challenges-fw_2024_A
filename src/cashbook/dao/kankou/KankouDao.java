@@ -23,24 +23,22 @@ public interface KankouDao {
 	/**
 	 * 重複チェック
 	 * @param formMap
-	 * @return
+	 * @return true:重複なし, false:重複あり
 	 */
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto);
 
 	
 	/**
 	 * テーブルロック及び、排他チェック
-	 * @param formMap
 	 * @param loginDto
 	 */
 	public void lockKankou();
 	
 	/**
 	 * 観光地IDのMAX値を取得
-	 * @param formMap
-	 * @return 観光地テーブルの観光地IDの最大値
+	 * @return 観光地テーブルの観光地IDの最大値 + 1
 	 */
-	public String maxKankou();
+	public String getmaxKankou();
 
 }
 

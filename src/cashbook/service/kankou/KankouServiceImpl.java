@@ -60,7 +60,7 @@ public class KankouServiceImpl implements KankouService {
 	/**
 	 * 観光地登録画面初期表示メソッド
 	 * @param  formMap 
-	 * @return result
+	 * @return 都道府県・カテゴリコンボボックスの初期値
 	 */
 	public KankouRegistDto registInit(Map<String, Object> formMap) {
 
@@ -77,7 +77,9 @@ public class KankouServiceImpl implements KankouService {
 
 	/**
 	 * 観光地登録メソッド
-	 * @param
+	 * @param Map<String, Object> formMap
+	 * @param LoginDto loginDto
+	 * @param HttpServletRequest request
 	 * @throws Exception
 	 */
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
@@ -98,7 +100,7 @@ public class KankouServiceImpl implements KankouService {
 				kankouDao.lockKankou();
 				
 				//formMapに、観光IDの最大値をセット
-				formMap.put("id", kankouDao.maxKankou());
+				formMap.put(KankouConst.KEY_ID, kankouDao.getmaxKankou());
 				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);
@@ -117,18 +119,19 @@ public class KankouServiceImpl implements KankouService {
 					
 					// Base64デコード
 					byte[] imageBytes = Base64.getDecoder().decode(imageData);
-					// ファイル名を設定
-					String fileName =  (kankouDao.maxKankou() +".png");
-		 
+					//MAX(観光ID) + 1.jpegの値をファイル名として設定
+					String fileName =  (formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG);
+					
 					// デコードされたバイト配列をファイルとして保存
 					String filePath = request.getServletContext().getRealPath("/img/") + fileName;
+					
 					try (FileOutputStream fos = new FileOutputStream(filePath)) {
 						fos.write(imageBytes);
 					} catch (FileNotFoundException e) {
-						// TODO 自動生成された catch ブロック
+						// アップロードするファイルが見つからなかった時
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO 自動生成された catch ブロック
+						// その他の例外処理
 						e.printStackTrace();
 					}
 				}

@@ -23,8 +23,10 @@ public class KankouConst {
 	public static final String KEY_REVIEW = "review";
 	/** キー値：評価 */
 	public static final String KEY_HYOKA = "hyoka";
-	/** キー値：性別区分キー */
+	/** キー値：エンコーディングイメージ */
 	public static final String KEY_ENCODINGIMAGE = "encodingImage";
+	/** キー値：jpegキー */
+	public static final String KEY_PNG = ".png";
 	
 }
 

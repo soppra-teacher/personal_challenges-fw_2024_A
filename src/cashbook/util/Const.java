@@ -89,6 +89,8 @@ public class Const {
 	public static final String MSG_ERRORS_KANKOU_DATA = "errors.overlap.kankou";
 	/** 観光ID重複によるトランザクションエラーメッセージ */
 	public static final String MSG_ERRORS_KANKOU_DATA_ID = "errors.overlapId.kankou";
+	/** 写真処理の失敗メッセージ */
+	public static final String MSG_ERRORS_IMAGE_EXEPTION = "errors.image.kankou";
 	
 	/************* 画面ID *************/
 	

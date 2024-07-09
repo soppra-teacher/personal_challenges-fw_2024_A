@@ -2,6 +2,7 @@ package cashbook.action.kankou;
 
 import static cashbook.util.Const.*;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ public class KankouRegistInsAction extends BaseAction{
 	
 	/** 観光地登録サービス */
 	private KankouService kankouService;
-
 	
 	/**
 	 * 観光地登録サービスを設定します。
@@ -52,20 +52,21 @@ public class KankouRegistInsAction extends BaseAction{
 
 		// フォームの値を取得する。
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);	
-		System.out.println(formMap);
 			try {
 				// 登録処理
 				kankouService.registIns(formMap, loginDto, request);
 			//ロールバック専用のTransactionRolledbackException
 			}catch (TransactionRolledbackException e) {
-				
-				System.out.println(e.getMessage());
-				
 				//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
 				throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
 				
+			}catch(IOException e){
+				//写真の例外処理が発生した時
+				throw new CommonValidateException(MSG_ERRORS_IMAGE_EXEPTION);
+			}catch(Exception e){
+				throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
 			}
-
+			
 		// 登録成功メッセージをセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
 
