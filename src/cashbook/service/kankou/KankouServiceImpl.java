@@ -220,7 +220,6 @@ public class KankouServiceImpl implements KankouService {
 			dto.setHhyoukati(map.get("HYOUKATI"));
 			dto.setUserId(map.get("USER_ID"));
 			KojinList.add(dto);
-			System.out.println(map);
 		}
 		result.setList(KojinList);
 		return result;

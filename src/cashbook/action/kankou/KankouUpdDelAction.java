@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.TransactionRolledbackException;
 
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -23,6 +22,8 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouUpdDelDto;
+import cashbook.exception.CommonValidateException;
+import cashbook.service.common.CommonServiceImpl;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
@@ -89,20 +90,15 @@ public class KankouUpdDelAction extends BaseAction {
 			try {
 				kankouService.update(formMap, loginDto, request, kankouId, compareHyoka);
 			} catch (Exception e) {
-				ActionErrors errors = new ActionErrors();
-				errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(Const.MSG_ERRORS_NO_UPD));
-				saveErrors(request, errors);
-				return map.getInputForward();
+				throw new CommonValidateException(Const.MSG_ERRORS_NO_UPD);
 			}
 			// 写真更新処理
 			if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
 				try {
-					CommonUtil.fileUpd(formMap, request);
+					CommonServiceImpl commonImp = new CommonServiceImpl();
+					commonImp.fileUpd(formMap, request);
 				} catch (IOException e) {
-					ActionErrors errors = new ActionErrors();
-					errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(Const.MSG_ERRORS_NO_FILE));
-					saveErrors(request, errors);
-					return map.getInputForward();
+					throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE);
 				}
 			}
 
@@ -120,20 +116,14 @@ public class KankouUpdDelAction extends BaseAction {
 				kankouService.delete(formMap, request);
 			} catch (TransactionRolledbackException e) {
 				//削除失敗
-				ActionErrors errors = new ActionErrors();
-				errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(Const.MSG_ERRORS_NO_DEL));
-				saveErrors(request, errors);
-				return map.getInputForward();
+				throw new CommonValidateException(Const.MSG_ERRORS_NO_DEL);
 			}
 			//写真削除処理
 			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + ".png");
 			try {
 				Files.delete(destPath);
 			} catch (IOException e) {
-				ActionErrors errors = new ActionErrors();
-				errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(Const.MSG_ERRORS_NO_FILE_UPD));
-				saveErrors(request, errors);
-				return map.getInputForward();
+				throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE_UPD);
 			}
 
 			return map.findForward(ACTION_FOWARD_DELETE);

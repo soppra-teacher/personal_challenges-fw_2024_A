@@ -40,15 +40,17 @@ public class UserRegistServiceImpl implements UserRegistService{
 			// 入力項目を保持
 			result.setHidden(CommonUtil.getStr(formMap.get(UserConst.KEY_USER_HIDDEN)));
 			
-				// 存在チェック
-			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
-				// キー重複エラー
-				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
-			}
+		
 			// パスワード一致チェック
 			if (!checkPass(formMap)) {
 				// パスワード不一致エラー
 				throw new CommonValidateException(Const.MSG_ERRORS_PASS_FUITTI);
+			}
+			
+			// 存在チェック
+			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
+				// キー重複エラー
+				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
 			}
 			
 			// 登録処理

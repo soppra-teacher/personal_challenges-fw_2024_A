@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<td>
-						<html:link action="/Logout" styleClass= "btn-blue btn-size-s" > ログイン画面へ戻る </html:link>
+						<a href = "http://localhost:8080/Cashbook/" class= "btn-blue btn-size-s" > ログイン画面へ戻る </a>
 					</td>
 					
 				</tr>
