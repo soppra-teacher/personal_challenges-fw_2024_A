@@ -7,7 +7,7 @@
 	<form-beans>
 		
 		<!-- ログイン画面 -->
-		<form-bean name="loginForm"       type="org.apache.struts.validator.DynaValidatorForm">
+		<form-bean name="loginForm"   type="org.apache.struts.validator.DynaValidatorForm">
 			<form-property name="userId" type="java.lang.String" />
 			<form-property name="pass"    type="java.lang.String"/>
 		</form-bean>
@@ -31,6 +31,36 @@
 			<form-property name="pictures"          type="java.lang.String" />
 			<form-property name="revision"        type="java.lang.String" />
 		</form-bean>
+		
+		<!-- 観光地更新画面 -->
+  			<form-bean name="kankouUpdDelForm"    type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="revision"       type="java.lang.String" />
+			<form-property name="imagePath"       type="java.lang.String" />
+			<form-property name="hyokaJudge"       type="java.lang.String" /><!--評価値ジャッジ-->
+			<form-property name="hiddenImagePath"       type="java.lang.String" />
+			<form-property name="kankouNm"       type="java.lang.String" /><!-- 観光地名 -->
+			<form-property name="categoryNm"       type="java.lang.String" /><!-- カテゴリ名 -->
+			<form-property name="todouhukenNm"       type="java.lang.String" /><!-- 都道府県名 -->
+			<form-property name="tihouNm"       type="java.lang.String" /><!-- 八地方名 -->
+			<form-property name="setsumei"       type="java.lang.String" /><!-- 説明 -->
+			<form-property name="review"       type="java.lang.String" /><!-- レビュー -->
+			<form-property name="hyoka"       type="java.lang.String" /><!-- 評価値 -->
+			<form-property name="kankouId"     type="java.lang.String"  /><!-- 観光地ID -->
+			<form-property name="base64Image" type="java.lang.String" />
+			<form-property name="userId" type="java.lang.String" />
+		</form-bean>
+		
+		<!--********************************************************************************************************************-->
+		<!-- 観光地検索・一覧表示画面 -->
+		<form-bean name="kankouListForm"          type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="kankouNm"       type="java.lang.String"  /><!-- 観光地名 -->
+			<form-property name="userId"         type="java.lang.String"  /><!-- ユーザId -->
+			<form-property name="categoryKey"    type="java.lang.String"  /><!-- カテゴリキー -->
+			<form-property name="tihouKey"       type="java.lang.String"  /><!-- 地方キー -->
+			<form-property name="todouhukenKey"  type="java.lang.String"  /><!-- 都道府県キー -->
+			<form-property name="kankoutiId"     type="java.lang.String"  /><!-- 観光地ID -->
+		</form-bean>
+       <!--********************************************************************************************************************-->  
 
 	</form-beans>
 
@@ -51,7 +81,7 @@
 			validate="true"
 			input="/jsp/common/login.jsp"
 			scope="request">
-			<forward name="success" path="/MenuInit.do?getKey=aaa"/>
+			<forward name="success" path="/KankouListInit.do?getKey=aaa"/>
 		</action>
 		<action
 			path="/Logout"
@@ -137,6 +167,85 @@
 			<forward name="success" path="/KankouRegistInit.do" redirect="true" />
 			<forward name="error" path="/jsp/common/error.jsp" />
 		</action>
+		<!--********************************************************************************************************************-->
+		<!--
+		****************************
+		* 観光検索一覧画面     *
+		****************************
+		-->
+		<!-- 初期表示 --><!--いじる-->
+		<action
+			path="/KankouListInit"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouListForm"
+			validate="false"
+			input="/jsp/kankou/kankouList.jsp"
+			scope="request">
+			<forward name="success" path="/jsp/kankou/kankouList.jsp"/>
+		</action>
+		<!-- ディスパッチ -->
+		<action
+			path="/KojinListDisp"
+			type="cashbook.action.kankou.KankouListDispAction"
+			name="kankouListForm"
+			validate="false"
+			parameter="operation"
+			scope="request">
+			<forward name="search" path="/KankouListSearch.do"/>
+		</action>
+		<!-- 検索 -->
+		<action
+			path="/KankouListSearch"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouListForm"
+			validate="true"
+			input="/jsp/kankou/kankouList.jsp"
+			scope="request">
+			<forward name="success" path="/jsp/kankou/kankouList.jsp"/>
+		</action>
+		
+				<!--
+		****************************
+		* 観光地更新削除画面       *
+		****************************
+		-->
+		<!-- 初期表示 -->
+		<action
+			path="/KankouUpdDelInit"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouUpdDelForm"
+			validate="false"
+			scope="request">
+			<forward name="success" path="/jsp/kankou/kankouUpdDel.jsp"/>
+		</action>
+		<!-- ディスパッチ -->
+		<action
+			path="/KankouUpdDelDisp"
+			type="cashbook.action.kankou.KankouDispAction"
+			name="kankouUpdDelForm"
+			validate="false"
+			parameter="operation"
+			scope="request">
+			<forward name="insert" path="/KankouUpdDel.do"/>
+			<forward name="update" path="/KankouUpdDel.do"/>
+			<forward name="delete" path="/KankouUpdDel.do"/>
+			<forward name="backMenu" path="/MenuInit.do"/>
+			<forward name="backList" path="/KankouListSearch.do"/>
+		</action>
+		<!-- 登録・更新 -->
+		<action
+			path="/KankouUpdDel"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="kankouUpdDelForm"
+			validate="false"
+			input="/jsp/kankou/kankouUpdDel.jsp"
+			scope="request">
+<!--			<forward name="success" path="/KankouUpdDelInit.do" redirect="true" />-->
+			<forward name="success" path="/jsp/kankou/kankouUpdDel.jsp" />
+			<forward name="delete" path="/KankouListSearch.do" />
+			<forward name="error" path="/jsp/kankou/kankouUpdDel.jsp" />
+		</action>
+		<!--********************************************************************************************************************-->
 
 	</action-mappings>
 

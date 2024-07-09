@@ -1,6 +1,9 @@
 package cashbook.util;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -102,6 +105,28 @@ public class CommonUtil {
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getSessionMap(HttpServletRequest request, String str) {
 		return (Map<String, Object>)request.getSession().getAttribute(str);
+	}
+	
+	/**
+	 * エンコードされた画像データをデコードして保存する。
+	 * @param formMap
+	 * @return request リクエスト
+	 */
+	public static void fileUpd(Map<String, Object> formMap, HttpServletRequest request) throws IOException {
+		// フォームのbase64Imageフィールドからデータを取得
+		String base64Image = (String) formMap.get(KankouConst.KEY_IMAGE_STRING);
+		// Base64データURIスキーム部分を削除
+		String[] parts = base64Image.split(",");
+		String imageData = parts[1];
+		// Base64デコード
+		byte[] imageBytes = Base64.getDecoder().decode(imageData);
+		// ファイル名を設定
+		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + ".png";
+
+		// デコードされたバイト配列をファイルとして保存
+		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;
+		FileOutputStream fos = new FileOutputStream(filePath);
+		fos.write(imageBytes);
 	}
 }
 
