@@ -8,6 +8,8 @@ public class KankouConst {
 
 	/** フォーム名(登録) */
 	public static final String FORM_KANKOU_REGIST = "kankouRegistForm";
+	/** フォーム名(マスタ登録) */
+	public static final String FORM_KANKOU_UPD_DEL = "kankouUpdDelForm";
 
 	/** キー値：都道府県キー */
 	public static final String KEY_TODOUFUKEN_KEY = "todouhukenKey";
@@ -22,10 +24,7 @@ public class KankouConst {
 	/** キー値：評価 */
 	public static final String KEY_HYOKA = "hyoka";
 	/** キー値：性別区分キー */
-	public static final String KEY_PICTURES = "pictures";
-	
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////	
+	public static final String KEY_PICTURES = "pictures";	
 	/** フォーム名(観光地検索・一覧表示画面) */
 	public static final String FORM_KANKOU_LIST = "kankouListForm";
 	/** キー値：ユーザID */
@@ -48,22 +47,11 @@ public class KankouConst {
 	public static final String KEY_TODOUHUKEN_NM = "todouhukenNm";
 	/** キー値：比較用評価値 */
 	public static final String KEY_COMPARE_HYOKA = "compareHyoka";
-	
-	
+	/** キー値：ログインユーザ */
 	public static final String KEY_LOG_USER_ID = "logUserId";
-	
+	/** キー値：エンコードファイルデータ */
 	public static final String KEY_IMAGE_STRING = "base64Image";
-	
+	/** キー値：説明 */
 	public static final String KEY_SETUMEI = "setsumei";
-	
-	
-	/** フォーム名(マスタ登録) */
-	public static final String FORM_KANKOU_UPD_DEL = "kankouUpdDelForm";
-
-	/** キー値：個人ID */
-	public static final String KEY_KOJIN_ID = "kojinId";
-	/** キー値：パス */
-	public static final String KEY_PASS = "pass";
-	
 }
 

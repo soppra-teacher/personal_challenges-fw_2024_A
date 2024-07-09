@@ -15,7 +15,7 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>観光地検索システム 観光地更新・削除画面</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css" />
-<script language="JavaScript" type="text/javascript" charset="shift_jis" src="js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/common.js"></script>
 <script type="text/javascript">
 </script>
 </head>
