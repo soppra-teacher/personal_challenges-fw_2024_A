@@ -13,7 +13,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import cashbook.dto.common.UserRegistDto;
-import cashbook.service.common.UserRegistService;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
 import cashbook.util.UserConst;
@@ -24,16 +23,6 @@ import cashbook.util.UserConst;
  */
 public class UserRegistInitAction extends Action{
 	
-	/** ユーザ登録サービス */
-	private UserRegistService userRegistService;
-
-	/**
-	 * ユーザ登録サービスを設定します。
-	 * @param userRegistService ユーザ登録サービス
-	 */
-	public void setUserRegistService(UserRegistService userRegistService) {
-		this.userRegistService = userRegistService;
-	}
 	
 	/**
 	 * <p><b>
