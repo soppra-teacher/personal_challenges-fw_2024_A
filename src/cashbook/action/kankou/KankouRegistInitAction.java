@@ -66,7 +66,6 @@ public class KankouRegistInitAction extends BaseAction{
 			formMap.put(UserConst.KEY_USER_ID, sessionMap.get(UserConst.KEY_USER_ID));
 			// セッションに保持しているユーザIDを削除する。
 			request.getSession().removeAttribute(SESSION_REGIST_RE_SEARCH_KANKOU);
-
 		}
 
 		// メッセージをセッションから取得する。
@@ -78,6 +77,7 @@ public class KankouRegistInitAction extends BaseAction{
 			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
 			saveMessages(request, messages);
 			request.getSession().removeAttribute(SESSION_REGIST_MESSAGE_KANKOU);
+
 		}
 
 		// 初期表示取得

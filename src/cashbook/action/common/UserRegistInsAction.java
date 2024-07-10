@@ -16,6 +16,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
+import cashbook.dto.common.UserRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.service.common.UserRegistService;
 import cashbook.util.CommonUtil;
@@ -58,13 +59,15 @@ public class UserRegistInsAction extends Action{
 		try {
 			// フォームの値を取得する。
 			Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
-		
-			// 登録
-			userRegistService.registIns(formMap);
+
 			// hiddenパラメータを"1"に設定する。
 			formMap.put(UserConst.KEY_USER_HIDDEN, SESSION_REGIST_HIDDEN_OK);
-						
 			
+			// 登録
+			userRegistService.registIns(formMap);
+			
+			UserRegistDto dto = new UserRegistDto();
+
 
 			// 登録成功メッセージをセッションに設定
 			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_USER, MSG_SUCCESS_INSERT_USER );

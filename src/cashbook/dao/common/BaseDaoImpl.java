@@ -80,4 +80,5 @@ public class BaseDaoImpl extends JdbcDaoSupport implements BaseDao {
 	public int update(String strSql) {
 		return getJdbcTemplate().update(strSql);
 	}
+	
 }

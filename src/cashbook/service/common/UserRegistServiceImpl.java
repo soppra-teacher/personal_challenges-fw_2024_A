@@ -3,6 +3,7 @@ package cashbook.service.common;
 import java.util.Map;
 
 import cashbook.dao.common.UserRegistDao;
+import cashbook.dto.common.UserRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
@@ -31,18 +32,25 @@ public class UserRegistServiceImpl implements UserRegistService{
 	 * <br>登録処理
 	 * </b></p>
 	 * @param formMap  画面項目
+	 * @param loginDto ログイン情報DTO
 	 * @throws CommonValidateException
 	 */
 	public void registIns(Map<String, Object> formMap) throws CommonValidateException {
-				// 存在チェック
-			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
-				// キー重複エラー
-				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
-			}
+			UserRegistDto result = new UserRegistDto();
+			// 入力項目を保持
+			result.setHidden(CommonUtil.getStr(formMap.get(UserConst.KEY_USER_HIDDEN)));
+			
+		
 			// パスワード一致チェック
 			if (!checkPass(formMap)) {
 				// パスワード不一致エラー
 				throw new CommonValidateException(Const.MSG_ERRORS_PASS_FUITTI);
+			}
+			
+			// 存在チェック
+			if (!userRegistDao.checkOverlapUserRegist(formMap)) {
+				// キー重複エラー
+				throw new CommonValidateException(Const.MSG_ERRORS_PRIMARY_KEY);
 			}
 			
 			// 登録処理

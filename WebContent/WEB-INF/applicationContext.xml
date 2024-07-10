@@ -106,16 +106,36 @@
   </bean>
   
     <!-- ユーザ登録画面 -->
-  <bean name="/UserRegistInit" class="cashbook.action.common.UserRegistInitAction">
-  	<property name="userRegistService">
-      <ref local="UserRegistServiceId" />
-    </property>
-  </bean>
-  <bean name="/UserRegistIns" class="cashbook.action.common.UserRegistInsAction">
+   <bean name="/UserRegistIns" class="cashbook.action.common.UserRegistInsAction">
     <property name="userRegistService">
       <ref local="UserRegistServiceId" />
     </property>
   </bean>
+  
+      <!-- 観光地検索画面 -->
+  <bean name="/KankouListInit" class="cashbook.action.kankou.KankouListInitAction">
+    <property name="kankouService">
+      <ref local="KankouServiceId" />
+    </property>
+  </bean>
+  <bean name="/KankouListSearch" class="cashbook.action.kankou.KankouListSearchAction">
+    <property name="kankouService">
+      <ref local="KankouServiceId" />
+    </property>
+  </bean>
+  
+  <!--  観光地更新削除  -->
+<bean name="/KankouUpdDelInit" class="cashbook.action.kankou.KankouUpdDeInitAction">
+<property name="kankouService">
+<ref local="KankouServiceId"/>
+</property>
+</bean>
+<bean name="/KankouUpdDel" class="cashbook.action.kankou.KankouUpdDelAction">
+<property name="kankouService">
+<ref local="KankouServiceId"/>
+</property>
+</bean>
+  
   
   <!-- 観光地登録 -->
   <bean name="/KankouRegistInit" class="cashbook.action.kankou.KankouRegistInitAction">

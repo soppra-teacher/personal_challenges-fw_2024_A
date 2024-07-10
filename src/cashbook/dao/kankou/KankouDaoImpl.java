@@ -1,5 +1,6 @@
 package cashbook.dao.kankou;
 
+import java.util.List;
 import java.util.Map;
 
 import cashbook.dao.common.BaseDaoImpl;
@@ -11,7 +12,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 	/**
 	 * 観光地情報を登録する
-	 * @throws Exception
+	 * @param Map<String, Object> formMap
+	 * @param  LoginDto loginDto
 	 */
 	public void registKankou(Map<String, Object> formMap, LoginDto loginDto) {
 
@@ -33,23 +35,17 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_SETSUMEI)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
-		//写真だけ、現在は任意の値を入力
-		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_ENCODINGIMAGE)))) {
-			//観光IDのマックス値＋1の値を写真の名前として追加 
-			sql.append("   , '").append(formMap.get(KankouConst.KEY_ID) + ".jpeg").append("' ");
-			sql.append(" ) ");
-		}else {
-			sql.append("   , 'testpicture.jpeg'");
-			sql.append(" ) ");
-		}
-		
+		//観光IDのマックス値＋1の値.jpegを写真の名前として追加 
+		sql.append("   , '").append(formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG).append("' ");
+		sql.append(" ) ");
 
 		super.update(sql.toString());
 	}
 	
 	/**
 	 * 評価値を登録する
-	 * @throws Exception
+	 * @param Map<String, Object> formMap
+	 * @param LoginDto loginDto
 	 */
 	public void registHyoka(Map<String, Object> formMap, LoginDto loginDto) {
 
@@ -69,6 +65,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 
 	/**
 	 * 重複チェック
+	 * @param Map<String, Object> formMap
+	 * @param LoginDto loginDto
 	 * @return true：正常、false：重複エラー
 	 */
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto) {
@@ -94,7 +92,6 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	
 	/**
 	 * テーブルロック
-	 * 	 * @throws Exception
 	 */
 	public void lockKankou() {
 
@@ -102,24 +99,186 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append(" LOCK TABLE TBL_KANKOU ");
 		sql.append("  IN EXCLUSIVE MODE ");
 		sql.append("  NOWAIT ");
+		super.update(sql.toString());
 	}
 	
 	/**
 	 * 観光地IDの最大値を取得
-	 * 	 * @throws Exception
+	 * @return 観光地IDの最大値 + 1 の値
 	 */
-	public String maxKankou(){
+	public String getmaxKankou(){
 		
 		Map<String, String> result;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COALESCE((SELECT MAX(KANKOU_ID) + 1 FROM TBL_KANKOU), 1) AS MAX ");
+		sql.append("SELECT COALESCE(MAX(KANKOU_ID) + 1, 1) AS MAX_KANKOUID ");
 		sql.append("  FROM TBL_KANKOU ");
 		sql.append("  FETCH NEXT 1 ROWS ONLY ");
 
 		//SQLの結果をresultに格納する。
 		result = super.find(sql.toString());
 		
-		return result.get("MAX");
+		return result.get("MAX_KANKOUID");
+	}
+	
+	/**
+	 * 観光地情報を一覧を検索する
+	 * @param formMpa
+	 * @return 検索結果
+	 */
+	public List<Map<String, String>> searchKankou(Map<String, Object> formMap) {
+	    List<Map<String, String>> result;
+	    StringBuffer sql = new StringBuffer();
+	    sql.append("SELECT  K.KANKOU_ID ");
+	    sql.append("       ,K.KANKOU_NM ");
+	    sql.append("       ,TI.TIHOU_NM ");
+	    sql.append("       ,T.KEN_NM ");
+	    sql.append("       ,C.CATEGORY_NM ");
+	    sql.append("       ,H.HYOUKATI ");
+	    sql.append("       ,K.USER_ID ");
+	    sql.append("  FROM TBL_KANKOU K ");
+	    sql.append("  INNER JOIN MST_TODOUHUKEN T ");
+	    sql.append("  ON K.KEN_CD = T.KEN_CD ");
+	    sql.append("  INNER JOIN MST_TIHOU TI ");
+	    sql.append("  ON T.TIHOU_CD = TI.TIHOU_CD ");
+	    sql.append("  INNER JOIN TBL_CATEGORY C  ");
+	    sql.append("  ON K.CATEGORY_ID = C.CATEGORY_ID  ");
+	    sql.append("  INNER JOIN (SELECT ROUND(AVG(HYOUKATI), 1) AS HYOUKATI, KANKOU_ID FROM TBL_HYOUKATI GROUP BY KANKOU_ID) H ");
+	    sql.append("  ON K.KANKOU_ID = H.KANKOU_ID ");
+	    sql.append("  INNER JOIN MST_USER U ");
+	    sql.append("  ON K.USER_ID = U.USER_ID ");
+	        //観光地名 
+	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_KANKOU_NM)))) {
+	 			sql.append(" AND K.KANKOU_NM LIKE '%").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("%' ");
+	 		}
+	 		// ユーザ名
+	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_USER_ID)))) {
+	 			sql.append(" AND K.USER_ID LIKE '%").append(formMap.get(KankouConst.KEY_USER_ID)).append("%' ");
+	 		}
+	 		//カテゴリ名
+	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_CATEGORY_KEY)))) {
+	 			sql.append(" AND K.CATEGORY_ID = '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
+	 		}
+	 		//都道府県名
+	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_TODOUHUKEN )))) {
+	 			sql.append(" AND K.KEN_CD = '").append(formMap.get(KankouConst.KEY_TODOUHUKEN )).append("' ");
+	 		}
+	 		//地方名
+	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_TIHOU )))) {
+	 			sql.append(" AND TI.TIHOU_CD = '").append(formMap.get(KankouConst.KEY_TIHOU )).append("' ");
+	 		}
+	    sql.append("  ORDER BY H.HYOUKATI DESC, ");
+	    sql.append("  K.KEN_CD ASC");
+	    result = super.search(sql.toString());
+	    return result;
+	}
+	
+	/**
+	 * 観光テーブルを検索する
+	 * @param formMap
+	 * @param 
+	 * @return 観光テーブル
+	 */
+	public Map<String, String> findKankou(Map<String, Object> formMap, LoginDto loginDto) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT K.FILE_NM ");
+		sql.append("     , K.KANKOU_NM ");
+		sql.append("     , C.CATEGORY_NM ");
+		sql.append("     , T.KEN_NM ");
+		sql.append("     , TI.TIHOU_NM ");
+		sql.append("     , K.SETSUMEI ");
+		sql.append("     , K.REVIEW ");
+		sql.append("     , H.HYOUKATI ");
+		sql.append("     , K.USER_ID ");
+		sql.append("  FROM TBL_KANKOU K ");
+		sql.append("  INNER JOIN MST_TODOUHUKEN T ");
+		sql.append("  ON K.KEN_CD = T.KEN_CD ");
+		sql.append("  INNER JOIN MST_TIHOU TI ");
+		sql.append("  ON T.TIHOU_CD = TI.TIHOU_CD ");
+		sql.append("  INNER JOIN TBL_CATEGORY C ");
+		sql.append("  ON K.CATEGORY_ID = C.CATEGORY_ID ");
+		sql.append("  LEFT JOIN TBL_HYOUKATI H ");
+		sql.append("  ON K.KANKOU_ID = H.KANKOU_ID AND H.USER_ID = '").append(loginDto.getUserId()).append("' ");
+		sql.append("  INNER JOIN MST_USER U ");
+		sql.append("  ON K.USER_ID = U.USER_ID ");
+		sql.append("  WHERE K.KANKOU_ID = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		return super.find(sql.toString());
+	}
+	
+	/**
+	 * 観光テーブルを更新する
+	 * @param formMap
+	 * @param loginDto ログイン情報Dto
+	 */
+	public void updateKankou(Map<String, Object> formMap, LoginDto loginDto) {
+
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE TBL_KANKOU");
+		sql.append(" SET SETSUMEI = '").append(formMap.get(KankouConst.KEY_SETUMEI)).append("' ");
+		sql.append("    ,REVIEW = '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
+		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_IMAGE_STRING)))) {
+			sql.append("    ,FILE_NM = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append(".png'");
+		}
+		sql.append("WHERE KANKOU_ID = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		super.update(sql.toString());
+	}
+	
+	/**
+	 * 観光テーブルを削除する
+	 * @param formMap
+	 */
+	public void delKankou(Map<String, Object> formMap) {
+		StringBuffer sql = new StringBuffer();
+		sql.append(" DELETE TBL_KANKOU ");
+		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+	}
+	
+	
+	/**
+	 * 評価値テーブルを登録する
+	 * @param formMap
+	 * @param loginDto ログイン情報Dto
+	 * @param kankouId 観光Id
+	 */
+	public void insHyoka(Map<String, Object> formMap, LoginDto loginDto, String kankouId) {
+
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO TBL_HYOUKATI ");
+		sql.append("  (KANKOU_ID,");
+		sql.append("   USER_ID,");
+		sql.append("   HYOUKATI) ");
+		sql.append("   VALUES ('").append(kankouId).append("'");
+		sql.append("     ,'").append(loginDto.getUserId()).append("' ");
+		sql.append("     ,'").append(formMap.get(KankouConst.KEY_HYOKA)).append("' )");
+		super.update(sql.toString());
+	}
+	
+	/**
+	 * 評価値テーブルを更新する
+	 * @param formMap
+	 * @param loginDto ログイン情報Dto
+	 * @param kankouId 観光Id
+	 */
+	public void updHyoka(Map<String, Object> formMap, LoginDto loginDto, String kankouId){
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE TBL_HYOUKATI");
+		sql.append("  SET HYOUKATI = '").append(formMap.get(KankouConst.KEY_HYOKA)).append("'");
+		sql.append("  WHERE KANKOU_ID = '").append(kankouId).append("'");
+		sql.append("  AND USER_ID = '").append(loginDto.getUserId()).append("' ");
+		super.update(sql.toString());
+	}
+	
+	/**
+	 * 評価値テーブルを削除する
+	 * @param formMap
+	 * @param loginDto ログイン情報Dto
+	 * @param kankouId 観光Id
+	 */
+	public void delHyoka(Map<String, Object> formMap){
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" DELETE TBL_HYOUKATI ");
+		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		super.update(sql.toString());
 	}
 }

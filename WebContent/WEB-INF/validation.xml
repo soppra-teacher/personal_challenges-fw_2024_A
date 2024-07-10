@@ -56,7 +56,32 @@
 				<arg0 key="userRegistForm.param.passKakunin" resource="true" />
 			</field>
 		</form>
-
+		<!--********************************************************************************************************************-->
+		<!-- 観光地検索画面 -->
+		<form name="kankouListForm">
+			<field property="kankouNm" depends="maxlength">
+				<arg0 key="kankouListForm.param.kankouNm" resource="true" />
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="userId" depends="maxlength,mask">
+				<msg name="mask" key="errors.strHalfChar" />
+				<arg0 key="loginForm.param.userId" resource="true" />
+				<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>12</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z ]+$</var-value>
+				</var>
+			</field>
+		</form>
+		<!--********************************************************************************************************************-->
 		<!-- 観光地登録画面 -->
 		<form name="kankouRegistForm">
 			<!-- 都道府県コンボボックス -->

@@ -1,5 +1,6 @@
 package cashbook.dao.common;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +10,10 @@ import java.util.Map;
  * @author soppra
  */
 public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
-	
+
 	/**
 	 * セレクトボックス用都道府県マスタ取得
-	 * @return 都道府県マスタ
+	 * @return カテゴリマスタ
 	 */
 	public Map<String, String> searchSelectboxTodouhuKen() {
 
@@ -33,7 +34,7 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 
 		return ret;
 	}
-	
+
 	/**
 	 * セレクトボックス用カテゴリマスタ取得
 	 * @return カテゴリマスタ
@@ -56,5 +57,36 @@ public class CommonDaoImpl extends BaseDaoImpl implements CommonDao {
 		}
 
 		return ret;
+	}
+
+	/**
+	 * 地方テーブルから地方コード、地方名を取得する。
+	 *
+	 * @param クラスコード
+	 */
+	public Map<String, String> searchSelectboxTIhou() {
+
+		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
+		Map<String, String> result = new LinkedHashMap<String, String>();
+
+		StringBuffer sql = new StringBuffer();
+		sql.append(" SELECT  TIHOU_CD");
+		sql.append("        ,TIHOU_CD || ':' || TIHOU_NM AS TIHOU ");
+		sql.append(" FROM    MST_TIHOU ");
+
+		mapList = super.search(String.valueOf(sql));
+		if (mapList.size() == 0) {
+			return null;
+
+		} else {
+			// 1つ目に空白をセット
+			result.put("", "");
+
+			// リストの内容分回し、形式を変えて呼び元へ返す
+			for (Map<String, String> map : mapList) {
+				result.put(map.get("TIHOU_CD"), map.get("TIHOU"));
+			}
+			return result;
+		}
 	}
 }

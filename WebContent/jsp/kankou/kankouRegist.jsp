@@ -122,7 +122,7 @@
 							<td class="w-20 text-right top-10"><span class="label-title">
 									写真 </span></td>
 							<td class="w-75 text-left top-10">
-							<html:hidden property="encodingImage" value="" />
+							<html:hidden property="base64Image" value="" />
 								<!-- アップしたい画像をここで指定 -->
 								 <input type="file" id="profileImage" name="profileImage" accept="image/jpeg"" />
 							</td>
@@ -164,7 +164,7 @@
 			        var reader = new FileReader();
 			        reader.onload = function(e) {
 			            document.getElementById('preview').src = e.target.result;
-			            document.kankouRegistForm.encodingImage.value = e.target.result;
+			            document.kankouRegistForm.base64Image.value = e.target.result;
 			        }
 			        reader.readAsDataURL(file);
 			    }

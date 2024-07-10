@@ -15,7 +15,6 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
 import cashbook.dto.common.LoginDto;
-import cashbook.exception.CommonValidateException;
 import cashbook.service.common.LoginService;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
@@ -55,21 +54,22 @@ public class LoginAction extends Action {
 	public ActionForward execute(ActionMapping map, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-	try {
 		// フォームの値を取得
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 
 		// フォームの値をもとに、ログイン処理
 		LoginDto loginDto = loginService.execute(formMap);
 
-		// ログイン成功
-		request.getSession().setAttribute(Const.SESSION_LOGIN_DTO, loginDto);
+		// ログイン情報DTO.ユーザIDが設定されている場合
+		if (loginDto.getUserId() != null) {
 
-		// 処理成功時の遷移先を指定する。
-		return map.findForward(Const.ACTION_FOWARD_SUCCESS);
+			// ログイン成功
+			request.getSession().setAttribute(Const.SESSION_LOGIN_DTO, loginDto);
 
-		
-	} catch (CommonValidateException e) {
+			// 処理成功時の遷移先を指定する。
+			return map.findForward(Const.ACTION_FOWARD_SUCCESS);
+
+		} else {
 
 			// ログイン失敗
 			ActionErrors errors = new ActionErrors();

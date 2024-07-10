@@ -11,8 +11,8 @@
 	<table class="layout-table w-100">
 		<tr>
 			<td class="w-25">
-				<a href = "#" id = "backMenu" class = "btn-green btn-size-m" tabindex = "3" >
-					検索・一覧画面へ戻る
+				<a href = "#" id = "registKankou" class = "btn-green btn-size-m" tabindex = "3" >
+					登録画面へ
 				</a>
 			</td>
 			<td class="w-25">
@@ -25,12 +25,12 @@
 	
 	<script type="text/javascript">
 		//メニュー画面の画面遷移処理
-	    document.getElementById('backMenu').addEventListener('click', function (event) {
+	    document.getElementById('registKankou').addEventListener('click', function (event) {
 	        var msg = "別画面に遷移しますがよろしいですか？";
 	        if (!confirm(msg)) {
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/KankouListInit.do?operation=reserch"
+	        	window.location.href = "http://localhost:8080/Cashbook/KankouRegistInit.do"
 	        }
 	    });
 		//ログアウトの画面遷移処理

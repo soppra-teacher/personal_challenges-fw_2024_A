@@ -19,4 +19,11 @@ public interface CommonDao {
 	 * @return カテゴリマスタ
 	 */
 	public Map<String, String> searchSelectboxCategory();
+	
+	/**
+	 * 地方マスタより、地方コード、地方名称をリスト型で取得する
+	 * @return 地方マスタ
+	 */
+	public Map<String ,String> searchSelectboxTIhou();
+	
 }

@@ -27,6 +27,8 @@ public class Const {
 	public static final String ACTION_FOWARD_BACK_LIST = "backList";
 	/** 遷移先 オペレーション */
 	public static final String ACTION_FOWARD_OPERATION = "operation";
+	/** 遷移先 再検索 */
+	public static final String ACTION_FOWARD_RESERCH = "reserch";
 
 	/** ログイン失敗メッセージ */
 	public static final String MSG_ERRORS_LOGIN_ERROR = "loginForm.error.login";
@@ -40,6 +42,14 @@ public class Const {
 	public static final String MSG_ERRORS_DATA_LOCK = "errors.lock";
 	/** パスワード不一致メッセージ */
 	public static final String MSG_ERRORS_PASS_FUITTI = "userRegistForm.error.userpass";
+	/** 更新失敗メッセージ */
+	public static final String MSG_ERRORS_NO_UPD = "errors.overlap.upd";
+	/** 削除失敗メッセージ */
+	public static final String MSG_ERRORS_NO_DEL = "errors.over.lap.delete";
+	/** 画像削除メッセージ */
+	public static final String MSG_ERRORS_NO_FILE = "errors.overlap.fileUpd";
+	/** 画像更新失敗メッセージ */
+	public static final String MSG_ERRORS_NO_FILE_UPD = "errors.overlap.fileDel";
 
 	/** 登録完了メッセージ */
 	public static final String MSG_SUCCESS_INSERT = "messages.success.insert";
@@ -89,6 +99,17 @@ public class Const {
 	public static final String MSG_ERRORS_KANKOU_DATA = "errors.overlap.kankou";
 	/** 観光ID重複によるトランザクションエラーメッセージ */
 	public static final String MSG_ERRORS_KANKOU_DATA_ID = "errors.overlapId.kankou";
+	/** 写真処理の失敗メッセージ */
+	public static final String MSG_ERRORS_IMAGE_EXEPTION = "errors.image.kankou";
+	
+	
+	/** 観光地更新削除画面 戻り先 変更 */
+	public static final String SESSION_UPD_DEL_BACK = "KANKOU_UPD_DEL_BACK";
+	
+	/** 更新削除画面 DTO  */
+	public static final String SESSION_UPD_DEL_DTO = "KANKOU_UPD_DEL_DTO";
+	
+
 	
 	/************* 画面ID *************/
 	
@@ -96,5 +117,6 @@ public class Const {
 	public static final String DISP_KS001 = "KS001";
     /** KS002:ユーザ登録画面 */
 	public static final String DISP_KS002 = "KS002";
+	
 
 }

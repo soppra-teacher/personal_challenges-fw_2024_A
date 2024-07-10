@@ -29,15 +29,14 @@ public class UserRegistDaoImpl extends BaseDaoImpl implements UserRegistDao{
 		// 組み立てたSQLで登録処理を行う。
 		super.update(sql.toString());
 	}
-
 	/**
 	 * <p><b>
 	 * ユーザ登録画面
 	 * <br>重複チェック
 	 * </b></p>
 	 * @param フォーム項目
-	 * @return 検索処理
 	 */
+	
 	public boolean checkOverlapUserRegist(Map<String, Object> formMap) {
 
 		// 検索用のSQLを組み立てる。
@@ -45,6 +44,7 @@ public class UserRegistDaoImpl extends BaseDaoImpl implements UserRegistDao{
 		sql.append("SELECT M1.USER_ID ");
 		sql.append("  FROM MST_USER M1 ");
 		sql.append(" WHERE M1.USER_ID = '").append(formMap.get(UserConst.KEY_USER_ID)).append("' ");
+		sql.append("   AND ROWNUM = 1 ");
 
 		// 組み立てたSQLで検索処理を行う。
 		return super.find(sql.toString()).size() == 0;
