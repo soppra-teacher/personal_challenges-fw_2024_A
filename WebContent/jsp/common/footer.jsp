@@ -12,7 +12,7 @@
 		<tr>
 			<td class="w-25">
 				<a href = "#" id = "backMenu" class = "btn-green btn-size-m" tabindex = "3" >
-					メニューへ戻る
+					検索・一覧画面へ戻る
 				</a>
 			</td>
 			<td class="w-25">
@@ -30,14 +30,13 @@
 	        if (!confirm(msg)) {
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/MenuInit.do?getKey=aaa"
+	        	window.location.href = "http://localhost:8080/Cashbook/KankouListInit.do?operation=reserch"
 	        }
 	    });
 		//ログアウトの画面遷移処理
 	    document.getElementById('logOut').addEventListener('click', function (event) {
 	        var msg = "別画面に遷移しますがよろしいですか？";
 	        if (!confirm(msg)) {
-
 	        	return;
 	        } else {
 	        	window.location.href = "http://localhost:8080/Cashbook/Logout.do"
