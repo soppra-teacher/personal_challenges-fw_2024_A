@@ -28,8 +28,7 @@
   			<form-property name="setsumei"        type="java.lang.String" />
 			<form-property name="review"           type="java.lang.String" />
 			<form-property name="hyoka"    type="java.lang.String" />
-			<form-property name="pictures"          type="java.lang.String" />
-			<form-property name="revision"        type="java.lang.String" />
+			<form-property name="base64Image"          type="java.lang.String" />
 		</form-bean>
 		
 		<!-- 観光地更新画面 -->

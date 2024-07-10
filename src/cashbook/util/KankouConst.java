@@ -55,8 +55,6 @@ public class KankouConst {
 	public static final String KEY_SETUMEI = "setsumei";
 	/** キー値：都道府県キー */
 	public static final String KEY_ID = "id";
-	/** キー値：エンコーディングイメージ */
-	public static final String KEY_ENCODINGIMAGE = "encodingImage";
 	/** キー値：jpegキー */
 	public static final String KEY_PNG = ".png";
 }
