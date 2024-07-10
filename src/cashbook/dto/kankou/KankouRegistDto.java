@@ -33,7 +33,7 @@ public class KankouRegistDto{
 	private Map<String, String> hyoka;
 	
 	/** 写真パス*/
-	private String pictures;
+	private String base64Image;
 
 
 	public String getTodouhukenKey() {
@@ -114,12 +114,12 @@ public class KankouRegistDto{
 	}
 	
 	
-	public String getPictures() {
-		return pictures;
+	public String getBase64Image() {
+		return base64Image;
 	}
 
-	public void setPictures(String pictures) {
-		this.pictures = pictures;
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
 	}
 
 }
