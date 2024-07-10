@@ -2,11 +2,7 @@ package cashbook.service.kankou;
 
 import static cashbook.util.Const.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -112,35 +108,8 @@ public class KankouServiceImpl implements KankouService {
 				// 評価値登録処理
 				kankouDao.registHyoka(formMap, loginDto);
 				
-				//写真登録
-				if(!CommonUtil.isNull((String)formMap.get(KankouConst.KEY_ENCODINGIMAGE))) {
-					// フォームのbase64Imageフィールドからデータを取得
-					String base64Image = (String) formMap.get(KankouConst.KEY_ENCODINGIMAGE);
-					// Base64データURIスキーム部分を削除
-					String[] parts = base64Image.split(",");
-					String imageData = parts[1];
-					
-					// Base64デコード
-					byte[] imageBytes = Base64.getDecoder().decode(imageData);
-					//MAX(観光ID) + 1.jpegの値をファイル名として設定
-					String fileName =  (formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG);
-					
-					// デコードされたバイト配列をファイルとして保存
-					String filePath = request.getServletContext().getRealPath("/img/") + fileName;
-					
-					try (FileOutputStream fos = new FileOutputStream(filePath)) {
-						fos.write(imageBytes);
-					} catch (FileNotFoundException e) {
-						// アップロードするファイルが見つからなかった時
-						e.printStackTrace();
-					} catch (IOException e) {
-						// その他の例外処理
-						e.printStackTrace();
-					}
-				}
 			}
 		});
-
 	}
 
 	/**

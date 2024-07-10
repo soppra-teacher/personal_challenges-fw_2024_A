@@ -17,8 +17,10 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.exception.CommonValidateException;
+import cashbook.service.common.CommonServiceImpl;
 import cashbook.service.kankou.KankouService;
 import cashbook.util.CommonUtil;
+import cashbook.util.KankouConst;
 
 public class KankouRegistInsAction extends BaseAction{
 	
@@ -62,11 +64,19 @@ public class KankouRegistInsAction extends BaseAction{
 			//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
 			
-		}catch(IOException e){
-			//写真の例外処理が発生した時
-			throw new CommonValidateException(MSG_ERRORS_IMAGE_EXEPTION);
 		}catch(Exception e){
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
+		}
+		
+		// 写真処理
+		if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
+			try {
+				CommonServiceImpl commonImp = new CommonServiceImpl();
+				commonImp.fileUpd(formMap, request);
+			} catch (IOException e) {
+					//写真の例外処理が発生した時
+					throw new CommonValidateException(MSG_ERRORS_IMAGE_EXEPTION);
+			}
 		}
 
 		// 登録成功メッセージをセッションに設定
