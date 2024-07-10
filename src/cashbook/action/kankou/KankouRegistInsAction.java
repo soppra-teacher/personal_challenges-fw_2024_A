@@ -69,7 +69,7 @@ public class KankouRegistInsAction extends BaseAction{
 		}
 		
 		// 写真処理
-		if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
+		if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_ENCODINGIMAGE))) {
 			try {
 				CommonServiceImpl commonImp = new CommonServiceImpl();
 				commonImp.fileUpd(formMap, request);

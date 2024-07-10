@@ -23,7 +23,7 @@ public class KankouConst {
 	public static final String KEY_REVIEW = "review";
 	/** キー値：評価 */
 	public static final String KEY_HYOKA = "hyoka";
-	/** キー値：性別区分キー */
+	/** キー値：写真 */
 	public static final String KEY_PICTURES = "pictures";	
 	/** フォーム名(観光地検索・一覧表示画面) */
 	public static final String FORM_KANKOU_LIST = "kankouListForm";
