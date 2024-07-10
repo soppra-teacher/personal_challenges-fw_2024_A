@@ -24,8 +24,32 @@ public class CommonServiceImpl implements CommonService {
 		// Base64デコード
 		byte[] imageBytes = Base64.getDecoder().decode(imageData);
 		// ファイル名を設定
-		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + ".png";
+		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.KEY_PNG;
 
+		// デコードされたバイト配列をファイルとして保存
+		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;
+		FileOutputStream fos = new FileOutputStream(filePath);
+		fos.write(imageBytes);
+	}
+	
+	/**
+	 * 登録用のメソッド
+	 * @param formMap
+	 * @return request リクエスト
+	 */
+	public void fileIns(Map<String, Object> formMap,  HttpServletRequest request) throws IOException {
+		
+		// フォームのbase64Imageフィールドからデータを取得
+		String base64Image = (String) formMap.get(KankouConst.KEY_IMAGE_STRING);
+		// Base64データURIスキーム部分を削除
+		String[] parts = base64Image.split(",");
+		String imageData = parts[1];
+		
+		// Base64デコード
+		byte[] imageBytes = Base64.getDecoder().decode(imageData);
+		//MAX(観光ID) + 1.jpegの値をファイル名として設定
+		String fileName =  (formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG);
+		
 		// デコードされたバイト配列をファイルとして保存
 		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;
 		FileOutputStream fos = new FileOutputStream(filePath);
