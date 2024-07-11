@@ -172,7 +172,7 @@
 		* 観光検索一覧画面     *
 		****************************
 		-->
-		<!-- 初期表示 --><!--いじる-->
+		<!-- 初期表示 -->
 		<action
 			path="/KankouListInit"
 			type="org.springframework.web.struts.DelegatingActionProxy"
