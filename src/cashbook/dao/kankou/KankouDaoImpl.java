@@ -111,9 +111,8 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		Map<String, String> result;
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COALESCE(MAX(KANKOU_ID) + 1, 1) AS MAX_KANKOUID ");
+		sql.append("SELECT COALESCE(MAX(KANKOU_ID), 0) + 1 AS MAX_KANKOUID ");
 		sql.append("  FROM TBL_KANKOU ");
-		sql.append("  FETCH NEXT 1 ROWS ONLY ");
 
 		//SQLの結果をresultに格納する。
 		result = super.find(sql.toString());
