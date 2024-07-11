@@ -24,7 +24,7 @@ public interface KankouDao {
 	/**
 	 * 重複チェック
 	 * @param formMap
-	 * @return
+	 * @return true：重複あり、false：重複なし
 	 */
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto);
 	
@@ -38,7 +38,7 @@ public interface KankouDao {
 	 * 観光地IDのMAX値を取得
 	 * @return 観光地テーブルの観光地IDの最大値 + 1
 	 */
-	public String getmaxKankou();
+	public String getMaxKankou();
 	
 	/**
 	 * 観光地情報を一覧を検索する

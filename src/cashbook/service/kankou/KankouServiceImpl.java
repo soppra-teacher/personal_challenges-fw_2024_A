@@ -62,7 +62,7 @@ public class KankouServiceImpl implements KankouService {
 	/**
 	 * 観光地登録画面初期表示メソッド
 	 * @param  formMap 
-	 * @return result
+	 * @return 都道府県・カテゴリコンボボックスの値
 	 */
 	public KankouRegistDto registInit(Map<String, Object> formMap) {
 
@@ -79,13 +79,13 @@ public class KankouServiceImpl implements KankouService {
 
 	/**
 	 * 観光地登録メソッド
-	 * @param
+	 * @param formMap
+	 * @param loginDto
+	 * @param request
 	 * @throws Exception
 	 */
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
-
 		// 観光地・評価値登録
-
 		// 観光地情報存在チェック
 		if (!kankouDao.checkOverlapKankou(formMap, loginDto)) {
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
@@ -95,12 +95,11 @@ public class KankouServiceImpl implements KankouService {
 
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
-
 				//テーブルロック
 				kankouDao.lockKankou();
 				
 				//formMapに、観光IDの最大値をセット
-				formMap.put(KankouConst.KEY_KANKOU_ID, kankouDao.getmaxKankou());
+				formMap.put(KankouConst.KEY_KANKOU_ID, kankouDao.getMaxKankou());
 				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);

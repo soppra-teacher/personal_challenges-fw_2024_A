@@ -106,7 +106,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	 * 観光地IDの最大値を取得
 	 * @return 観光地IDの最大値 + 1 の値
 	 */
-	public String getmaxKankou(){
+	public String getMaxKankou(){
 		
 		Map<String, String> result;
 		

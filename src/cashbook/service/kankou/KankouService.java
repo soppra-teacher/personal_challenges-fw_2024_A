@@ -12,14 +12,14 @@ import cashbook.dto.kankou.KankouUpdDelDto;
 public interface KankouService {
 
 	/**
-	 *
+	 * 都道府県・カテゴリコンボボックスの初期表示処理
 	 * @param formMap
-	 * @return
+	 * @return  都道府県・カテゴリコンボボックスの値
 	 */
 	public KankouRegistDto registInit(Map<String, Object> formMap);
 
 	/**
-	 *
+	 * 観光地・評価値の登録処理
 	 * @param formMap
 	 * @param loginDto
 	 * @throws Exception
