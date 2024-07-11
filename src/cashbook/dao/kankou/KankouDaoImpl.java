@@ -36,7 +36,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_SETSUMEI)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
 		//観光IDのマックス値＋1の値.jpegを写真の名前として追加 
-		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.KEY_PNG).append("' ");
+		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.IMAGE_PNG).append("' ");
 		sql.append(" ) ");
 
 		super.update(sql.toString());

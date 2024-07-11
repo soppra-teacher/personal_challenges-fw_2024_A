@@ -25,7 +25,7 @@ public class CommonServiceImpl implements CommonService {
 		// Base64デコード
 		byte[] imageBytes = Base64.getDecoder().decode(imageData);
 		// ファイル名を設定
-		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.KEY_PNG;
+		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.IMAGE_PNG;
 
 		// デコードされたバイト配列をファイルとして保存
 		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;
