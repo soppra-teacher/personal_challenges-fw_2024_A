@@ -28,7 +28,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , REVIEW ");
 		sql.append("   , FILE_NM ");
 		sql.append(" ) VALUES ( ");
-		sql.append("    '").append(formMap.get(KankouConst.KEY_ID)).append("' ");
+		sql.append("    '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
 		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_TODOUFUKEN_KEY)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
@@ -36,7 +36,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_SETSUMEI)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
 		//観光IDのマックス値＋1の値.jpegを写真の名前として追加 
-		sql.append("   , '").append(formMap.get(KankouConst.KEY_ID) + KankouConst.KEY_PNG).append("' ");
+		sql.append("   , '").append(formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.KEY_PNG).append("' ");
 		sql.append(" ) ");
 
 		super.update(sql.toString());
@@ -55,7 +55,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 		sql.append("   , USER_ID ");
 		sql.append("   , HYOUKATI ");
 		sql.append(" ) VALUES ( ");
-		sql.append("    '").append(formMap.get(KankouConst.KEY_ID)).append("' ");
+		sql.append("    '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
 		sql.append("   , '").append(loginDto.getUserId()).append("' ");
 		sql.append("   , '").append(formMap.get(KankouConst.KEY_HYOKA)).append("' ");
 		sql.append(" ) ");

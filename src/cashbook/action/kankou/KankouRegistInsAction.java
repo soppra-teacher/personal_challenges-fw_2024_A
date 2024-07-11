@@ -72,7 +72,7 @@ public class KankouRegistInsAction extends BaseAction{
 		if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
 			try {
 				CommonServiceImpl commonImp = new CommonServiceImpl();
-				commonImp.fileIns(formMap, request);
+				commonImp.fileUpdIns(formMap, request);
 			} catch (IOException e) {
 				//写真の例外処理が発生した時
 				throw new CommonValidateException(MSG_ERRORS_IMAGE_EXEPTION);

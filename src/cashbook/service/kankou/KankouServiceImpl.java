@@ -100,7 +100,7 @@ public class KankouServiceImpl implements KankouService {
 				kankouDao.lockKankou();
 				
 				//formMapに、観光IDの最大値をセット
-				formMap.put(KankouConst.KEY_ID, kankouDao.getmaxKankou());
+				formMap.put(KankouConst.KEY_KANKOU_ID, kankouDao.getmaxKankou());
 				
 				// 観光地登録処理
 				kankouDao.registKankou(formMap, loginDto);

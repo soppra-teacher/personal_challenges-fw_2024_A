@@ -96,7 +96,7 @@ public class KankouUpdDelAction extends BaseAction {
 			if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
 				try {
 					CommonServiceImpl commonImp = new CommonServiceImpl();
-					commonImp.fileUpd(formMap, request);
+					commonImp.fileUpdIns(formMap, request);
 				} catch (IOException e) {
 					throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE);
 				}

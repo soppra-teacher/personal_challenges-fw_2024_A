@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface CommonService {
 	
-	public void fileUpd(Map<String, Object> formMap, HttpServletRequest request) throws IOException;
+	public void fileUpdIns(Map<String, Object> formMap, HttpServletRequest request) throws IOException;
 	
-	public void fileIns(Map<String, Object> formMap, HttpServletRequest request) throws IOException;
 }
