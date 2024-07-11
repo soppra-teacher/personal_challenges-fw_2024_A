@@ -9,15 +9,14 @@
 <html:html lang="ja">
 <head>
 
-<meta content="ja" http-equiv="Content-Language" />
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>観光地登録画面</title>
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouRegist.css" />
-
-
-<script type="text/javascript"></script>
-
+	<meta content="ja" http-equiv="Content-Language" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<title>
+			観光地検索システム 観光地登録画面
+	</title>
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouRegist.css" />
+	<script type="text/javascript"></script>
 </head>
 
 <body>

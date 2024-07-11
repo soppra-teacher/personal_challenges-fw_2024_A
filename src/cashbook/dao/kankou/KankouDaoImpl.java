@@ -123,7 +123,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	
 	/**
 	 * 観光地情報を一覧を検索する
-	 * @param formMpa
+	 * @param formMap
 	 * @return 検索結果
 	 */
 	public List<Map<String, String>> searchKankou(Map<String, Object> formMap) {
@@ -147,7 +147,7 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	    sql.append("  ON K.KANKOU_ID = H.KANKOU_ID ");
 	    sql.append("  INNER JOIN MST_USER U ");
 	    sql.append("  ON K.USER_ID = U.USER_ID ");
-	        //観光地名 
+	        // 観光地名 
 	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_KANKOU_NM)))) {
 	 			sql.append(" AND K.KANKOU_NM LIKE '%").append(formMap.get(KankouConst.KEY_KANKOU_NM)).append("%' ");
 	 		}
@@ -155,15 +155,15 @@ public class KankouDaoImpl extends BaseDaoImpl implements KankouDao {
 	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_USER_ID)))) {
 	 			sql.append(" AND K.USER_ID LIKE '%").append(formMap.get(KankouConst.KEY_USER_ID)).append("%' ");
 	 		}
-	 		//カテゴリ名
+	 		// カテゴリ名
 	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_CATEGORY_KEY)))) {
 	 			sql.append(" AND K.CATEGORY_ID = '").append(formMap.get(KankouConst.KEY_CATEGORY_KEY)).append("' ");
 	 		}
-	 		//都道府県名
+	 		// 都道府県名
 	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_TODOUHUKEN )))) {
 	 			sql.append(" AND K.KEN_CD = '").append(formMap.get(KankouConst.KEY_TODOUHUKEN )).append("' ");
 	 		}
-	 		//地方名
+	 		// 地方名
 	 		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_TIHOU )))) {
 	 			sql.append(" AND TI.TIHOU_CD = '").append(formMap.get(KankouConst.KEY_TIHOU )).append("' ");
 	 		}

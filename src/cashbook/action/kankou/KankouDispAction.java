@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
 /**
- * 個人マスタ登録画面 ディスパッチアクションクラス
+ * 観光地登録画面 ディスパッチアクションクラス
  * @author soppra
  */
 public class KankouDispAction extends DispatchAction {

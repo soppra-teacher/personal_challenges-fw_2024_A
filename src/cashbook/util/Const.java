@@ -106,17 +106,8 @@ public class Const {
 	/** 観光地更新削除画面 戻り先 変更 */
 	public static final String SESSION_UPD_DEL_BACK = "KANKOU_UPD_DEL_BACK";
 	
-	/** 更新削除画面 DTO  */
+	/** 更新削除画面 DTO */
 	public static final String SESSION_UPD_DEL_DTO = "KANKOU_UPD_DEL_DTO";
-	
 
-	
-	/************* 画面ID *************/
-	
-	/** KS001:ログイン画面 */
-	public static final String DISP_KS001 = "KS001";
-    /** KS002:ユーザ登録画面 */
-	public static final String DISP_KS002 = "KS002";
-	
 
 }

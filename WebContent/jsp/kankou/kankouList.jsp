@@ -12,7 +12,7 @@
 	<meta content="ja" http-equiv="Content-Language" />
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>
-		観光地検索システム・検索一覧画面
+			観光地検索システム 検索・一覧画面
 	</title>
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/kankouListSearch.css" />
@@ -90,7 +90,7 @@
 							<span class="label-title">
 								都道県名
 							</span>
-							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s-193px" >
+							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s-w193" >
 								<html:optionsCollection name="viewBean" property="todouhuken" value="key" label="value" />
 							</html:select>
 						</td>
@@ -99,7 +99,6 @@
 				</table>
 				
 		
-						
 						<td class="w-25">
 							<html:button property="search" onclick="callAction(this.form, 'search');"
 								styleClass="btn-blue btn-size-m padding-b-1">
