@@ -89,3 +89,9 @@ td.login_field {
 .font-s{
 	font-family:'メイリオ';
 }
+
+/* sample画像の位置調整 */
+.image-sample{
+	max-width: 75%;
+}
+

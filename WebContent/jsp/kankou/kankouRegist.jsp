@@ -127,10 +127,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="w-20 text-right margin-15"><span class="label-title">
+							<td class="w-20 text-right margin-15 "><span class="label-title">
 							</span></td>
 							<td class="w-75 text-left">
-								<img id="preview" src="<%=request.getContextPath()%>/img/login.png" style="max-width: 100%; " alt="Default Image"/>
+								<img id="preview" src="<%=request.getContextPath()%>/img/sample_bgYellow.png" class="image-sample" alt="Default Image"/>
 							</td>
 						</tr>
 					</table>
