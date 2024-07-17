@@ -239,8 +239,8 @@
 			validate="false"
 			input="/jsp/kankou/kankouUpdDel.jsp"
 			scope="request">
-<!--			<forward name="success" path="/KankouUpdDelInit.do" redirect="true" />-->
-			<forward name="success" path="/jsp/kankou/kankouUpdDel.jsp" />
+			<forward name="success" path="/KankouUpdDelInit.do" />
+			<!--<forward name="success" path="/jsp/kankou/kankouUpdDel.jsp" />-->
 			<forward name="delete" path="/KankouListSearch.do" />
 			<forward name="error" path="/jsp/kankou/kankouUpdDel.jsp" />
 		</action>

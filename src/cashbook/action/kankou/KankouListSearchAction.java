@@ -15,9 +15,9 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouListDto;
-import cashbook.service.kankou.KankouService;
+import cashbook.service.kankou.KankouListService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouListConst;
 
 /**
  * 観光地検索画面アクションクラス
@@ -26,14 +26,14 @@ import cashbook.util.KankouConst;
 public class KankouListSearchAction extends BaseAction {
 
 	/** 観光地検索サービス */
-	private KankouService kankouService;
+	private KankouListService kankouListService;
 
 	/**
 	 * 観光サービスを設定します。
-	 * @param kankouService 観光テーブルサービス
+	 * @param kankouListService 観光テーブルサービス
 	 */
-	public void setKankouService(KankouService kankouService) {
-		this.kankouService = kankouService;
+	public void setKankouListService(KankouListService kankouListService) {
+		this.kankouListService = kankouListService;
 	}
 
 	/**
@@ -59,10 +59,10 @@ public class KankouListSearchAction extends BaseAction {
 		request.getSession().setAttribute(ACTION_FOWARD_RESERCH, formMap);
 
 		// 観光地検索画面 検索処理
-		KankouListDto dto = kankouService.listSearch(formMap);
+		KankouListDto dto = kankouListService.listSearch(formMap);
 
 		// 取得した情報をリクエストに登録
-		request.setAttribute(KankouConst.FORM_KANKOU_LIST, dto);
+		request.setAttribute(KankouListConst.FORM_KANKOU_LIST, dto);
 		// 取得した情報をセッションに登録
 		request.getSession().setAttribute(SESSION_LIST_DTO_KANKOU, dto);
 

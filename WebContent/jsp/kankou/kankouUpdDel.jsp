@@ -26,7 +26,6 @@
 
 	<bean:define id="inputBean" name="kankouUpdDelForm" />
 	<bean:define id="viewBean" name="KANKOU_UPD_DEL_DTO" />
-	<bean:define id="backAction" name="KANKOU_UPD_DEL_BACK" type="java.lang.String" />
 
 	<div class="formdesign text-center padding-t-1">
 
@@ -42,7 +41,6 @@
 			<html:hidden name="viewBean" property="hyokaJudge" value="" />
 			<html:hidden name="viewBean" property="userId" />
 			<html:hidden property="base64Image"  value=""/>
-			<html:hidden name="inputBean" property="kankouId"  value=""/>
 			
 			<div class="bg"></div>
 			<div class="bg bg2"></div>
@@ -63,14 +61,11 @@
 				<div>				
 				<table>
 					<tr>
-			    <!--<td class="w-25 text-right">
-			        <span class="label-title">
-			            <!-- ƒ‰ƒxƒ‹‚Ìƒ^ƒCƒgƒ‹‚ğ‚±‚±‚É‹LÚ
-			        </span> -->
+
 					    </td>
 						<td class="w-75 text-left">
 						    <div class="image-style-div">
-						        <img id="preview" src="<%=request.getContextPath()%>/img/kankouti/<bean:write name="viewBean" property="imagePath"/>" class="image-style-img" alt="Ê^‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB"/>
+						        <img id="preview" src="<%=request.getContextPath()%>/img/kankouti/<bean:write name="viewBean" property="imagePath"/>" class="image-style-img" alt="Ê^‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ"/>
 						    </div>
 						</td>
 					</tr>

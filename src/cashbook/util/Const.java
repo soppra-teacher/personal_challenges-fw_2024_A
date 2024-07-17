@@ -102,12 +102,16 @@ public class Const {
 	/** 写真処理の失敗メッセージ */
 	public static final String MSG_ERRORS_IMAGE_EXEPTION = "errors.image.kankou";
 	
-	
 	/** 観光地更新削除画面 戻り先 変更 */
 	public static final String SESSION_UPD_DEL_BACK = "KANKOU_UPD_DEL_BACK";
 	
 	/** 更新削除画面 DTO */
 	public static final String SESSION_UPD_DEL_DTO = "KANKOU_UPD_DEL_DTO";
-
+	/** 観光地更新削除画面 再検索値 */
+	public static final String SESSION_UPD_DEL_RE_SEARCH_KANKOU = "SESSION_UPD_DEL_RE_SEARCH_KANKOU";
+	/** 観光地登録画面 メッセージ */
+	public static final String SESSION_UPD_DEL_MESSAGE_KANKOU = "KANKOU_UPD_DEL_MESSAGE";
+	/** 観光地更新削除画面 戻り先 変更 */
+	public static final String SESSION_REGIST_BACK_KOJIN = "KANKOU_UPD_DEL_BACK";
 
 }

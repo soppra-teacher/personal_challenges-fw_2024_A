@@ -68,6 +68,20 @@
       <ref local="dataSource" />
     </property>
   </bean>
+  
+      <!-- 観光地検索画面-->
+   <bean id="KankouListDaoId" class="cashbook.dao.kankou.KankouListDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+        <!-- 観光地更新削除画面-->
+   <bean id="KankouUpdDelDaoId" class="cashbook.dao.kankou.KankouUpdDelDaoImpl">
+    <property name="dataSource">
+      <ref local="dataSource" />
+    </property>
+  </bean>
+  
 
   <!-- Service -->
   <!-- ログイン画面 -->
@@ -96,6 +110,26 @@
       <ref local="transactionTemplateRequired" />
     </property>
   </bean>
+  
+      <!-- 観光地検索画面 -->
+  <bean id="KankouListServiceId" class="cashbook.service.kankou.KankouListServiceImpl">
+    <property name="commonDao">
+      <ref local="CommonDaoId" />
+    </property>
+    <property name="kankouListDao">
+      <ref local="KankouListDaoId" />
+    </property>
+  </bean>
+  
+      <!-- 更新削除 -->
+  <bean id="KankouUpdDelServiceId" class="cashbook.service.kankou.KankouUpdDelServiceImpl">
+    <property name="kankouUpdDelDao">
+      <ref local="KankouUpdDelDaoId" />
+    </property>
+   <property name="transactionTemplate">
+      <ref local="transactionTemplateRequired" />
+    </property>
+  </bean>
 
   <!-- Action -->
   <!-- ログイン画面 -->
@@ -114,25 +148,25 @@
   
       <!-- 観光地検索画面 -->
   <bean name="/KankouListInit" class="cashbook.action.kankou.KankouListInitAction">
-    <property name="kankouService">
-      <ref local="KankouServiceId" />
+    <property name="kankouListService">
+      <ref local="KankouListServiceId" />
     </property>
   </bean>
   <bean name="/KankouListSearch" class="cashbook.action.kankou.KankouListSearchAction">
-    <property name="kankouService">
-      <ref local="KankouServiceId" />
+    <property name="kankouListService">
+      <ref local="KankouListServiceId" />
     </property>
   </bean>
   
   <!--  観光地更新削除  -->
 	<bean name="/KankouUpdDelInit" class="cashbook.action.kankou.KankouUpdDeInitAction">
-		<property name="kankouService">
-			<ref local="KankouServiceId"/>
+		<property name="kankouUpdDelService">
+			<ref local="KankouUpdDelServiceId"/>
 		</property>
 	</bean>
 	<bean name="/KankouUpdDel" class="cashbook.action.kankou.KankouUpdDelAction">
-		<property name="kankouService">
-			<ref local="KankouServiceId"/>
+		<property name="kankouUpdDelService">
+			<ref local="KankouUpdDelServiceId"/>
 		</property>
 	</bean>
   

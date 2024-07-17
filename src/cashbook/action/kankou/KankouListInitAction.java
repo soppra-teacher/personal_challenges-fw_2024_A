@@ -15,9 +15,9 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouListDto;
-import cashbook.service.kankou.KankouService;
+import cashbook.service.kankou.KankouListService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouListConst;
 
 
 /**
@@ -27,14 +27,14 @@ import cashbook.util.KankouConst;
 public class KankouListInitAction extends BaseAction {
 
 	/** 観光サービス */
-	private KankouService kankouService;
+	private KankouListService kankouListService;
 
 	/**
 	 * 観光サービスを設定します。
-	 * @param kankouService 観光テーブルサービス
+	 * @param kankouListService 観光テーブルサービス
 	 */
-	public void setKankouService(KankouService kankouService) {
-		this.kankouService = kankouService;
+	public void setKankouListService(KankouListService kankouListService) {
+		this.kankouListService = kankouListService;
 	}
 
 	/**
@@ -57,10 +57,10 @@ public class KankouListInitAction extends BaseAction {
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 		
 		// 観光地検索初期表示情報を取得
-		KankouListDto dto = kankouService.listInit(formMap, request);
+		KankouListDto dto = kankouListService.listInit(formMap, request);
 
 		// 取得した情報をリクエストに設定
-		request.setAttribute(KankouConst.FORM_KANKOU_LIST, dto);
+		request.setAttribute(KankouListConst.FORM_KANKOU_LIST, dto);
 		// 取得した情報をセッションに設定
 		request.getSession().setAttribute(SESSION_LIST_DTO_KANKOU, dto);
 		// 処理成功時の遷移先を指定する。

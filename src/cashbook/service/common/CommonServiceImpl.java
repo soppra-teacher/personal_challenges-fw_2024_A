@@ -31,6 +31,7 @@ public class CommonServiceImpl implements CommonService {
 		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;
 		FileOutputStream fos = new FileOutputStream(filePath);
 		fos.write(imageBytes);
+		fos.close();
 	}
 
 }

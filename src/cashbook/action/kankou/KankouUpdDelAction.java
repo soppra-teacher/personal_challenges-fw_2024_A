@@ -15,19 +15,16 @@ import javax.transaction.TransactionRolledbackException;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
-import cashbook.dto.kankou.KankouUpdDelDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.service.common.CommonServiceImpl;
-import cashbook.service.kankou.KankouService;
+import cashbook.service.kankou.KankouUpdDelService;
 import cashbook.util.CommonUtil;
 import cashbook.util.Const;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouUpdDelConst;
 
 /**
  * 観光地更新削除・画面・更新クションクラス
@@ -36,14 +33,14 @@ import cashbook.util.KankouConst;
 public class KankouUpdDelAction extends BaseAction {
 
 	/** 観光テーブルサービス */
-	private KankouService kankouService;
+	private KankouUpdDelService kankouUpdDelService;
 
 	/**
 	 * テーブルサービスを設定します。
-	 * @param kankouService 観光サービス
+	 * @param kankouUpdDelService 観光サービス
 	 */
-	public void setKankouService(KankouService kankouService) {
-		this.kankouService = kankouService;
+	public void setKankouUpdDelService(KankouUpdDelService kankouUpdDelService) {
+		this.kankouUpdDelService = kankouUpdDelService;
 	}
 
 	/**
@@ -67,59 +64,53 @@ public class KankouUpdDelAction extends BaseAction {
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 
 		//観光IDのIDを取得
-		String kankouId = (String) request.getSession().getAttribute("kankouId");
-		formMap.put(KankouConst.KEY_KANKOU_ID, kankouId);
+		String kankouId = (String) request.getSession().getAttribute(KankouUpdDelConst.KEY_KANKOU_ID);
+		formMap.put(KankouUpdDelConst.KEY_KANKOU_ID, kankouId);
 		//評価値を取得
-		String compareHyoka = (String) request.getSession().getAttribute(KankouConst.KEY_COMPARE_HYOKA);
+		String compareHyoka = (String) request.getSession().getAttribute(KankouUpdDelConst.KEY_COMPARE_HYOKA);
 
 		String operation = request.getParameter(ACTION_FOWARD_OPERATION);
 
-		//メッセージ表示
-		String messageKey = "";
 		//登録
 		if (Const.ACTION_FOWARD_INSERT.equals(operation)) {
 			//評価値登録処理
-			kankouService.hyokaIns(formMap, loginDto, kankouId);
+			kankouUpdDelService.hyokaIns(formMap, loginDto, kankouId);
 			
 			//登録メッセージ
-			messageKey = MSG_SUCCESS_INSERT;
+			request.getSession().setAttribute(SESSION_UPD_DEL_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
 		//更新処理
 		} else if (Const.ACTION_FOWARD_UPDATE.equals(operation)) {
 
 			// 更新処理(評価値テーブル、観光地テーブル)
 			try {
-				kankouService.update(formMap, loginDto, request, kankouId, compareHyoka);
+				kankouUpdDelService.update(formMap, loginDto, request, kankouId, compareHyoka);
 			} catch (Exception e) {
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_UPD);
 			}
-			// 写真更新処理
-			if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
+			// 写真が新しく選ばれているかを判断する。
+			if (!CommonUtil.isNull((String) formMap.get(KankouUpdDelConst.KEY_IMAGE_STRING))) {
 				try {
+					//写真を更新するメソッドの呼び出し。
 					CommonServiceImpl commonImp = new CommonServiceImpl();
 					commonImp.fileUpdIns(formMap, request);
 				} catch (IOException e) {
-					throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE);
 				}
 			}
 
-			//セッションの評価値の値を更新する。
-			String hyoka = CommonUtil.getStr(formMap.get(KankouConst.KEY_HYOKA));
-			request.getSession().setAttribute(KankouConst.KEY_COMPARE_HYOKA, hyoka);
-
 			//更新メッセージ
-			messageKey = MSG_SUCCESS_UPDATE;
+			request.getSession().setAttribute(SESSION_UPD_DEL_MESSAGE_KANKOU, MSG_SUCCESS_UPDATE );
 		//削除処理
 		} else if (Const.ACTION_FOWARD_DELETE.equals(operation)) {
 
 			// 削除処理(評価値テーブル、観光地テーブル)
 			try {
-				kankouService.delete(formMap, request);
+				kankouUpdDelService.delete(formMap, request);
 			} catch (TransactionRolledbackException e) {
 				//削除失敗
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_DEL);
 			}
 			//写真削除処理
-			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + ".png");
+			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + KankouUpdDelConst.IMAGE_PNG);
 			try {
 				Files.delete(destPath);
 			} catch (IOException e) {
@@ -129,18 +120,8 @@ public class KankouUpdDelAction extends BaseAction {
 			return map.findForward(ACTION_FOWARD_DELETE);
 		}
 
-		//メッセージの表示
-		if (!CommonUtil.isNull(messageKey)) {
-			ActionMessages messages = new ActionMessages();
-			messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
-			saveMessages(request, messages);
-		}
-		//再検索処理
-		KankouUpdDelDto dto = kankouService.updDelInit(formMap, loginDto);
-		// 取得した情報をリクエストに設定
-		request.setAttribute(KankouConst.FORM_KANKOU_UPD_DEL, dto);
-		// 取得した情報をセッションに設定
-		request.getSession().setAttribute(SESSION_UPD_DEL_DTO, dto);
+		// 検索条件をセッションに保持（再検索用）
+		request.getSession().setAttribute(SESSION_UPD_DEL_RE_SEARCH_KANKOU, formMap);
 
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}
