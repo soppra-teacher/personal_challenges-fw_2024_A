@@ -81,7 +81,7 @@
 				        ƒLƒƒƒ“ƒZƒ‹
 				    </html:button>
 				</logic:equal>
-                    <table class="layout-table w-100">
+                    <table class="layout-table w-100 top-10">
 						<tr>
 							<td class="w-25 text-right">
 							<span class="label-title">
@@ -176,7 +176,13 @@
 
 					</table>
 				</div>
-
+				<div class="absoluteRelativeimg">
+				    <img src="<%=request.getContextPath()%>/img/chara_sit_arm.png" class="charasitArm-img">
+					<img src="<%=request.getContextPath()%>/img/chara_sit.png" class="charasit-img">
+					<img src="<%=request.getContextPath()%>/img/chara_udeage.png" class="charaudeage-img">
+					<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar-img">
+				
+				</div>
 				<div class="block-center">
 					<logic:equal name="viewBean" property="hyokaJudge" value="0">
     					<html:button property="insert" styleClass="btn-blue btn-size-m" onclick="callAction(this.form, 'insert');">

@@ -75,14 +75,14 @@
 							<span class="label-title">
 								ƒJƒeƒSƒŠ–¼
 							</span>
-							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s-w200">
+							<html:select name="inputBean" property="categoryKey" styleClass="textbox-s-w215">
 								<html:optionsCollection name="viewBean" property="category" value="key" label="value" />
 							</html:select>
 						
 							<span class="label-title">
 								”ª’n•û–¼
 							</span>
-							<html:select name="inputBean" property="tihouKey" styleClass="textbox-s-w200">
+							<html:select name="inputBean" property="tihouKey" styleClass="textbox-s-w185">
 								<html:optionsCollection name="viewBean" property="tihou" value="key" label="value" />
 							</html:select>
 						</td>
@@ -90,7 +90,7 @@
 							<span class="label-title">
 								“s“¹Œ§–¼
 							</span>
-							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s-w193" >
+							<html:select name="inputBean" property="todouhukenKey" styleClass="textbox-s-w185" >
 								<html:optionsCollection name="viewBean" property="todouhuken" value="key" label="value" />
 							</html:select>
 						</td>
@@ -161,7 +161,11 @@
 						</logic:notEmpty>
 					</table>
 				</div>
-
+				<div class="absoluteRelativeimg">
+						<img src="<%=request.getContextPath()%>/img/chara_kotira.png" class="charakotira-img">
+						<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar-img">
+						<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar2-img">
+					</div>
 				<jsp:include page="/jsp/common/footerList.jsp" />
 			</div>
 		</html:form>

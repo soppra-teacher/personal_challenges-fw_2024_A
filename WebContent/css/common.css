@@ -881,3 +881,13 @@ pa
 	position: relative;
 	top: -40px;
 }
+
+/* キャラクター画像の位置調整 */
+.absoluteimg{
+	position:fixed;
+}
+
+/* キャラクター画像の位置調整 */
+.absoluteRelativeimg{
+	position:relative;
+}

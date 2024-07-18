@@ -77,8 +77,8 @@
 }
 
 /* テキストボックスのデザイン（小）検索一覧画面用 */
-.textbox-s-w193{
-	width:193px;
+.textbox-s-w185{
+	width:185px;
 	background:#f5f5f5;
 	font-size: 16px;
 	border:0;
@@ -89,8 +89,8 @@
 }
 
 /* テキストボックスのデザイン（小）検索一覧画面用 */
-.textbox-s-w200{
-	width:200px;
+.textbox-s-w215{
+	width:215px;
 	background:#f5f5f5;
 	font-size: 16px;
 	border:0;
@@ -111,3 +111,132 @@
 	border:1px solid #e2e2e2;
 }
 
+/* sample画像の位置調整 */
+.image-sample{
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position-x: 300px;
+	background-position-y: 20px;
+	max-width: 5%;
+}
+
+/* chara_kotira.pngの位置調整 */
+.charakotira-img{
+	position: absolute;
+	bottom: 286px;
+	right: 316px;
+	width: 110px;
+	height: auto;
+	animation-name: kotira-img;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+ 
+}
+
+/* chara_kotira.pngのアニメーション */
+@keyframes kotira-img {
+ 0% {
+	transform: rotate(-5deg);
+ }
+ 50% {
+	transform: rotate(-15deg);
+ }
+ 100% {
+	transform: rotate(-5deg);
+ }
+}
+
+/* chara_sit.png・chara_sit_arm.pngの位置調整 */
+.charasit-img,.charasitArm-img{
+	bottom: 306px;
+	right: -427px;
+	width: 108px;
+	height: auto;
+  
+}
+
+/* chara_sit_arm.pngのアニメーション */
+.charasitArm-img{
+	animation-name: arm-img;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+
+}
+
+/* chara_sit_arm.pngの位置調整 */
+@keyframes arm-img {
+  0% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(15deg);
+  }
+
+  80% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+
+/* rollingstar.pngの位置調整 */
+.rollingstar-img{
+	position: absolute;
+	bottom: 500px;
+	right: 580px;
+	width: 34px;
+	height: auto;
+
+	animation-name: rollinganime;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+	transform-origin: inherit;
+  
+}
+
+/* rollingstar.pngの位置調整 */
+.rollingstar2-img{
+	position: absolute;
+	bottom: 500px;
+	right: 367px;
+	width: 34px;
+	height: auto;
+
+	animation-name: rollinganime;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+	transform-origin: inherit;
+}
+
+/* rollingstar.pngのアニメーション */
+@keyframes rollinganime {
+  0% {
+    transform: rotate(0deg);
+  }
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+div.header,.layout-table{
+	margin-bottom: -1px;
+}
+
+div.table-overflow{
+	overflow-y: scroll;
+    height: 252px;
+}
