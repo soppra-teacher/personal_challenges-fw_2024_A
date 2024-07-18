@@ -51,7 +51,7 @@ public class KankouListServiceImpl implements KankouListService {
 		KankouListDto result = new KankouListDto();
 		// カテゴリコンボボックスの設定
 		result.setCategory(commonDao.searchSelectboxCategory());
-		// 続柄区分コンボボックスの設定
+		// 地方区分コンボボックスの設定
 		result.setTihou(commonDao.searchSelectboxTIhou());
 		//都道府県名コンボボックスの設定
 		result.setTodouhuken(commonDao.searchSelectboxTodouhuKen());

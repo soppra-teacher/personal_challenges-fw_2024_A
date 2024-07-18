@@ -4,7 +4,7 @@ import java.util.Map;
 
 import cashbook.dto.common.LoginDto;
 
-public interface KankouDao {
+public interface KankouRegistDao {
 
 	/**
 	 * 観光地情報を登録する

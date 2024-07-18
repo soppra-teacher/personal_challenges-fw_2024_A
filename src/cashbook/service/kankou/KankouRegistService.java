@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
 
-public interface KankouService {
+public interface KankouRegistService {
 
 	/**
 	 * 都道府県・カテゴリコンボボックスの初期表示処理

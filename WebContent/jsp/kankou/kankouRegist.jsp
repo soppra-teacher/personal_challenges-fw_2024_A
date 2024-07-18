@@ -133,9 +133,14 @@
 								<img id="preview" src="<%=request.getContextPath()%>/img/sample_bgYellow.png" class="image-sample" alt="Default Image"/>
 							</td>
 						</tr>
+							
 					</table>
 				</div>
-
+				<div class="block-center layout-table">
+					<html:button property="insert" styleClass="btn-blue btn-size-m padding-b-1" onclick="resetImage();">
+						キャンセル
+					</html:button>
+				</div>
 				<div class="block-center layout-table">
 					<a href = "#" id = "clicklink" class = "btn-green btn-size-m" tabindex = "3" >
 		              登録
@@ -168,6 +173,14 @@
 			        reader.readAsDataURL(file);
 			    }
 			});
+
+			function resetImage() {
+			    // プレビュー画像を元の画像パスに戻す
+			    document.getElementById('preview').src="<%=request.getContextPath()%>/img/sample_bgYellow.png";
+			    // 隠しフィールドの値もリセット
+			    document.kankouUpdDelForm.base64Image.value = '';
+			}
+
 		</script>
 		
 	</div>

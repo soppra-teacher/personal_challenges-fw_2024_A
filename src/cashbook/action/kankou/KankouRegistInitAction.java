@@ -17,22 +17,22 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
-import cashbook.service.kankou.KankouService;
+import cashbook.service.kankou.KankouRegistService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouRegistConst;
 import cashbook.util.UserConst;
 
 public class KankouRegistInitAction extends BaseAction{
 	
 	/** 観光地登録サービス */
-	private KankouService kankouService;
+	private KankouRegistService kankouRegistService;
 	
 	/**
 	 * 観光地登録サービスを設定します。
-	 * @param kankouService 個人マスタサービス
+	 * @param kankouRegistService 個人マスタサービス
 	 */
-	public void setKankouService(KankouService kankouService) {
-		this.kankouService = kankouService;
+	public void setKankouRegistService(KankouRegistService kankouRegistService) {
+		this.kankouRegistService = kankouRegistService;
 	}
 	
 	/**
@@ -81,10 +81,10 @@ public class KankouRegistInitAction extends BaseAction{
 		}
 
 		// 初期表示取得
-		KankouRegistDto dto =  kankouService.registInit(formMap);
+		KankouRegistDto dto =  kankouRegistService.registInit(formMap);
 		
 		// 取得した情報をリクエストに設定
-		request.setAttribute(KankouConst.FORM_KANKOU_REGIST, dto);
+		request.setAttribute(KankouRegistConst.FORM_KANKOU_REGIST, dto);
 		// 取得した情報をセッションに設定
 		request.getSession().setAttribute(SESSION_REGIST_DTO_KANKOU, dto);
 

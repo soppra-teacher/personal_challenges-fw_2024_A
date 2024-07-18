@@ -5,7 +5,7 @@ import java.util.Map;
 import cashbook.dao.common.BaseDaoImpl;
 import cashbook.dto.common.LoginDto;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouUpdDelConst;
 
 public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao {
 	
@@ -37,7 +37,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 		sql.append("  ON K.KANKOU_ID = H.KANKOU_ID AND H.USER_ID = '").append(loginDto.getUserId()).append("' ");
 		sql.append("  INNER JOIN MST_USER U ");
 		sql.append("  ON K.USER_ID = U.USER_ID ");
-		sql.append("  WHERE K.KANKOU_ID = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		sql.append("  WHERE K.KANKOU_ID = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
 		return super.find(sql.toString());
 	}
 	
@@ -50,12 +50,12 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE TBL_KANKOU");
-		sql.append(" SET SETSUMEI = '").append(formMap.get(KankouConst.KEY_SETUMEI)).append("' ");
-		sql.append("    ,REVIEW = '").append(formMap.get(KankouConst.KEY_REVIEW)).append("' ");
-		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouConst.KEY_IMAGE_STRING)))) {
-			sql.append("    ,FILE_NM = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append(KankouConst.IMAGE_PNG + "'");
+		sql.append(" SET SETSUMEI = '").append(formMap.get(KankouUpdDelConst.KEY_SETUMEI)).append("' ");
+		sql.append("    ,REVIEW = '").append(formMap.get(KankouUpdDelConst.KEY_REVIEW)).append("' ");
+		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouUpdDelConst.KEY_IMAGE_STRING)))) {
+			sql.append("    ,FILE_NM = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append(KankouUpdDelConst.IMAGE_PNG + "'");
 		}
-		sql.append("WHERE KANKOU_ID = '").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		sql.append("WHERE KANKOU_ID = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
 		super.update(sql.toString());
 	}
 	
@@ -66,7 +66,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 	public void delKankou(Map<String, Object> formMap) {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" DELETE TBL_KANKOU ");
-		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
 	}
 	
 	
@@ -85,7 +85,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 		sql.append("   HYOUKATI) ");
 		sql.append("   VALUES ('").append(kankouId).append("'");
 		sql.append("     ,'").append(loginDto.getUserId()).append("' ");
-		sql.append("     ,'").append(formMap.get(KankouConst.KEY_HYOKA)).append("' )");
+		sql.append("     ,'").append(formMap.get(KankouUpdDelConst.KEY_HYOKA)).append("' )");
 		super.update(sql.toString());
 	}
 	
@@ -98,7 +98,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 	public void updHyoka(Map<String, Object> formMap, LoginDto loginDto, String kankouId){
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE TBL_HYOUKATI");
-		sql.append("  SET HYOUKATI = '").append(formMap.get(KankouConst.KEY_HYOKA)).append("'");
+		sql.append("  SET HYOUKATI = '").append(formMap.get(KankouUpdDelConst.KEY_HYOKA)).append("'");
 		sql.append("  WHERE KANKOU_ID = '").append(kankouId).append("'");
 		sql.append("  AND USER_ID = '").append(loginDto.getUserId()).append("' ");
 		super.update(sql.toString());
@@ -114,7 +114,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" DELETE TBL_HYOUKATI ");
-		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouConst.KEY_KANKOU_ID)).append("' ");
+		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
 		super.update(sql.toString());
 	}
 }

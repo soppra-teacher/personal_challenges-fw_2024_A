@@ -22,10 +22,10 @@
       <value>jdbc:oracle:thin:@//localhost:1521/XEPDB1</value>
     </property>
     <property name="username">
-      <value>SEKI</value>
+      <value>TAKERU</value>
     </property>
     <property name="password">
-      <value>SEKI</value>
+      <value>TAKERU</value>
     </property>
   </bean>
 
@@ -62,8 +62,8 @@
     </property>
   </bean>
   
-    <!-- 観光地テーブル-->
-   <bean id="KankouDaoId" class="cashbook.dao.kankou.KankouDaoImpl">
+    <!-- 観光地登録画面-->
+   <bean id="KankouRegistDaoId" class="cashbook.dao.kankou.KankouRegistDaoImpl">
     <property name="dataSource">
       <ref local="dataSource" />
     </property>
@@ -98,13 +98,13 @@
     </property>
   </bean>
   
-    <!-- 観光地テーブル -->
-  <bean id="KankouServiceId" class="cashbook.service.kankou.KankouServiceImpl">
+    <!-- 観光地登録画面 -->
+  <bean id="KankouRegistServiceId" class="cashbook.service.kankou.KankouRegistServiceImpl">
     <property name="commonDao">
       <ref local="CommonDaoId" />
     </property>
-    <property name="kankouDao">
-      <ref local="KankouDaoId" />
+    <property name="kankouRegistDao">
+      <ref local="KankouRegistDaoId" />
     </property>
    <property name="transactionTemplate">
       <ref local="transactionTemplateRequired" />
@@ -173,14 +173,14 @@
   
   <!-- 観光地登録 -->
   <bean name="/KankouRegistInit" class="cashbook.action.kankou.KankouRegistInitAction">
-    <property name="kankouService">
-      <ref local="KankouServiceId" />
+    <property name="kankouRegistService">
+      <ref local="KankouRegistServiceId" />
     </property>
     
   </bean>
   <bean name="/KankouRegistIns" class="cashbook.action.kankou.KankouRegistInsAction">
-    <property name="kankouService">
-      <ref local="KankouServiceId" />
+    <property name="kankouRegistService">
+      <ref local="KankouRegistServiceId" />
     </property>
   </bean>
 

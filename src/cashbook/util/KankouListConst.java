@@ -8,7 +8,6 @@ public class KankouListConst {
 
 	/** フォーム名(観光地検索・一覧表示画面) */
 	public static final String FORM_KANKOU_LIST = "kankouListForm";
-
 	/** キー値：カテゴリーキー */
 	public static final String KEY_CATEGORY_KEY = "categoryKey";
 	/** キー値：観光地名 */

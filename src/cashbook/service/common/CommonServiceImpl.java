@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import cashbook.util.KankouConst;
+import cashbook.util.KankouRegistConst;
 
 public class CommonServiceImpl implements CommonService {
 
@@ -18,14 +18,14 @@ public class CommonServiceImpl implements CommonService {
 	 */
 	public void fileUpdIns(Map<String, Object> formMap, HttpServletRequest request) throws IOException {
 		// フォームのbase64Imageフィールドからデータを取得
-		String base64Image = (String) formMap.get(KankouConst.KEY_IMAGE_STRING);
+		String base64Image = (String) formMap.get(KankouRegistConst.KEY_IMAGE_STRING);
 		// Base64データURIスキーム部分を削除
 		String[] parts = base64Image.split(",");
 		String imageData = parts[1];
 		// Base64デコード
 		byte[] imageBytes = Base64.getDecoder().decode(imageData);
 		// ファイル名を設定
-		String fileName = formMap.get(KankouConst.KEY_KANKOU_ID) + KankouConst.IMAGE_PNG;
+		String fileName = formMap.get(KankouRegistConst.KEY_KANKOU_ID) + KankouRegistConst.IMAGE_PNG;
 
 		// デコードされたバイト配列をファイルとして保存
 		String filePath = request.getServletContext().getRealPath("/img/kankouti/") + fileName;

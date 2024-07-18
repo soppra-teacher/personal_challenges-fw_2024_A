@@ -18,22 +18,22 @@ import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.service.common.CommonServiceImpl;
-import cashbook.service.kankou.KankouService;
+import cashbook.service.kankou.KankouRegistService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouRegistConst;
 
 public class KankouRegistInsAction extends BaseAction{
 	
 	/** 観光地登録サービス */
-	private KankouService kankouService;
+	private KankouRegistService kankouRegistService;
 
 	
 	/**
 	 * 観光地登録サービスを設定します。
-	 * @param kankouService 観光地登録サービス
+	 * @param kankouRegistService 観光地登録サービス
 	 */
-	public void setKankouService(KankouService kankouService) {
-		this.kankouService = kankouService;
+	public void setKankouRegistService(KankouRegistService kankouRegistService) {
+		this.kankouRegistService = kankouRegistService;
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class KankouRegistInsAction extends BaseAction{
 		
 		try {
 			// 登録処理
-			kankouService.registIns(formMap, loginDto, request);
+			kankouRegistService.registIns(formMap, loginDto, request);
 		//ロールバック専用のTransactionRolledbackException
 		}catch (TransactionRolledbackException e) {
 			//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
@@ -69,7 +69,7 @@ public class KankouRegistInsAction extends BaseAction{
 		}
 		
 		// 写真処理
-		if (!CommonUtil.isNull((String) formMap.get(KankouConst.KEY_IMAGE_STRING))) {
+		if (!CommonUtil.isNull((String) formMap.get(KankouRegistConst.KEY_IMAGE_STRING))) {
 			try {
 				CommonServiceImpl commonImp = new CommonServiceImpl();
 				commonImp.fileUpdIns(formMap, request);

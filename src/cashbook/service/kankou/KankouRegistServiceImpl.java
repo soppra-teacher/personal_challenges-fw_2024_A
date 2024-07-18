@@ -11,19 +11,19 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import cashbook.dao.common.CommonDao;
-import cashbook.dao.kankou.KankouDao;
+import cashbook.dao.kankou.KankouRegistDao;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouRegistDto;
 import cashbook.exception.CommonValidateException;
-import cashbook.util.KankouConst;
+import cashbook.util.KankouRegistConst;
 
-public class KankouServiceImpl implements KankouService {
+public class KankouRegistServiceImpl implements KankouRegistService {
 
 	/** 共通Dao */
 	private CommonDao commonDao;
 
 	/** 観光Dao */
-	private KankouDao kankouDao;
+	private KankouRegistDao kankouRegistDao;
 
 	/** 観光Dao */
 	private TransactionTemplate transactionTemplate;
@@ -38,10 +38,10 @@ public class KankouServiceImpl implements KankouService {
 
 	/**
 	 * 観光DAOのsetter
-	 * @param kankouDao
+	 * @param kankouRegistDao
 	 */
-	public void setKankouDao(KankouDao kankouDao) {
-		this.kankouDao = kankouDao;
+	public void setkankouRegistDao(KankouRegistDao kankouRegistDao) {
+		this.kankouRegistDao = kankouRegistDao;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class KankouServiceImpl implements KankouService {
 	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception {
 		// 観光地・評価値登録
 		// 観光地情報存在チェック
-		if (!kankouDao.checkOverlapKankou(formMap, loginDto)) {
+		if (!kankouRegistDao.checkOverlapKankou(formMap, loginDto)) {
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
 		}
 
@@ -89,16 +89,16 @@ public class KankouServiceImpl implements KankouService {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
 				//テーブルロック
-				kankouDao.lockKankou();
+				kankouRegistDao.lockKankou();
 				
 				//formMapに、観光IDの最大値をセット
-				formMap.put(KankouConst.KEY_KANKOU_ID, kankouDao.getMaxKankou());
+				formMap.put(KankouRegistConst.KEY_KANKOU_ID, kankouRegistDao.getMaxKankou());
 				
 				// 観光地登録処理
-				kankouDao.registKankou(formMap, loginDto);
+				kankouRegistDao.registKankou(formMap, loginDto);
 
 				// 評価値登録処理
-				kankouDao.registHyoka(formMap, loginDto);
+				kankouRegistDao.registHyoka(formMap, loginDto);
 				
 			}
 		});

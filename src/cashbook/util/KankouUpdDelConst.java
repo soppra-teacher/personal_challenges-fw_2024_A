@@ -22,5 +22,10 @@ public class KankouUpdDelConst {
 	public static final String KEY_IMAGE_STRING = "base64Image";
 	/** キー値：jpegキー */
 	public static final String IMAGE_PNG = ".png";
+	/** キー値：説明 */
+	public static final String KEY_SETUMEI = "setsumei";
+	/** キー値：レビュー */
+	public static final String KEY_REVIEW = "review";
+ 
 }
 
