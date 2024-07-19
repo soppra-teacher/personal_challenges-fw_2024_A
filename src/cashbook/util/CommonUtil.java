@@ -114,7 +114,7 @@ public class CommonUtil {
 	 */
 	public static void fileUpd(Map<String, Object> formMap, HttpServletRequest request) throws IOException {
 		// フォームのbase64Imageフィールドからデータを取得
-		String base64Image = (String) formMap.get(KankouRegistConst.KEY_IMAGE_STRING);
+		String base64Image = (String) formMap.get(Const.KEY_IMAGE_STRING);
 		// Base64データURIスキーム部分を削除
 		String[] parts = base64Image.split(",");
 		String imageData = parts[1];

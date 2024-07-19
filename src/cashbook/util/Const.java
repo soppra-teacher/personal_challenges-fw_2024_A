@@ -113,5 +113,12 @@ public class Const {
 	public static final String SESSION_UPD_DEL_MESSAGE_KANKOU = "KANKOU_UPD_DEL_MESSAGE";
 	/** 観光地更新削除画面 戻り先 変更 */
 	public static final String SESSION_REGIST_BACK_KOJIN = "KANKOU_UPD_DEL_BACK";
-
+	
+	/************* 写真処理 *************/
+	/**  getRealPath  */
+	public static final String FILE_PATH = "/img/kankouti/";
+	/** キー値：エンコードファイルデータ */
+	public static final String KEY_IMAGE_STRING = "base64Image";
+	/** キー値：jpegキー */
+	public static final String IMAGE_PNG = ".png";
 }

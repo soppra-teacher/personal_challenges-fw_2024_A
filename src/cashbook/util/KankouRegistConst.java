@@ -23,9 +23,5 @@ public class KankouRegistConst {
 	public static final String KEY_HYOKA = "hyoka";
 	/** キー値：観光地ID */
 	public static final String KEY_KANKOU_ID = "kankouId";
-	/** キー値：エンコードファイルデータ */
-	public static final String KEY_IMAGE_STRING = "base64Image";
-	/** キー値：jpegキー */
-	public static final String IMAGE_PNG = ".png";
 }
 

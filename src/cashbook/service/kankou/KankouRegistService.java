@@ -20,7 +20,8 @@ public interface KankouRegistService {
 	 * 観光地・評価値の登録処理
 	 * @param formMap
 	 * @param loginDto
+	 * @param request
 	 * @throws Exception
 	 */
-	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest reques) throws Exception;
+	public void registIns(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request) throws Exception;
 }

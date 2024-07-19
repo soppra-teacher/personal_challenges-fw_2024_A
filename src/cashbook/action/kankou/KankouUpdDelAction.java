@@ -88,7 +88,7 @@ public class KankouUpdDelAction extends BaseAction {
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_UPD);
 			}
 			// 写真が新しく選ばれているかを判断する。
-			if (!CommonUtil.isNull((String) formMap.get(KankouUpdDelConst.KEY_IMAGE_STRING))) {
+			if (!CommonUtil.isNull((String) formMap.get(Const.KEY_IMAGE_STRING))) {
 				try {
 					//写真を更新するメソッドの呼び出し。
 					CommonServiceImpl commonImp = new CommonServiceImpl();
@@ -110,7 +110,7 @@ public class KankouUpdDelAction extends BaseAction {
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_DEL);
 			}
 			//写真削除処理
-			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + KankouUpdDelConst.IMAGE_PNG);
+			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + Const.IMAGE_PNG);
 			try {
 				Files.delete(destPath);
 			} catch (IOException e) {

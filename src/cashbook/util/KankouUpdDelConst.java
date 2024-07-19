@@ -18,10 +18,6 @@ public class KankouUpdDelConst {
 	public static final String KEY_COMPARE_HYOKA = "compareHyoka";
 	/** キー値：ログインユーザ */
 	public static final String KEY_LOG_USER_ID = "logUserId";
-	/** キー値：エンコードファイルデータ */
-	public static final String KEY_IMAGE_STRING = "base64Image";
-	/** キー値：jpegキー */
-	public static final String IMAGE_PNG = ".png";
 	/** キー値：説明 */
 	public static final String KEY_SETUMEI = "setsumei";
 	/** キー値：レビュー */

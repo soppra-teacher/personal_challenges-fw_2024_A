@@ -5,6 +5,7 @@ import java.util.Map;
 import cashbook.dao.common.BaseDaoImpl;
 import cashbook.dto.common.LoginDto;
 import cashbook.util.CommonUtil;
+import cashbook.util.Const;
 import cashbook.util.KankouUpdDelConst;
 
 public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao {
@@ -52,8 +53,8 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 		sql.append("UPDATE TBL_KANKOU");
 		sql.append(" SET SETSUMEI = '").append(formMap.get(KankouUpdDelConst.KEY_SETUMEI)).append("' ");
 		sql.append("    ,REVIEW = '").append(formMap.get(KankouUpdDelConst.KEY_REVIEW)).append("' ");
-		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(KankouUpdDelConst.KEY_IMAGE_STRING)))) {
-			sql.append("    ,FILE_NM = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append(KankouUpdDelConst.IMAGE_PNG + "'");
+		if (!CommonUtil.isNull(CommonUtil.getStr(formMap.get(Const.KEY_IMAGE_STRING)))) {
+			sql.append("    ,FILE_NM = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append(Const.IMAGE_PNG + "'");
 		}
 		sql.append("WHERE KANKOU_ID = '").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
 		super.update(sql.toString());

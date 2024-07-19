@@ -20,7 +20,7 @@ import cashbook.exception.CommonValidateException;
 import cashbook.service.common.CommonServiceImpl;
 import cashbook.service.kankou.KankouRegistService;
 import cashbook.util.CommonUtil;
-import cashbook.util.KankouRegistConst;
+import cashbook.util.Const;
 
 public class KankouRegistInsAction extends BaseAction{
 	
@@ -69,7 +69,7 @@ public class KankouRegistInsAction extends BaseAction{
 		}
 		
 		// 写真処理
-		if (!CommonUtil.isNull((String) formMap.get(KankouRegistConst.KEY_IMAGE_STRING))) {
+		if (!CommonUtil.isNull((String) formMap.get(Const.KEY_IMAGE_STRING))) {
 			try {
 				CommonServiceImpl commonImp = new CommonServiceImpl();
 				commonImp.fileUpdIns(formMap, request);

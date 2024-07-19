@@ -23,6 +23,7 @@ public interface KankouRegistDao {
 	/**
 	 * 重複チェック
 	 * @param formMap
+	 * @param loginDto
 	 * @return true：重複あり、false：重複なし
 	 */
 	public boolean checkOverlapKankou(Map<String, Object> formMap, LoginDto loginDto);
