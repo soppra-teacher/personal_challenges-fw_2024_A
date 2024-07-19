@@ -97,5 +97,153 @@
 	max-height: 100%;
 }
 
+/* chara_kotira.pngの位置調整 */
+.charakotira-img{
+	position: absolute;
+	bottom: 297px;
+	right: -661px;
+	width: 110px;
+	height: auto;
+	animation-name: kotira-img;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+ 
+}
+
+/* chara_kotira.pngのアニメーション */
+@keyframes kotira-img {
+ 0% {
+	transform: rotate(-5deg);
+ }
+ 50% {
+	transform: rotate(-15deg);
+ }
+ 100% {
+	transform: rotate(-5deg);
+ }
+}
+
+/* chara_sit.png・chara_sit_arm.pngの位置調整 */
+.charasit-img,.charasitArm-img{
+	position: absolute;
+	bottom: 516px;
+	right: 828px;
+	width: 140px;
+	height: auto;
+  
+}
+
+/* chara_sit_arm.pngのアニメーション */
+.charasitArm-img{
+	animation-name: arm-img;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+
+}
+
+/* chara_sit_arm.pngの位置調整 */
+@keyframes arm-img {
+  0% {
+	transform: rotate(5deg);
+  }
+  40% {
+	transform: rotate(15deg);
+  }
+
+  80% {
+	transform: rotate(10deg);
+  }
+  100% {
+	transform: rotate(5deg);
+  }
+}
+
+
+/* rollingstar.pngの位置調整 */
+.rollingstar-img{
+	position: absolute;
+	bottom: 75px;
+	right: 292px;
+	width: 27px;
+	height: auto;
+
+	animation-name: rollinganime;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+	transform-origin: inherit;
+  
+}
+
+/* rollingstar.pngの位置調整 */
+.rollingstar2-img{
+	position: absolute;
+	bottom: -310px;
+	right: 432px;
+	width: 32px;
+	height: auto;
+
+	animation-name: rollinganime;
+	animation-duration: 1s;
+	animation-timing-function: inherit;
+	animation-direction: normal;
+	animation-iteration-count: infinite;
+	transform-origin: inherit;
+}
+
+/* rollingstar.pngのアニメーション */
+@keyframes rollinganime {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* chara_udeage.pngのスタイル */
+.charaudeage-img {
+	position: absolute;
+	bottom: -66px;
+	right: 285px;
+	width: 150px;
+	height: auto;
+  
+/*animationプロパティ*/
+ 	animation-name: bounce;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	transform-origin: center bottom;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    transform: scale(1);
+  }
+  35% {
+    transform: translateY(-10%);
+  }
+  40% {
+    transform: scale(1);
+    transform: translateY(-10%);
+  }
+  15% {
+    transform: translateY(0);
+    transform: scale(1.1, 0.87);
+  }
+}
 
 

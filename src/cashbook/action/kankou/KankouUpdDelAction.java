@@ -114,7 +114,6 @@ public class KankouUpdDelAction extends BaseAction {
 			try {
 				Files.delete(destPath);
 			} catch (IOException e) {
-				throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE_UPD);
 			}
 
 			return map.findForward(ACTION_FOWARD_DELETE);
