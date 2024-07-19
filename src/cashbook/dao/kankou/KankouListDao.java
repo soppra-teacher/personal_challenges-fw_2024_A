@@ -6,6 +6,7 @@ import java.util.Map;
 public interface KankouListDao {
 	/**
 	 * 観光地情報を一覧を検索する
+	 * @param formMap
 	 * @return 観光地一覧
 	 */
 	public List<Map<String, String>> searchKankou(Map<String, Object> formMap);

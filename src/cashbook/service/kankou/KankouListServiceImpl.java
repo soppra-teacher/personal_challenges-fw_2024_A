@@ -42,9 +42,9 @@ public class KankouListServiceImpl implements KankouListService {
 
 	/**
 	 * 検索・一覧画面初期表示メソッド
-	 * @param map      アクションマッピング
-	 * @param form     フォーム
-	 * @param request  リクエスト
+	 * @param formMap  
+	 * @param request リクエスト
+	 * @return KankouListDto 観光検索画面Dto
 	 */
 	public KankouListDto listInit(Map<String, Object> formMap, HttpServletRequest request) {
 

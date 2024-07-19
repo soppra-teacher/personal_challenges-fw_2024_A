@@ -50,6 +50,7 @@ public class KankouUpdDelServiceImpl implements KankouUpdDelService {
 		KankouUpdDelDto result = new KankouUpdDelDto();
 
 		Map<String, String> map = kankouUpdDelDao.findKankou(formMap, loginDto);
+		result.setLogUserId((loginDto.getUserId()));
 		result.setImagePath(map.get("FILE_NM"));
 		result.setKankouNm(map.get("KANKOU_NM"));
 		result.setCategoryNm(map.get("CATEGORY_NM"));
@@ -73,6 +74,7 @@ public class KankouUpdDelServiceImpl implements KankouUpdDelService {
 	 * 評価値登録メソッド
 	 * @param formMap
 	 * @param loginDto ログイン情報
+	 * @param kankouId 観光地Id
 	 * @throws Exception
 	 */
 	public void hyokaIns(Map<String, Object> formMap, LoginDto loginDto, String kankouId) throws Exception {
@@ -84,7 +86,8 @@ public class KankouUpdDelServiceImpl implements KankouUpdDelService {
 	 * @param formMap
 	 * @param loginDto ログイン情報
 	 * @param request リクエスト
-	 * @param 観光地Id
+	 * @param kankouId 観光地Id
+	 * @param compareHyoka
 	 * @throws Exception
 	 */
 	public void update(Map<String, Object> formMap, LoginDto loginDto, HttpServletRequest request, String kankouId, String compareHyoka) throws Exception {

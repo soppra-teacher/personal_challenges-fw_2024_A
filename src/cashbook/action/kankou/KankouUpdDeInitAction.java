@@ -63,10 +63,6 @@ public class KankouUpdDeInitAction extends BaseAction {
 		//セッション**
 		session = request.getSession();
 
-		// ユーザーIDをセッションに保存
-		String logUserId = loginDto.getUserId();
-		session.setAttribute(KankouUpdDelConst.KEY_LOG_USER_ID, logUserId);
-
 		// 観光地IDをセッションに保存
 		String kankouId = CommonUtil.getStr(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID));
 		session.setAttribute(KankouUpdDelConst.KEY_KANKOU_ID, kankouId);

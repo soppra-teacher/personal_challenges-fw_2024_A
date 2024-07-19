@@ -94,6 +94,7 @@ public class KankouUpdDelAction extends BaseAction {
 					CommonServiceImpl commonImp = new CommonServiceImpl();
 					commonImp.fileUpdIns(formMap, request);
 				} catch (IOException e) {
+					throw new CommonValidateException(Const.MSG_ERRORS_NO_FILE);
 				}
 			}
 
@@ -110,10 +111,12 @@ public class KankouUpdDelAction extends BaseAction {
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_DEL);
 			}
 			//写真削除処理
-			Path destPath = Paths.get(request.getServletContext().getRealPath("/img/kankouti/") + kankouId + Const.IMAGE_PNG);
+			Path destPath = Paths.get(request.getServletContext().getRealPath(FILE_PATH) + kankouId + Const.IMAGE_PNG);
 			try {
 				Files.delete(destPath);
 			} catch (IOException e) {
+				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_ERRORS_NO_FILE_UPD);
+				
 			}
 
 			return map.findForward(ACTION_FOWARD_DELETE);

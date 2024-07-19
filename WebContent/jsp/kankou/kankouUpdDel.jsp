@@ -6,6 +6,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ page import="cashbook.util.Const"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="cashbook.dto.kankou.KankouUpdDelDto" %>
 
 <!DOCTYPE html>
 <html:html lang="ja">
@@ -26,10 +27,14 @@
 
 	<bean:define id="inputBean" name="kankouUpdDelForm" />
 	<bean:define id="viewBean" name="KANKOU_UPD_DEL_DTO" />
+	<%
+    	KankouUpdDelDto dto = (KankouUpdDelDto) viewBean;
+    	String logUserId = dto.getLogUserId();
+	%>
 
 	<div class="formdesign text-center padding-t-1">
 
-		<html:form action="/KankouUpdDelDisp" focus="kojinId" >
+		<html:form action="/KankouUpdDel" focus="kojinId" >
 
 			<jsp:include page="/jsp/common/header.jsp">
 				<jsp:param name="screenTitle" value="詳細表示・更新削除画面" />
@@ -41,6 +46,7 @@
 			<html:hidden name="viewBean" property="hyokaJudge" value="" />
 			<html:hidden name="viewBean" property="userId" />
 			<html:hidden property="base64Image"  value=""/>
+			<html:hidden property="logUserId" value="<bean:write name='viewBean' property='logUserId'/>" />
 			
 			<div class="bg"></div>
 			<div class="bg bg2"></div>
@@ -70,8 +76,7 @@
 						</td>
 					</tr>
 				</table>
-				<%HttpSession httpSession = request.getSession();
-				    String logUserId = (String) httpSession.getAttribute("logUserId");%>
+				
 				<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
 					<input type="file" id="profileImage" name="profileImage" accept="image/*" class="btn btn-l" />
 				</logic:equal>

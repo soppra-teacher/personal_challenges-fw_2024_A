@@ -11,7 +11,7 @@ import cashbook.util.KankouUpdDelConst;
 public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao {
 	
 	/**
-	 * 観光テーブルを検索する
+	 * 観光テーブルを取得する
 	 * @param formMap
 	 * @param loginDto ログイン情報Dto
 	 * @return 観光テーブル
@@ -108,8 +108,6 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 	/**
 	 * 評価値テーブルを削除する
 	 * @param formMap
-	 * @param loginDto ログイン情報Dto
-	 * @param kankouId 観光Id
 	 */
 	public void delHyoka(Map<String, Object> formMap){
 

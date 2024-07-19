@@ -47,6 +47,7 @@
 			<form-property name="kankouId"     type="java.lang.String"  /><!-- 観光地ID -->
 			<form-property name="base64Image" type="java.lang.String" />
 			<form-property name="userId" type="java.lang.String" />
+			<form-property name="logUserId" type="java.lang.String"/>
 		</form-bean>
 		
 		<!--********************************************************************************************************************-->
@@ -216,20 +217,6 @@
 			validate="false"
 			scope="request">
 			<forward name="success" path="/jsp/kankou/kankouUpdDel.jsp"/>
-		</action>
-		<!-- ディスパッチ -->
-		<action
-			path="/KankouUpdDelDisp"
-			type="cashbook.action.kankou.KankouDispAction"
-			name="kankouUpdDelForm"
-			validate="false"
-			parameter="operation"
-			scope="request">
-			<forward name="insert" path="/KankouUpdDel.do"/>
-			<forward name="update" path="/KankouUpdDel.do"/>
-			<forward name="delete" path="/KankouUpdDel.do"/>
-			<forward name="backMenu" path="/MenuInit.do"/>
-			<forward name="backList" path="/KankouListSearch.do"/>
 		</action>
 		<!-- 登録・更新 -->
 		<action
