@@ -16,7 +16,6 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
-import cashbook.dto.common.UserRegistDto;
 import cashbook.exception.CommonValidateException;
 import cashbook.service.common.UserRegistService;
 import cashbook.util.CommonUtil;
@@ -65,10 +64,6 @@ public class UserRegistInsAction extends Action{
 			
 			// 登録
 			userRegistService.registIns(formMap);
-			
-			UserRegistDto dto = new UserRegistDto();
-
-
 			// 登録成功メッセージをセッションに設定
 			request.getSession().setAttribute(SESSION_REGIST_MESSAGE_USER, MSG_SUCCESS_INSERT_USER );
 			// 取得した情報をセッションに設定

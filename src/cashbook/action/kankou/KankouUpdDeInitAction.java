@@ -76,9 +76,9 @@ public class KankouUpdDeInitAction extends BaseAction {
 
 		// セッションから取得できた場合
 		if (sessionMap != null) {
-			// 画面に費目コードを設定する。
+			// 画面に観光IDを設定する。
 			formMap.put(KankouUpdDelConst.KEY_KANKOU_ID, sessionMap.get(KankouUpdDelConst.KEY_KANKOU_ID));
-			// セッションに保持している費目コードを削除する。
+			// セッションに保持している観光地IDを削除する。
 			request.getSession().removeAttribute(SESSION_UPD_DEL_RE_SEARCH_KANKOU);
 		}
 		// メッセージをセッションから取得する。
