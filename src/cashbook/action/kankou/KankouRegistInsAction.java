@@ -29,7 +29,7 @@ public class KankouRegistInsAction extends BaseAction{
 
 	
 	/**
-	 * 観光地登録サービスを設定します。
+	 * 観光地登録サービスを設定。
 	 * @param kankouRegistService 観光地登録サービス
 	 */
 	public void setKankouRegistService(KankouRegistService kankouRegistService) {

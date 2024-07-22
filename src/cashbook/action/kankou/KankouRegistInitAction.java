@@ -28,8 +28,8 @@ public class KankouRegistInitAction extends BaseAction{
 	private KankouRegistService kankouRegistService;
 	
 	/**
-	 * 観光地登録サービスを設定します。
-	 * @param kankouRegistService 個人マスタサービス
+	 * 観光地登録サービスを設定。
+	 * @param kankouRegistService 観光地登録サービス
 	 */
 	public void setKankouRegistService(KankouRegistService kankouRegistService) {
 		this.kankouRegistService = kankouRegistService;

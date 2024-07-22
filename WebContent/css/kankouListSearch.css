@@ -188,28 +188,26 @@
 /* rollingstar.pngの位置調整 */
 .rollingstar-img{
 	position: absolute;
-	bottom: 500px;
-	right: 580px;
+	top: -636px;
+	right: 590px;
 	width: 34px;
 	height: auto;
-
+ 
 	animation-name: rollinganime;
 	animation-duration: 1s;
 	animation-timing-function: inherit;
 	animation-direction: normal;
 	animation-iteration-count: infinite;
 	transform-origin: inherit;
-  
 }
-
 /* rollingstar.pngの位置調整 */
 .rollingstar2-img{
 	position: absolute;
-	bottom: 500px;
-	right: 367px;
+	top: -636px;
+	right: 375px;
 	width: 34px;
 	height: auto;
-
+ 
 	animation-name: rollinganime;
 	animation-duration: 1s;
 	animation-timing-function: inherit;
@@ -239,4 +237,11 @@ div.header,.layout-table{
 div.table-overflow{
 	overflow-y: scroll;
     height: 252px;
+}
+
+body:has(.msg-err) .rollingstar-img{
+	top:-718px;
+}
+body:has(.msg-err) .rollingstar2-img{
+	top:-718px;
 }

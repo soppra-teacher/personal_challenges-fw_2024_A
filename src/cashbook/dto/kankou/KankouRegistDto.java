@@ -36,7 +36,7 @@ public class KankouRegistDto{
 	/** 評価 (Ｍａｐ)*/
 	private Map<String, String> hyoka;
 	
-	/** 写真パス*/
+	/** 写真データをエンコードした文字列*/
 	private String base64Image;
 
 
@@ -185,16 +185,16 @@ public class KankouRegistDto{
 	}
 	
 	/**
-	 * 写真パスを取得します。
-	 * @return 写真パス
+	 * 写真をエンコードした文字列を取得します。
+	 * @return 写真をエンコードした文字列
 	 */
 	public String getBase64Image() {
 		return base64Image;
 	}
 
 	/**
-	 * 写真パスを設定します。
-	 * @param pictures 写真パス
+	 * 写真をエンコードした文字列を設定します。
+	 * @param Base64Image 写真をエンコードした文字列
 	 */
 	public void setBase64Image(String base64Image) {
 		this.base64Image = base64Image;

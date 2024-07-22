@@ -11,8 +11,7 @@ public class UserRegistDaoImpl extends BaseDaoImpl implements UserRegistDao{
 	 * ユーザ登録画面
 	 * <br>登録処理
 	 * </b></p>
-	 * @param フォーム項目
-	 * @param ログイン情報DTO
+	 * @param formMap フォーム項目
 	 */
 	public void registUser(Map<String, Object> formMap) {
 
@@ -34,7 +33,8 @@ public class UserRegistDaoImpl extends BaseDaoImpl implements UserRegistDao{
 	 * ユーザ登録画面
 	 * <br>重複チェック
 	 * </b></p>
-	 * @param フォーム項目
+	 * @param formMap フォーム項目
+	 * @return true : 重複なし, false : 重複あり
 	 */
 	
 	public boolean checkOverlapUserRegist(Map<String, Object> formMap) {

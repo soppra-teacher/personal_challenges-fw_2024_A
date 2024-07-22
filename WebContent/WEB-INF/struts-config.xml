@@ -125,24 +125,6 @@
 
 		<!--
 		****************************
-		* メニュー画面             *
-		****************************
-		後に、検索・一覧画面に変更予定-->
-		<action
-			path="/MenuInit"
-			type="cashbook.action.common.MenuInitAction"
-			scope="request">
-			<forward name="success" path="/jsp/common/menu.jsp"/>
-		</action>
-		<action
-			path="/Logout"
-			type="cashbook.action.common.LogoutAction"
-			scope="request">
-			<forward name="success" path="/jsp/common/login.jsp"/>
-		</action>
-
-		<!--
-		****************************
 		* 観光地登録画面       *
 		****************************
 		-->
@@ -204,7 +186,7 @@
 			<forward name="success" path="/jsp/kankou/kankouList.jsp"/>
 		</action>
 		
-				<!--
+		<!--
 		****************************
 		* 観光地更新削除画面       *
 		****************************

@@ -166,6 +166,10 @@
 					</div>
 				<jsp:include page="/jsp/common/footerList.jsp" />
 			</div>
+			<div class="absoluteRelativeimg">
+				<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar-img">
+				<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar2-img">
+			</div>
 		</html:form>
 	</div>
 
