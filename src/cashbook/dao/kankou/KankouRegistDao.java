@@ -30,7 +30,6 @@ public interface KankouRegistDao {
 	
 	/**
 	 * テーブルロック及び、排他チェック
-	 * @param loginDto
 	 */
 	public void lockKankou();
 	
