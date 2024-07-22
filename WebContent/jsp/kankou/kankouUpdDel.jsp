@@ -34,7 +34,7 @@
 
 	<div class="formdesign text-center padding-t-1">
 
-		<html:form action="/KankouUpdDel" focus="kojinId" >
+		<html:form action="/KankouUpdDel">
 
 			<jsp:include page="/jsp/common/header.jsp">
 				<jsp:param name="screenTitle" value="詳細表示・更新削除画面" />

@@ -223,11 +223,11 @@
 			path="/KankouUpdDel"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="kankouUpdDelForm"
-			validate="false"
+			validate="true"
 			input="/jsp/kankou/kankouUpdDel.jsp"
 			scope="request">
 			<forward name="success" path="/KankouUpdDelInit.do" />
-			<forward name="delete" path="/KankouListSearch.do" />
+			<forward name="delete" path="/KankouListInit.do" />
 			<forward name="error" path="/jsp/kankou/kankouUpdDel.jsp" />
 		</action>
 		<!--********************************************************************************************************************-->

@@ -60,7 +60,7 @@ public class KankouListServiceImpl implements KankouListService {
 		Map<String, Object> serch = new HashMap<>();
 
 		//再検索の処理
-		if (ACTION_FOWARD_RESERCH.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
+		if (ACTION_FOWARD_RESERCH.equals(request.getParameter(ACTION_FOWARD_OPERATION)) || ACTION_FOWARD_DELETE.equals(request.getParameter(ACTION_FOWARD_OPERATION))) {
 			
 			//セッションに保存した再検索用のマップを取得する。
 			 serch = CommonUtil.getSessionMap(request, ACTION_FOWARD_RESERCH);

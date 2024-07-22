@@ -68,6 +68,7 @@ public class KankouUpdDelDaoImpl extends BaseDaoImpl implements KankouUpdDelDao 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" DELETE TBL_KANKOU ");
 		sql.append(" WHERE KANKOU_ID ='").append(formMap.get(KankouUpdDelConst.KEY_KANKOU_ID)).append("' ");
+		super.update(sql.toString());
 	}
 	
 	

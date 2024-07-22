@@ -30,7 +30,7 @@
 
 	<div class="formdesign text-center">
 
-		<html:form action="/KankouListSearch" focus="kojinNm">
+		<html:form action="/KankouListSearch">
 
 			<html:hidden property="operation" value="" />
 			
@@ -163,8 +163,6 @@
 				</div>
 				<div class="absoluteRelativeimg">
 						<img src="<%=request.getContextPath()%>/img/chara_kotira.png" class="charakotira-img">
-						<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar-img">
-						<img src="<%=request.getContextPath()%>/img/star.png" class="rollingstar2-img">
 					</div>
 				<jsp:include page="/jsp/common/footerList.jsp" />
 			</div>
