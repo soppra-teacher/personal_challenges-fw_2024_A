@@ -245,3 +245,10 @@ body:has(.msg-err) .rollingstar-img{
 body:has(.msg-err) .rollingstar2-img{
 	top:-718px;
 }
+
+body:has(.msg-info) .rollingstar2-img{
+	top:-718px;
+}
+body:has(.msg-info) .rollingstar-img{
+	top:-718px;
+}
