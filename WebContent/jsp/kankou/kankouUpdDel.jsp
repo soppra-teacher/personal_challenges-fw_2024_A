@@ -79,7 +79,7 @@
 				</table>
 				
 				<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-					<input type="file" id="profileImage" name="profileImage" accept="png" class="btn btn-L" value="" />
+					<input type="file" id="profileImage" name="profileImage" accept="image/png" class="btn btn-L" value="" />
 				</logic:equal>
 			
 				<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
