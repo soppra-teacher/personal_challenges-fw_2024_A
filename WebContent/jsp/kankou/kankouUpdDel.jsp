@@ -40,10 +40,10 @@
 				<jsp:param name="screenTitle" value="詳細表示・更新削除画面" />
 			</jsp:include>
 
-			<html:hidden property="operation" value="" />
-			<html:hidden property="hiddenImagePath" value="" />
-			<html:hidden property="uploadedFilePath" value="" />
-			<html:hidden name="viewBean" property="hyokaJudge" value="" />
+			<html:hidden property="operation" value=""/>
+			<html:hidden property="hiddenImagePath" value=""/>
+			<html:hidden property="uploadedFilePath" value=""/>
+			<html:hidden name="viewBean" property="hyokaJudge"/>
 			<html:hidden name="viewBean" property="userId" />
 			<html:hidden property="base64Image"  value=""/>
 			<html:hidden property="logUserId" value="<bean:write name='viewBean' property='logUserId'/>" />
@@ -78,7 +78,7 @@
 				</table>
 				
 				<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">
-					<input type="file" id="profileImage" name="profileImage" accept="image/*" class="btn btn-l" />
+					<input type="file" id="profileImage" name="profileImage" accept="image/*" class="btn btn-L" value="" />
 				</logic:equal>
 			
 				<logic:equal name="viewBean" property="userId" value="<%= logUserId %>">

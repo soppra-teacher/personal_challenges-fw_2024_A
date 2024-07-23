@@ -1,7 +1,5 @@
 /*画面全体のスタイル*/
-html,body {
-	background-color: $ffffff;
-}
+
 
 hr {
 	width: 95%;
@@ -258,6 +256,11 @@ div.header {
 /* ボタン */
 .btn-l {
 	width: 200px;
+}
+
+/* ボタン */
+.btn-L {
+	width: 115px;
 }
 
 

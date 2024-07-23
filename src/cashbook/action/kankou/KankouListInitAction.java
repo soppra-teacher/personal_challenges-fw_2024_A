@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.DynaActionForm;
 
 import cashbook.action.common.BaseAction;
@@ -55,6 +57,17 @@ public class KankouListInitAction extends BaseAction {
 			HttpServletRequest request, HttpServletResponse response, LoginDto loginDto) throws Exception {
 		
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
+		
+		// メッセージをセッションから取得する。
+				String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_LIST_MESSAGE_KANKOU));
+
+				// セッションから取得できた場合
+				if (!EMPTY.equals(messageKey)) {
+					ActionMessages messages = new ActionMessages();
+					messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
+					saveMessages(request, messages);
+					request.getSession().removeAttribute(SESSION_LIST_MESSAGE_KANKOU);
+				}
 		
 		// 観光地検索初期表示情報を取得
 		KankouListDto dto = kankouListService.listInit(formMap, request);
