@@ -45,6 +45,7 @@
 			<html:hidden property="uploadedFilePath" value=""/>
 			<html:hidden name="viewBean" property="hyokaJudge"/>
 			<html:hidden name="viewBean" property="userId" />
+			<html:hidden name="viewBean" property="imagePath" />
 			<html:hidden property="base64Image"  value=""/>
 			<html:hidden property="logUserId" value="<bean:write name='viewBean' property='logUserId'/>" />
 			
