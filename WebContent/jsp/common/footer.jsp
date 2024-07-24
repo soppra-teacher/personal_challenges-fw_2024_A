@@ -30,7 +30,7 @@
 	        if (!confirm(msg)) {
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/KankouListInit.do?operation=reserch"
+	        	window.location.href = "./KankouListInit.do?operation=reserch"
 	        }
 	    });
 		//ログアウトの画面遷移処理
@@ -39,7 +39,7 @@
 	        if (!confirm(msg)) {
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/Logout.do"
+	        	window.location.href = "./Logout.do"
 	        }
 	    });
 	</script>

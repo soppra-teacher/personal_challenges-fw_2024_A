@@ -30,7 +30,7 @@
 	        if (!confirm(msg)) {
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/MenuInit.do?getKey=aaa"
+	        	window.location.href = "./MenuInit.do?getKey=aaa"
 	        }
 	    });
 		//ログアウトの画面遷移処理
@@ -40,7 +40,7 @@
 
 	        	return;
 	        } else {
-	        	window.location.href = "http://localhost:8080/Cashbook/Logout.do"
+	        	window.location.href = "./Logout.do"
 	        }
 	    });
 	</script>
