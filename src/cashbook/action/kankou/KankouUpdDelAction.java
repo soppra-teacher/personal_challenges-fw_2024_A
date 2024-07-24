@@ -10,7 +10,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.TransactionRolledbackException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -106,7 +105,7 @@ public class KankouUpdDelAction extends BaseAction {
 			// 削除処理(評価値テーブル、観光地テーブル)
 			try {
 				kankouUpdDelService.delete(formMap, request);
-			} catch (TransactionRolledbackException e) {
+			} catch (Exception e) {
 				//削除失敗
 				throw new CommonValidateException(Const.MSG_ERRORS_NO_DEL);
 			}
