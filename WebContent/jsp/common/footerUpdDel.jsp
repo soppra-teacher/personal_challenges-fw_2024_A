@@ -80,7 +80,7 @@
 
 							} else {
 
-								window.location.href = "http://localhost:8080/Cashbook/KankouListInit.do?operation=reserch";
+								window.location.href = "./KankouListInit.do?operation=reserch";
 
 							}
 
