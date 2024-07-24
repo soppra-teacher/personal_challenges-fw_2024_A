@@ -7,12 +7,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.TransactionRolledbackException;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
+import org.springframework.jdbc.BadSqlGrammarException;
 
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
@@ -60,10 +60,10 @@ public class KankouRegistInsAction extends BaseAction{
 			// 登録処理
 			kankouRegistService.registIns(formMap, loginDto, request);
 		//ロールバック専用のTransactionRolledbackException
-		}catch (TransactionRolledbackException e) {
+		}catch (BadSqlGrammarException e) {
 			//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
-			
+		
 		}catch(Exception e){
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);
 		}
