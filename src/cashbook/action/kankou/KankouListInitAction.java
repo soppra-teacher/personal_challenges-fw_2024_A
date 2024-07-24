@@ -17,6 +17,7 @@ import org.apache.struts.action.DynaActionForm;
 import cashbook.action.common.BaseAction;
 import cashbook.dto.common.LoginDto;
 import cashbook.dto.kankou.KankouListDto;
+import cashbook.exception.CommonValidateException;
 import cashbook.service.kankou.KankouListService;
 import cashbook.util.CommonUtil;
 import cashbook.util.KankouListConst;
@@ -58,16 +59,6 @@ public class KankouListInitAction extends BaseAction {
 		
 		Map<String, Object> formMap = CommonUtil.getFormMap((DynaActionForm) form);
 		
-		// メッセージをセッションから取得する。
-				String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_LIST_MESSAGE_KANKOU));
-
-				// セッションから取得できた場合
-				if (!EMPTY.equals(messageKey)) {
-					ActionMessages messages = new ActionMessages();
-					messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
-					saveMessages(request, messages);
-					request.getSession().removeAttribute(SESSION_LIST_MESSAGE_KANKOU);
-				}
 		
 		// 観光地検索初期表示情報を取得
 		KankouListDto dto = kankouListService.listInit(formMap, request);
@@ -76,6 +67,22 @@ public class KankouListInitAction extends BaseAction {
 		request.setAttribute(KankouListConst.FORM_KANKOU_LIST, dto);
 		// 取得した情報をセッションに設定
 		request.getSession().setAttribute(SESSION_LIST_DTO_KANKOU, dto);
+		
+		// メッセージをセッションから取得する。
+		String messageKey = CommonUtil.getStr(request.getSession().getAttribute(SESSION_LIST_MESSAGE_KANKOU));
+
+		// セッションから取得できた場合
+		if (!EMPTY.equals(messageKey)) {
+			request.getSession().removeAttribute(SESSION_LIST_MESSAGE_KANKOU);
+			if (MSG_ERRORS_NO_FILE_UPD.equals(messageKey)) {
+				throw new CommonValidateException(messageKey);
+			} else {
+				ActionMessages messages = new ActionMessages();
+				messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(messageKey));
+				saveMessages(request, messages);
+			}
+		}
+		
 		// 処理成功時の遷移先を指定する。
 		return map.findForward(ACTION_FOWARD_SUCCESS);
 	}
