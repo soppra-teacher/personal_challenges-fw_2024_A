@@ -21,7 +21,7 @@
 				</a>
 			</td>
 
-			<td><a href="http://localhost:8080/Cashbook/KankouListInit.do?operation=reserch"
+			<td><a href="./KankouListInit.do?operation=reserch"
 				id="searchList" class="btn-green btn-size-m"> ŒŸõEˆê——•\Ž¦ </a></td>
 
 			<td class="w-25"><a href="#" id="logOut"
