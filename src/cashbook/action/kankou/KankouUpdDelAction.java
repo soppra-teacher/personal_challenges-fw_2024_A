@@ -112,9 +112,7 @@ public class KankouUpdDelAction extends BaseAction {
 			//写真削除処理
 			Path destPath = Paths.get(request.getServletContext().getRealPath(FILE_PATH) + kankouId + Const.IMAGE_PNG);
 			try {
-				if (CommonUtil.isNull(destPath.toString())) {
 				Files.delete(destPath);
-				}
 				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_SUCCESS_DELETE);
 			} catch (IOException e) {
 				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_ERRORS_NO_FILE_UPD);
