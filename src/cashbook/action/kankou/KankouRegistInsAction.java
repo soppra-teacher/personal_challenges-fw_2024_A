@@ -62,7 +62,7 @@ public class KankouRegistInsAction extends BaseAction{
 		//ロールバック専用のTransactionRolledbackException
 		}catch (BadSqlGrammarException e) {
 			//トランザクションでエラーが発生した場合のエラーメッセージと処理内容
-			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_ID);
+			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA_REGIST);
 		
 		}catch(Exception e){
 			throw new CommonValidateException(MSG_ERRORS_KANKOU_DATA);

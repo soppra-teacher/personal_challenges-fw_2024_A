@@ -97,8 +97,8 @@ public class Const {
 	public static final String SESSION_LIST_MESSAGE_KANKOU = "KANKOU_LIST_MESSAGE";
 	/** 重複データ存在ありメッセージ */
 	public static final String MSG_ERRORS_KANKOU_DATA = "errors.overlap.kankou";
-	/** 観光ID重複によるトランザクションエラーメッセージ */
-	public static final String MSG_ERRORS_KANKOU_DATA_ID = "errors.overlapId.kankou";
+	/** トランザクションエラーメッセージ */
+	public static final String MSG_ERRORS_KANKOU_DATA_REGIST = "errors.kankouRegist";
 	/** 写真処理の失敗メッセージ */
 	public static final String MSG_ERRORS_IMAGE_EXEPTION = "errors.image.kankou";
 	
