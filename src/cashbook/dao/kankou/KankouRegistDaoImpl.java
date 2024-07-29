@@ -35,7 +35,6 @@ public class KankouRegistDaoImpl extends BaseDaoImpl implements KankouRegistDao 
 		sql.append("   , '").append(formMap.get(KankouRegistConst.KEY_KANKOU_NM)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouRegistConst.KEY_SETSUMEI)).append("' ");
 		sql.append("   , '").append(formMap.get(KankouRegistConst.KEY_REVIEW)).append("' ");
-		System.out.println(formMap.get(Const.KEY_IMAGE_STRING));
 		if(CommonUtil.isNull((String)formMap.get(Const.KEY_IMAGE_STRING))) {
 			sql.append("   , '").append("' ");
 		}else {

@@ -4,6 +4,7 @@ import static cashbook.util.Const.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -74,10 +75,10 @@ public class KankouUpdDelAction extends BaseAction {
 		if (Const.ACTION_FOWARD_INSERT.equals(operation)) {
 			//評価値登録処理
 			kankouUpdDelService.hyokaIns(formMap, loginDto, kankouId);
-			
+
 			//登録メッセージ
 			request.getSession().setAttribute(SESSION_UPD_DEL_MESSAGE_KANKOU, MSG_SUCCESS_INSERT);
-		//更新処理
+			//更新処理
 		} else if (Const.ACTION_FOWARD_UPDATE.equals(operation)) {
 
 			// 更新処理(評価値テーブル、観光地テーブル)
@@ -98,8 +99,8 @@ public class KankouUpdDelAction extends BaseAction {
 			}
 
 			//更新メッセージ
-			request.getSession().setAttribute(SESSION_UPD_DEL_MESSAGE_KANKOU, MSG_SUCCESS_UPDATE );
-		//削除処理
+			request.getSession().setAttribute(SESSION_UPD_DEL_MESSAGE_KANKOU, MSG_SUCCESS_UPDATE);
+			//削除処理
 		} else if (Const.ACTION_FOWARD_DELETE.equals(operation)) {
 
 			// 削除処理(評価値テーブル、観光地テーブル)
@@ -114,9 +115,11 @@ public class KankouUpdDelAction extends BaseAction {
 			try {
 				Files.delete(destPath);
 				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_SUCCESS_DELETE);
+			} catch (NoSuchFileException e) {
+				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_SUCCESS_DELETE);
 			} catch (IOException e) {
 				request.getSession().setAttribute(SESSION_LIST_MESSAGE_KANKOU, MSG_ERRORS_NO_FILE_UPD);
-				
+
 			}
 
 			return map.findForward(ACTION_FOWARD_DELETE);
